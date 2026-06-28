@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fresh Voices | Wolf Valtiner — Voice Over Artist Wien</title>
+  <meta name="description" content="Professioneller Voice Over Artist aus Wien. Deutsch und Englisch. Corporate, Dokumentation, E-Learning, Werbung, Hörbücher. Jetzt Hörproben anhören." />
+  <meta name="keywords" content="voice over Wien, Sprecher Wien, German voice actor, voice over Austria, Wolf Valtiner, Hörbuch Sprecher" />
+  <link rel="canonical" href="https://www.freshvoices.at/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fresh Voices | Wolf Valtiner — Voice Over Artist" />
+  <meta property="og:description" content="Professioneller Voice Over Artist aus Wien. Deutsch und Englisch." />
+  <meta property="og:url" content="https://www.freshvoices.at/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* --- Page-specific styles --- */
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 50%, rgba(145, 194, 104, 0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 30% 80%, rgba(255, 99, 161, 0.06) 0%, transparent 70%);
+    }
+    .hero__waveform-bg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 120px;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .hero__waveform-bg .bar {
+      flex: 1;
+      background: var(--green);
+      border-radius: 2px 2px 0 0;
+    }
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      width: 100%;
+    }
+    .hero__content { }
+    .hero__eyebrow {
+      margin-bottom: 24px;
+    }
+    .hero__title {
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 32px;
+      letter-spacing: -0.03em;
+    }
+    .hero__title em {
+      font-style: normal;
+      color: var(--pink);
+    }
+    .hero__subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .hero__actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero__visual {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .hero__photo-wrap {
+      position: relative;
+    }
+    .hero__photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--radius);
+      filter: grayscale(20%);
+    }
+    /* Placeholder for photo */
+    .hero__photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--card);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px dashed var(--grey-dark);
+    }
+    .hero__photo-badge {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--pink-bg);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 12px 18px;
+      border-radius: var(--radius);
+    }
+    .hero__demo {
+      margin-top: 36px;
+    }
+
+    /* Stats strip */
+    .stats {
+      background: var(--surface);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 40px 0;
+    }
+    .stats__inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+    .stat__number {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat__number span { color: var(--pink); }
+    .stat__label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+
+    /* What I do */
+    .what__intro {
+      max-width: 600px;
+    }
+    .use-case-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+    .use-case {
+      background: var(--card);
+      padding: 32px;
+      border-bottom: 2px solid transparent;
+      transition: border-color var(--transition);
+    }
+    .use-case:hover { border-color: var(--green); }
+    .use-case__label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .use-case__text { font-size: 0.85rem; color: var(--muted); }
+
+    /* CTA banner */
+    .cta-banner {
+      background: var(--surface);
+      border: 1px solid rgba(145, 194, 104, 0.2);
+      border-radius: var(--radius);
+      padding: 60px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-banner__text h2 { color: var(--white); margin-bottom: 12px; }
+    .cta-banner__text p  { color: var(--muted); max-width: 440px; }
+
+    @media (max-width: 768px) {
+      .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero__visual { order: -1; }
+      .hero__photo-placeholder { aspect-ratio: 16/9; }
+      .stats__inner { grid-template-columns: repeat(2, 1fr); }
+      .use-case-list { grid-template-columns: 1fr; }
+      .cta-banner { flex-direction: column; padding: 40px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo"><img src="images/logo.svg" alt="Fresh Voices logo"></a>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="samples.html">Voice Samples</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="contact.html" class="btn btn--primary" style="padding:10px 22px;font-size:0.7rem;">Get in touch</a></li>
+        </ul>
+        <button class="nav__lang" aria-label="Switch language">EN</button>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+
+    <!-- decorative background waveform bars -->
+    <div class="hero__waveform-bg" aria-hidden="true">
+      <div class="bar" style="height:40%"></div><div class="bar" style="height:65%"></div>
+      <div class="bar" style="height:90%"></div><div class="bar" style="height:55%"></div>
+      <div class="bar" style="height:80%"></div><div class="bar" style="height:45%"></div>
+      <div class="bar" style="height:100%"></div><div class="bar" style="height:70%"></div>
+      <div class="bar" style="height:50%"></div><div class="bar" style="height:85%"></div>
+      <div class="bar" style="height:60%"></div><div class="bar" style="height:35%"></div>
+      <div class="bar" style="height:75%"></div><div class="bar" style="height:95%"></div>
+      <div class="bar" style="height:55%"></div><div class="bar" style="height:40%"></div>
+      <div class="bar" style="height:70%"></div><div class="bar" style="height:88%"></div>
+      <div class="bar" style="height:45%"></div><div class="bar" style="height:60%"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero__inner">
+
+        <div class="hero__content">
+          <p class="eyebrow hero__eyebrow"
+             data-de="Voice Over Artist · Wien, Österreich"
+             data-en="Voice Over Artist · Vienna, Austria">
+            Voice Over Artist · Wien, Österreich
+          </p>
+          <h1 class="hero__title">
+            <span data-de="Die frische<br>Stimme für<br>Ihr<em> Projekt.</em>"
+                  data-en="The fresh<br>voice for<br>your<em> project.</em>">
+              Die frische<br>Stimme für<br>Ihr<em> Projekt.</em>
+            </span>
+          </h1>
+          <p class="hero__subtitle"
+             data-de="Wolf Valtiner — professioneller Sprecher für Corporate, Dokumentation, E-Learning, Werbung und Hörbücher. Auf Deutsch und Englisch."
+             data-en="Wolf Valtiner — professional voice over artist for corporate, documentary, e-learning, commercials and audiobooks. In German and English.">
+            Wolf Valtiner — professioneller Sprecher für Corporate, Dokumentation, E-Learning, Werbung und Hörbücher. Auf Deutsch und Englisch.
+          </p>
+          <div class="hero__actions">
+            <a href="samples.html" class="btn btn--primary">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><polygon points="3,1 15,8 3,15"/></svg>
+              <span data-de="Hörproben anhören" data-en="Listen to samples">Hörproben anhören</span>
+            </a>
+            <a href="contact.html" class="btn btn--ghost"
+               data-de="Projekt anfragen" data-en="Request a project">Projekt anfragen</a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="hero__photo-wrap">
+            <video class="hero__photo" autoplay muted loop playsinline preload="metadata">
+              <source src="videos/production-hook.mp4" type="video/mp4" />
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <div class="hero__photo-badge" data-de="Video-Hook" data-en="Video Hook">
+              ✦ Video-Hook
+            </div>
+          </div>
+
+          <div class="hero__demo">
+            <p class="eyebrow mb-16" data-de="Video-Demo" data-en="Video demo">Video-Demo</p>
+            <div class="audio-player" data-src="audio/land-sky-schonegger-schlafstudio.mp3">
+              <button class="audio-player__play" aria-label="Play video demo"></button>
+              <div class="audio-player__info">
+                <div class="audio-player__title"
+                     data-de="Imagefilm — Schlafstudio" data-en="Image Film — Sleep Studio">Imagefilm — Schlafstudio</div>
+                <div class="audio-player__desc"
+                     data-de="Imagevideo · Deutsch · ~90 Sek." data-en="Image video · German · ~90 sec.">Imagevideo · Deutsch · ~90 Sek.</div>
+              </div>
+              <div class="audio-player__track">
+                <div class="audio-player__progress">
+                  <div class="audio-player__bar"></div>
+                </div>
+                <span class="audio-player__time">0:00 / 0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats__inner">
+        <div>
+          <div class="stat__number">15<span>+</span></div>
+          <div class="stat__label" data-de="Jahre Erfahrung" data-en="Years experience">Jahre Erfahrung</div>
+        </div>
+        <div>
+          <div class="stat__number">200<span>+</span></div>
+          <div class="stat__label" data-de="Projekte" data-en="Projects">Projekte</div>
+        </div>
+        <div>
+          <div class="stat__number">2</div>
+          <div class="stat__label" data-de="Sprachen" data-en="Languages">Sprachen</div>
+        </div>
+        <div>
+          <div class="stat__number">48<span>h</span></div>
+          <div class="stat__label" data-de="Lieferzeit" data-en="Turnaround">Lieferzeit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT I DO -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="what__intro reveal">
+        <p class="eyebrow mb-16" data-de="Was ich mache" data-en="What I do">Was ich mache</p>
+        <h2 class="display-lg text-white"
+            data-de="Stimme, die Ihre Botschaft trägt."
+            data-en="A voice that carries your message.">
+          Stimme, die Ihre Botschaft trägt.
+        </h2>
+        <p class="mt-24 text-muted"
+           data-de="Ob ruhige Dokumentation, energiegeladene Werbung oder klare E-Learning-Inhalte — jedes Projekt bekommt die Stimmführung, die es verdient."
+           data-en="Whether calm documentary narration, energetic commercials, or clear e-learning content — every project gets the vocal treatment it deserves.">
+          Ob ruhige Dokumentation, energiegeladene Werbung oder klare E-Learning-Inhalte — jedes Projekt bekommt die Stimmführung, die es verdient.
+        </p>
+      </div>
+
+      <div class="use-case-list">
+        <div class="use-case reveal">
+          <div class="use-case__label" data-de="Corporate & Industrie" data-en="Corporate & Industrial">Corporate & Industrie</div>
+          <div class="use-case__text" data-de="Imagefilme, Messevideos, Unternehmensportäts" data-en="Image films, trade show videos, company portraits">Imagefilme, Messevideos, Unternehmensportäts</div>
+        </div>
+        <div class="use-case reveal">
+          <div class="use-case__label" data-de="Dokumentation" data-en="Documentary">Dokumentation</div>
+          <div class="use-case__text" data-de="Reportagen, Naturdokus, Wissenschaftsformate" data-en="Reports, nature docs, science formats">Reportagen, Naturdokus, Wissenschaftsformate</div>
+        </div>
+        <div class="use-case reveal">
+          <div class="use-case__label" data-de="E-Learning & Training" data-en="E-Learning & Training">E-Learning & Training</div>
+          <div class="use-case__text" data-de="Kursinhalte, Compliance-Videos, Tutorials" data-en="Course content, compliance videos, tutorials">Kursinhalte, Compliance-Videos, Tutorials</div>
+        </div>
+        <div class="use-case reveal">
+          <div class="use-case__label" data-de="Werbung & Spots" data-en="Commercials & Spots">Werbung & Spots</div>
+          <div class="use-case__text" data-de="TV, Radio, Online, Pre-Roll" data-en="TV, radio, online, pre-roll">TV, Radio, Online, Pre-Roll</div>
+        </div>
+        <div class="use-case reveal">
+          <div class="use-case__label" data-de="Hörbücher" data-en="Audiobooks">Hörbücher</div>
+          <div class="use-case__text" data-de="Sachbuch, Fiction, Kinder- und Jugendbücher" data-en="Non-fiction, fiction, children's & YA">Sachbuch, Fiction, Kinder- und Jugendbücher</div>
+        </div>
+        <div class="use-case reveal">
+          <div class="use-case__label" data-de="IVR & On-Hold" data-en="IVR & On-Hold">IVR & On-Hold</div>
+          <div class="use-case__text" data-de="Telefonansagen, Warteschleifen, Sprachassistenten" data-en="Phone greetings, hold messages, voice assistants">Telefonansagen, Warteschleifen, Sprachassistenten</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVEFORM DIVIDER -->
+  <div style="padding:40px 0; display:flex; justify-content:center; background:var(--surface);">
+    <div class="waveform-divider" aria-hidden="true">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <section class="section section--mid">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div class="cta-banner__text">
+          <h2 class="display-md"
+              data-de="Bereit für Ihr nächstes Projekt?"
+              data-en="Ready for your next project?">
+            Bereit für Ihr nächstes Projekt?
+          </h2>
+          <p class="mt-16"
+             data-de="Schicken Sie mir Ihr Skript oder eine kurze Projektbeschreibung. Ich melde mich innerhalb von 24 Stunden."
+             data-en="Send me your script or a brief project description. I'll get back to you within 24 hours.">
+            Schicken Sie mir Ihr Skript oder eine kurze Projektbeschreibung. Ich melde mich innerhalb von 24 Stunden.
+          </p>
+        </div>
+        <a href="contact.html" class="btn btn--primary"
+           data-de="Jetzt anfragen" data-en="Get in touch">Jetzt anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-name">Fresh<span>Voices</span></div>
+          <p class="footer__tagline" data-de="Professioneller Voice Over · Wien" data-en="Professional Voice Over · Vienna">Professioneller Voice Over · Wien</p>
+          <div class="footer__social">
+            <a href="https://fb.me/Fresh.Voices.Vienna" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/wolfvaltiner" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading" data-de="Navigation" data-en="Navigation">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="samples.html" data-de="Hörproben" data-en="Voice Samples">Hörproben</a></li>
+            <li><a href="services.html" data-de="Leistungen & Preise" data-en="Services & Pricing">Leistungen & Preise</a></li>
+            <li><a href="about.html" data-de="Über mich" data-en="About">Über mich</a></li>
+            <li><a href="clients.html" data-de="Kunden & Referenzen" data-en="Clients & References">Kunden & Referenzen</a></li>
+            <li><a href="contact.html" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading" data-de="Kontakt" data-en="Contact">Kontakt</div>
+          <ul class="footer__links">
+            <li><a href="tel:+4366488473943">+43 664 884 73943</a></li>
+            <li><a href="mailto:wolf.valtiner@freshvoices.at">wolf.valtiner@freshvoices.at</a></li>
+            <li style="margin-top:16px; font-size:0.85rem; color:var(--muted);" data-de="Wien, Österreich" data-en="Vienna, Austria">Wien, Österreich</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Fresh Voices · Wolf Valtiner</span>
+        <div class="footer__legal">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html" data-de="Datenschutzerklärung" data-en="Privacy Policy">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- Scroll reveal CSS -->
+  <style>
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.revealed { opacity: 1; transform: none; }
+  </style>
+
+</body>
+</html>

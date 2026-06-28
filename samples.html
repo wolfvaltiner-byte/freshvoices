@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hörproben | Fresh Voices — Wolf Valtiner Voice Over</title>
+  <meta name="description" content="Hörproben von Wolf Valtiner: Corporate, Dokumentation, E-Learning, Werbespots, Hörbücher, IVR. Deutsch und Englisch." />
+  <link rel="canonical" href="https://www.freshvoices.at/samples.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .samples-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sample-group { margin-bottom: 60px; }
+    .sample-group__header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .sample-group__title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .sample-group__count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: var(--font-display);
+    }
+    .sample-tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      background: rgba(145, 194, 104, 0.12);
+      color: var(--green);
+      border: 1px solid rgba(145, 194, 104, 0.25);
+    }
+    .sample-tag--pink {
+      background: rgba(255, 99, 161, 0.12);
+      color: var(--pink);
+      border-color: rgba(255, 99, 161, 0.25);
+    }
+
+    /* Layout: sidebar filter + main content */
+    .samples-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .filter-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+    .filter-sidebar__heading {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .filter-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-bottom: 4px;
+    }
+    .filter-btn:hover { color: var(--white); background: var(--card); }
+    .filter-btn.active { color: var(--green); background: rgba(145,194,104,0.08); }
+
+    .download-cta {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 32px;
+      text-align: center;
+    }
+    .download-cta p { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .samples-layout { grid-template-columns: 1fr; }
+      .filter-sidebar { position: static; }
+      .filter-sidebar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+      .filter-sidebar__heading { display: none; }
+      .filter-btn { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo"><img src="images/logo.svg" alt="Fresh Voices logo"></a>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="samples.html">Voice Samples</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="contact.html" class="btn btn--primary" style="padding:10px 22px;font-size:0.7rem;">Get in touch</a></li>
+        </ul>
+        <button class="nav__lang">EN</button>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <section class="page-hero section--dark">
+    <div class="container">
+      <p class="eyebrow page-hero__eyebrow" data-de="Was Sie hören werden" data-en="What you'll hear">Was Sie hören werden</p>
+      <h1 class="display-lg text-white" data-de="Hörproben" data-en="Voice Samples">Hörproben</h1>
+      <p class="mt-16" data-de="Klicken Sie auf Play — kein Download, kein Formular. Einfach anhören." data-en="Hit play — no download, no form. Just listen.">
+        Klicken Sie auf Play — kein Download, kein Formular. Einfach anhören.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="samples-layout">
+
+        <!-- Filter sidebar -->
+        <aside class="filter-sidebar" aria-label="Filter by category">
+          <div class="filter-sidebar__heading" data-de="Kategorie" data-en="Category">Kategorie</div>
+          <button class="filter-btn active" data-filter="all" data-de="Alle" data-en="All" aria-pressed="true">Alle</button>
+          <button class="filter-btn" data-filter="corporate" data-de="Corporate" data-en="Corporate" aria-pressed="false">Corporate</button>
+          <button class="filter-btn" data-filter="documentary" data-de="Dokumentation" data-en="Documentary" aria-pressed="false">Dokumentation</button>
+          <button class="filter-btn" data-filter="commercial" data-de="Werbung" data-en="Commercial" aria-pressed="false">Werbung</button>
+
+          <div class="download-cta">
+            <p data-de="Demo-Hörprobe herunterladen" data-en="Download the demo sample">Demo-Hörprobe herunterladen</p>
+            <a href="audio/land-sky-schonegger-schlafstudio.mp3" download class="btn btn--ghost" style="width:100%;justify-content:center;font-size:0.7rem;" data-de="Hörprobe herunterladen" data-en="Download demo">Hörprobe herunterladen</a>
+          </div>
+        </aside>
+
+        <!-- Samples main -->
+        <div class="samples-main">
+
+          <div class="sample-group" data-category="corporate">
+            <div class="sample-group__header">
+              <h2 class="sample-group__title" data-de="Corporate & Industrie" data-en="Corporate & Industrial">Corporate & Industrie</h2>
+              <span class="sample-group__count" data-de="2 Proben" data-en="2 samples">2 Proben</span>
+            </div>
+            <div class="samples-grid">
+              <div class="audio-player" data-src="audio/hofsteigkarte.mp3">
+                <button class="audio-player__play" aria-label="Play"></button>
+                <div class="audio-player__info">
+                  <div class="audio-player__title" data-de="Imagefilm — Hofsteigkarte" data-en="Image Film — Hofsteigkarte">Imagefilm — Hofsteigkarte</div>
+                  <div class="audio-player__desc">
+                    <span data-de="Informativ, klar · Deutsch" data-en="Informative, clear · German">Informativ, klar · Deutsch</span>
+                    &nbsp;<span class="sample-tag">DE</span>
+                  </div>
+                </div>
+                <div class="audio-player__track">
+                  <div class="audio-player__progress"><div class="audio-player__bar"></div></div>
+                  <span class="audio-player__time">0:00 / 0:00</span>
+                </div>
+              </div>
+
+              <div class="audio-player" data-src="audio/fliesenverband-fliesenleger.mp3">
+                <button class="audio-player__play" aria-label="Play"></button>
+                <div class="audio-player__info">
+                  <div class="audio-player__title" data-de="Industrie-Spot — Fliesenverband" data-en="Industrial Spot — Tile Association">Industrie-Spot — Fliesenverband</div>
+                  <div class="audio-player__desc">
+                    <span data-de="Präzise, vertrauenswürdig · Deutsch" data-en="Precise, trustworthy · German">Präzise, vertrauenswürdig · Deutsch</span>
+                    &nbsp;<span class="sample-tag">DE</span>
+                  </div>
+                </div>
+                <div class="audio-player__track">
+                  <div class="audio-player__progress"><div class="audio-player__bar"></div></div>
+                  <span class="audio-player__time">0:00 / 0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sample-group" data-category="documentary">
+            <div class="sample-group__header">
+              <h2 class="sample-group__title" data-de="Dokumentation" data-en="Documentary">Dokumentation</h2>
+              <span class="sample-group__count" data-de="1 Probe" data-en="1 sample">1 Probe</span>
+            </div>
+            <div class="samples-grid">
+              <div class="audio-player" data-src="audio/lange-nacht-finanzbildung.mp3">
+                <button class="audio-player__play" aria-label="Play"></button>
+                <div class="audio-player__info">
+                  <div class="audio-player__title" data-de="Finanzbildung — Dokumentation" data-en="Finance Education — Documentary">Finanzbildung — Dokumentation</div>
+                  <div class="audio-player__desc">
+                    <span data-de="Erklärend, ruhig, zuverlässig · Deutsch" data-en="Explanatory, calm, reliable · German">Erklärend, ruhig, zuverlässig · Deutsch</span>
+                    &nbsp;<span class="sample-tag">DE</span>
+                  </div>
+                </div>
+                <div class="audio-player__track">
+                  <div class="audio-player__progress"><div class="audio-player__bar"></div></div>
+                  <span class="audio-player__time">0:00 / 0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sample-group" data-category="commercial">
+            <div class="sample-group__header">
+              <h2 class="sample-group__title" data-de="Werbung & Spots" data-en="Commercials & Spots">Werbung & Spots</h2>
+              <span class="sample-group__count" data-de="1 Probe" data-en="1 sample">1 Probe</span>
+            </div>
+            <div class="samples-grid">
+              <div class="audio-player" data-src="audio/land-sky-schonegger-schlafstudio.mp3">
+                <button class="audio-player__play" aria-label="Play"></button>
+                <div class="audio-player__info">
+                  <div class="audio-player__title" data-de="Imagefilm — Schlafstudio" data-en="Image Film — Sleep Studio">Imagefilm — Schlafstudio</div>
+                  <div class="audio-player__desc">
+                    <span data-de="Warm, einladend, markenstark · Deutsch" data-en="Warm, inviting, brand-strong · German">Warm, einladend, markenstark · Deutsch</span>
+                    &nbsp;<span class="sample-tag">DE</span>
+                  </div>
+                </div>
+                <div class="audio-player__track">
+                  <div class="audio-player__progress"><div class="audio-player__bar"></div></div>
+                  <span class="audio-player__time">0:00 / 0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /samples-main -->
+      </div><!-- /samples-layout -->
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--mid" style="text-align:center;">
+    <div class="container">
+      <p class="eyebrow mb-16" data-de="Das Richtige dabei?" data-en="Hear what you need?">Das Richtige dabei?</p>
+      <h2 class="display-md text-white" data-de="Lassen Sie uns über Ihr Projekt sprechen." data-en="Let's talk about your project.">Lassen Sie uns über Ihr Projekt sprechen.</h2>
+      <p class="mt-16 text-muted" style="max-width:480px;margin-left:auto;margin-right:auto;" data-de="Kein langer Prozess. Schicken Sie mir Ihr Skript, ich sende Ihnen einen Probe-Take zurück — kostenfrei." data-en="No long process. Send me your script and I'll send back a demo take — free of charge.">Kein langer Prozess. Schicken Sie mir Ihr Skript, ich sende Ihnen einen Probe-Take zurück — kostenfrei.</p>
+      <a href="contact.html" class="btn btn--primary mt-40" data-de="Jetzt anfragen" data-en="Get in touch">Jetzt anfragen</a>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-name">Fresh<span>Voices</span></div>
+          <p class="footer__tagline">Professioneller Voice Over · Wien</p>
+        </div>
+        <div>
+          <div class="footer__heading">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="samples.html">Hörproben</a></li>
+            <li><a href="services.html">Leistungen</a></li>
+            <li><a href="about.html">Über mich</a></li>
+            <li><a href="clients.html">Kunden</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Kontakt</div>
+          <ul class="footer__links">
+            <li><a href="tel:+4366488473943">+43 664 884 73943</a></li>
+            <li><a href="mailto:wolf.valtiner@freshvoices.at">wolf.valtiner@freshvoices.at</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Fresh Voices · Wolf Valtiner</span>
+        <div class="footer__legal">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Filter logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const groups = document.querySelectorAll('.sample-group');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        const filter = btn.dataset.filter;
+        groups.forEach(g => {
+          g.style.display = (filter === 'all' || g.dataset.category === filter) ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
+  <style>
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.revealed { opacity:1; transform:none; }
+  </style>
+</body>
+</html>

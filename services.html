@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leistungen & Preise | Fresh Voices — Wolf Valtiner</title>
+  <meta name="description" content="Voice Over Leistungen von Wolf Valtiner: Corporate, Dokumentation, E-Learning, Werbung, Hörbücher. Transparente Preise, schnelle Lieferung." />
+  <link rel="canonical" href="https://www.freshvoices.at/services.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .process-list { counter-reset: steps; }
+    .process-step {
+      counter-increment: steps;
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: start;
+    }
+    .process-step:last-child { border-bottom: none; }
+    .process-step__num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: rgba(145,194,104,0.25);
+      line-height: 1;
+      padding-top: 4px;
+    }
+    .process-step__title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .process-step__text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    .price-note {
+      background: rgba(145, 194, 104, 0.07);
+      border: 1px solid rgba(145, 194, 104, 0.2);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .price-note strong { color: var(--white); }
+
+    .studio-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .spec {
+      background: var(--card);
+      padding: 20px 24px;
+      border-radius: var(--radius);
+    }
+    .spec__label { font-size: 0.7rem; font-family: var(--font-display); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .spec__value { font-size: 0.9rem; color: var(--white); }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo"><img src="images/logo.svg" alt="Fresh Voices logo"></a>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="samples.html">Voice Samples</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="contact.html" class="btn btn--primary" style="padding:10px 22px;font-size:0.7rem;">Get in touch</a></li>
+        </ul>
+        <button class="nav__lang">EN</button>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <section class="page-hero section--dark">
+    <div class="container">
+      <p class="eyebrow page-hero__eyebrow" data-de="Was ich anbiete" data-en="What I offer">Was ich anbiete</p>
+      <h1 class="display-lg text-white" data-de="Leistungen & Preise" data-en="Services & Pricing">Leistungen & Preise</h1>
+      <p class="mt-16" data-de="Klar kalkulierbar. Schnell geliefert. Ohne Überraschungen." data-en="Clear pricing. Fast delivery. No surprises.">Klar kalkulierbar. Schnell geliefert. Ohne Überraschungen.</p>
+    </div>
+  </section>
+
+  <!-- Services grid -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="service-grid">
+
+        <div class="service-card reveal">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+          <div class="service-card__title" data-de="Corporate & Industrie" data-en="Corporate & Industrial">Corporate & Industrie</div>
+          <div class="service-card__text" data-de="Imagefilme, Messevideos, Unternehmensporträts, interne Kommunikation. Ich bringe die nötige Professionalität mit, ohne steif zu klingen." data-en="Image films, trade show videos, company portraits, internal communications. Professional without sounding stiff.">Imagefilme, Messevideos, Unternehmensporträts, interne Kommunikation. Ich bringe die nötige Professionalität mit, ohne steif zu klingen.</div>
+          <div class="service-card__price" data-de="Ab € 150 / Projekt" data-en="From € 150 / project">Ab € 150 / Projekt</div>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+          </svg>
+          <div class="service-card__title" data-de="Dokumentation" data-en="Documentary">Dokumentation</div>
+          <div class="service-card__text" data-de="Natur, Geschichte, Wissenschaft, Gesellschaft. Erzählerisch und atmosphärisch — die Stimme tritt zurück, damit der Inhalt wirkt." data-en="Nature, history, science, society. Narrative and atmospheric — the voice steps back so the content lands.">Natur, Geschichte, Wissenschaft, Gesellschaft. Erzählerisch und atmosphärisch — die Stimme tritt zurück, damit der Inhalt wirkt.</div>
+          <div class="service-card__price" data-de="Ab € 180 / Projekt" data-en="From € 180 / project">Ab € 180 / Projekt</div>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/>
+          </svg>
+          <div class="service-card__title" data-de="E-Learning & Training" data-en="E-Learning & Training">E-Learning & Training</div>
+          <div class="service-card__text" data-de="Kursinhalte, Compliance, Tutorials. Klar, verständlich, kein Einschlafen garantiert. Auch auf Englisch." data-en="Course content, compliance, tutorials. Clear and accessible — guaranteed not to put anyone to sleep. In English too.">Kursinhalte, Compliance, Tutorials. Klar, verständlich, kein Einschlafen garantiert. Auch auf Englisch.</div>
+          <div class="service-card__price" data-de="Ab € 120 / Stunde fertige Audiodatei" data-en="From € 120 / finished hour of audio">Ab € 120 / Stunde fertige Audiodatei</div>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+          <div class="service-card__title" data-de="Werbung & Spots" data-en="Commercials & Spots">Werbung & Spots</div>
+          <div class="service-card__text" data-de="TV, Radio, Online, Pre-Roll. 30, 60 oder 90 Sekunden — präzise auf den Punkt, keine Silbe verschwendet." data-en="TV, radio, online, pre-roll. 30, 60 or 90 seconds — precise, no word wasted.">TV, Radio, Online, Pre-Roll. 30, 60 oder 90 Sekunden — präzise auf den Punkt, keine Silbe verschwendet.</div>
+          <div class="service-card__price" data-de="Ab € 200 / Spot" data-en="From € 200 / spot">Ab € 200 / Spot</div>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          <div class="service-card__title" data-de="Hörbücher" data-en="Audiobooks">Hörbücher</div>
+          <div class="service-card__text" data-de="Sachbuch, Fiction, Kinder- und Jugendbücher. Ich lese, nicht nur spreche — das macht den Unterschied über 8 Stunden." data-en="Non-fiction, fiction, children's and YA. I read, not just speak — that's what makes the difference across 8 hours.">Sachbuch, Fiction, Kinder- und Jugendbücher. Ich lese, nicht nur spreche — das macht den Unterschied über 8 Stunden.</div>
+          <div class="service-card__price" data-de="Ab € 250 / fertige Stunde" data-en="From € 250 / finished hour">Ab € 250 / fertige Stunde</div>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.9 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <div class="service-card__title">IVR & On-Hold</div>
+          <div class="service-card__text" data-de="Telefonansagen, Warteschleifen, Sprachassistenten. Der erste Eindruck Ihrer Firma am Telefon ist wichtiger als die meisten denken." data-en="Phone greetings, on-hold messages, voice assistants. The first impression of your company on the phone matters more than most people realise.">Telefonansagen, Warteschleifen, Sprachassistenten. Der erste Eindruck Ihrer Firma am Telefon ist wichtiger als die meisten denken.</div>
+          <div class="service-card__price" data-de="Ab € 80 / Ansage" data-en="From € 80 / announcement">Ab € 80 / Ansage</div>
+        </div>
+
+      </div>
+
+      <!-- Price note -->
+      <div class="price-note mt-60 reveal">
+        <strong data-de="Hinweis zu den Preisen" data-en="A note on pricing">Hinweis zu den Preisen</strong><br>
+        <span data-de="Die angegebenen Preise sind Richtwerte. Das endgültige Angebot hängt von Textlänge, Nutzungsrechten, Lieferzeit und Revisionsrunden ab. Ich erstelle immer ein individuelles Angebot — fragen Sie einfach an." data-en="The prices listed are indicative. A final quote depends on script length, usage rights, turnaround, and revision rounds. I always provide an individual quote — just get in touch.">Die angegebenen Preise sind Richtwerte. Das endgültige Angebot hängt von Textlänge, Nutzungsrechten, Lieferzeit und Revisionsrunden ab. Ich erstelle immer ein individuelles Angebot — fragen Sie einfach an.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Waveform divider -->
+  <div style="padding:40px 0; display:flex; justify-content:center; background:var(--surface);">
+    <div class="waveform-divider" aria-hidden="true">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <section class="section section--mid">
+    <div class="container">
+      <div class="grid-2-wide">
+        <div>
+          <p class="eyebrow mb-24" data-de="Wie es funktioniert" data-en="How it works">Wie es funktioniert</p>
+          <div class="process-list">
+            <div class="process-step reveal">
+              <div class="process-step__num">01</div>
+              <div>
+                <div class="process-step__title" data-de="Skript schicken" data-en="Send your script">Skript schicken</div>
+                <div class="process-step__text" data-de="Schicken Sie mir Ihr Skript per E-Mail oder über das Kontaktformular. Kein Skript vorhanden? Kein Problem — ich berate gern." data-en="Send me your script by email or via the contact form. No script yet? No problem — I'm happy to advise.">Schicken Sie mir Ihr Skript per E-Mail oder über das Kontaktformular. Kein Skript vorhanden? Kein Problem — ich berate gern.</div>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <div class="process-step__num">02</div>
+              <div>
+                <div class="process-step__title" data-de="Angebot erhalten" data-en="Receive a quote">Angebot erhalten</div>
+                <div class="process-step__text" data-de="Ich sende Ihnen innerhalb von 24 Stunden ein transparentes Angebot mit Preis und Lieferzeit." data-en="Within 24 hours you'll receive a clear quote with price and delivery date.">Ich sende Ihnen innerhalb von 24 Stunden ein transparentes Angebot mit Preis und Lieferzeit.</div>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <div class="process-step__num">03</div>
+              <div>
+                <div class="process-step__title" data-de="Aufnahme" data-en="Recording">Aufnahme</div>
+                <div class="process-step__text" data-de="Ich nehme in meinem professionellen Heimstudio auf. Auf Wunsch auch mit direkter Regieanweisung via Source-Connect oder Zoom." data-en="I record in my professional home studio. Remote direction via Source-Connect or Zoom available on request.">Ich nehme in meinem professionellen Heimstudio auf. Auf Wunsch auch mit direkter Regieanweisung via Source-Connect oder Zoom.</div>
+              </div>
+            </div>
+            <div class="process-step reveal">
+              <div class="process-step__num">04</div>
+              <div>
+                <div class="process-step__title" data-de="Lieferung & Revisionen" data-en="Delivery & Revisions">Lieferung & Revisionen</div>
+                <div class="process-step__text" data-de="Sie erhalten die fertige Datei als WAV oder MP3. Eine Revisionsrunde ist immer inklusive." data-en="You receive the finished file as WAV or MP3. One revision round is always included.">Sie erhalten die fertige Datei als WAV oder MP3. Eine Revisionsrunde ist immer inklusive.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow mb-24" data-de="Mein Studio" data-en="My Studio">Mein Studio</p>
+          <p class="text-muted" style="font-size:0.95rem;line-height:1.7;" data-de="Ich arbeite in einem schallisolierten Heimstudio in Wien. Broadcast-Qualität, die jedem professionellen Standard entspricht." data-en="I work from a sound-treated home studio in Vienna. Broadcast quality that meets any professional standard.">Ich arbeite in einem schallisolierten Heimstudio in Wien. Broadcast-Qualität, die jedem professionellen Standard entspricht.</p>
+          <div class="studio-specs">
+            <div class="spec">
+              <div class="spec__label" data-de="Mikrofon" data-en="Microphone">Mikrofon</div>
+              <div class="spec__value">Neumann TLM 103</div>
+            </div>
+            <div class="spec">
+              <div class="spec__label" data-de="Interface" data-en="Interface">Interface</div>
+              <div class="spec__value">Universal Audio Apollo</div>
+            </div>
+            <div class="spec">
+              <div class="spec__label" data-de="DAW" data-en="DAW">DAW</div>
+              <div class="spec__value">Reaper / Adobe Audition</div>
+            </div>
+            <div class="spec">
+              <div class="spec__label" data-de="Remote Regie" data-en="Remote Direction">Remote Regie</div>
+              <div class="spec__value">Source-Connect / Zoom</div>
+            </div>
+            <div class="spec">
+              <div class="spec__label" data-de="Formate" data-en="Formats">Formate</div>
+              <div class="spec__value">WAV 48kHz/24bit, MP3</div>
+            </div>
+            <div class="spec">
+              <div class="spec__label" data-de="Lieferzeit" data-en="Turnaround">Lieferzeit</div>
+              <div class="spec__value" data-de="48h Standard, 24h Express" data-en="48h standard, 24h express">48h Standard, 24h Express</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-name">Fresh<span>Voices</span></div>
+          <p class="footer__tagline">Professioneller Voice Over · Wien</p>
+        </div>
+        <div>
+          <div class="footer__heading">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="samples.html">Hörproben</a></li>
+            <li><a href="services.html">Leistungen</a></li>
+            <li><a href="about.html">Über mich</a></li>
+            <li><a href="clients.html">Kunden</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Kontakt</div>
+          <ul class="footer__links">
+            <li><a href="tel:+4366488473943">+43 664 884 73943</a></li>
+            <li><a href="mailto:wolf.valtiner@freshvoices.at">wolf.valtiner@freshvoices.at</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Fresh Voices · Wolf Valtiner</span>
+        <div class="footer__legal">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <style>
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.revealed { opacity:1; transform:none; }
+  </style>
+</body>
+</html>

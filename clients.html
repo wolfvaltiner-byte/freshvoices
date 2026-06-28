@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kunden & Referenzen | Fresh Voices — Wolf Valtiner</title>
+  <meta name="description" content="Kunden und Referenzen von Wolf Valtiner — Voice Over Artist Wien. Bekannte Marken, Agenturen und Produktionshäuser." />
+  <link rel="canonical" href="https://www.freshvoices.at/clients.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Logo wall placeholder grid */
+    .logo-placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .logo-wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+    .logo-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 96px;
+    }
+    .logo-wall img {
+      max-height: 42px;
+      max-width: 100%;
+      object-fit: contain;
+      opacity: 0.9;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .logo-card:hover img {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+    .logo-cell {
+      background: var(--card);
+      aspect-ratio: 3/2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px dashed rgba(255,255,255,0.08);
+      transition: border-color var(--transition), opacity var(--transition);
+      opacity: 0.5;
+    }
+    .logo-cell:hover { opacity: 1; border-color: rgba(145,194,104,0.3); }
+
+    /* REAL logo wall — use once you have logo files */
+    /* .logo-wall img { height: 36px; filter: brightness(0) invert(1); opacity: 0.35; } */
+
+    .ref-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px 48px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 48px;
+    }
+    .ref-strip img {
+      max-height: 32px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(1) brightness(1.6);
+      opacity: 0.45;
+      transition: filter var(--transition), opacity var(--transition);
+    }
+    .ref-strip img:hover {
+      filter: grayscale(0) brightness(1);
+      opacity: 0.9;
+    }
+
+    .assoc-section {
+      margin-top: 80px;
+      padding-top: 60px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .assoc-card {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 32px 40px;
+    }
+    .assoc-logo-placeholder {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+      background: var(--surface);
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.65rem;
+      font-family: var(--font-display);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px;
+    }
+    .assoc-text {}
+    .assoc-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .assoc-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .assoc-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      transition: opacity var(--transition);
+    }
+    .assoc-link:hover { opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      .logo-placeholder-grid { grid-template-columns: repeat(2, 1fr); }
+      .ref-strip { gap: 24px 32px; }
+      .ref-strip img { max-height: 26px; }
+      .assoc-card { flex-direction: column; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo"><img src="images/logo.svg" alt="Fresh Voices logo"></a>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="samples.html">Voice Samples</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="contact.html" class="btn btn--primary" style="padding:10px 22px;font-size:0.7rem;">Get in touch</a></li>
+        </ul>
+        <button class="nav__lang">EN</button>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <section class="page-hero section--dark">
+    <div class="container">
+      <p class="eyebrow page-hero__eyebrow" data-de="Wer mir vertraut" data-en="Who trusts me">Wer mir vertraut</p>
+      <h1 class="display-lg text-white" data-de="Kunden & Referenzen" data-en="Clients & References">Kunden & Referenzen</h1>
+      <p class="mt-16" data-de="Unternehmen, Agenturen und Produktionshäuser, für die ich gearbeitet habe." data-en="Companies, agencies and production houses I have worked with.">Unternehmen, Agenturen und Produktionshäuser, für die ich gearbeitet habe.</p>
+    </div>
+  </section>
+
+  <!-- Client logos -->
+  <section class="section section--dark">
+    <div class="container">
+      <p class="eyebrow mb-40" data-de="Ausgewählte Kunden" data-en="Selected clients">Ausgewählte Kunden</p>
+
+      <div class="logo-wall reveal">
+        <div class="logo-card"><img src="customers/HermesApotheke.png" alt="Hermes Apotheke"></div>
+        <div class="logo-card"><img src="customers/Hilfswerk.png" alt="Hilfswerk"></div>
+        <div class="logo-card"><img src="customers/little-lights-logo.png" alt="Little Lights"></div>
+        <div class="logo-card"><img src="customers/logo-wko.png" alt="WKO"></div>
+        <div class="logo-card"><img src="customers/LoungeFM.png" alt="Lounge FM"></div>
+        <div class="logo-card"><img src="customers/macjingle-488x254.webp" alt="MacJingle"></div>
+        <div class="logo-card"><img src="customers/oecolution.jpg" alt="Oecolution"></div>
+        <div class="logo-card"><img src="customers/OVERDUB.png" alt="OVERDUB"></div>
+        <div class="logo-card"><img src="customers/Paulaner.png" alt="Paulaner"></div>
+        <div class="logo-card"><img src="customers/radio-klassik.png" alt="Radio Klassik"></div>
+        <div class="logo-card"><img src="customers/spreadfilms-logo.png" alt="Spreadfilms"></div>
+        <div class="logo-card"><img src="customers/stern-apotheke.jpg" alt="Stern Apotheke"></div>
+        <div class="logo-card"><img src="customers/Wincom.png" alt="Wincom"></div>
+        <div class="logo-card"><img src="customers/bormes-les-mimosas.png" alt="Bormes les Mimosas"></div>
+        <div class="logo-card"><img src="customers/Logo_Schutzengel.png" alt="Schutzengel"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Waveform divider -->
+  <div style="padding:40px 0; display:flex; justify-content:center; background:var(--surface);">
+    <div class="waveform-divider" aria-hidden="true">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+  </div>
+
+  <!-- Referenzen-Strip -->
+  <section class="section section--mid" style="text-align:center;">
+    <div class="container">
+      <h2 class="display-md text-white" data-de="Vertrauen von Marken und Agenturen" data-en="Trusted by brands and agencies">Vertrauen von Marken und Agenturen</h2>
+
+      <div class="ref-strip reveal">
+        <img src="customers/Paulaner.png"              alt="Paulaner"          width="120" height="32" loading="lazy" />
+        <img src="customers/logo-wko.png"              alt="WKO"               width="100" height="32" loading="lazy" />
+        <img src="customers/Hilfswerk.png"             alt="Hilfswerk"         width="110" height="32" loading="lazy" />
+        <img src="customers/radio-klassik.png"         alt="Radio Klassik"     width="120" height="32" loading="lazy" />
+        <img src="customers/LoungeFM.png"              alt="Lounge FM"         width="110" height="32" loading="lazy" />
+        <img src="customers/HermesApotheke.png"        alt="Hermes Apotheke"   width="100" height="32" loading="lazy" />
+        <img src="customers/stern-apotheke.jpg"        alt="Stern Apotheke"    width="100" height="32" loading="lazy" />
+        <img src="customers/Logo_Schutzengel.png"      alt="Schutzengel"       width="100" height="32" loading="lazy" />
+        <img src="customers/OVERDUB.png"               alt="OVERDUB"           width="110" height="32" loading="lazy" />
+        <img src="customers/macjingle-488x254.webp"    alt="MacJingle"         width="100" height="32" loading="lazy" />
+        <img src="customers/spreadfilms-logo.png"      alt="Spreadfilms"       width="110" height="32" loading="lazy" />
+        <img src="customers/Wincom.png"                alt="Wincom"            width="100" height="32" loading="lazy" />
+        <img src="customers/oecolution.jpg"            alt="Oecolution"        width="100" height="32" loading="lazy" />
+        <img src="customers/bormes-les-mimosas.png"    alt="Bormes les Mimosas" width="110" height="32" loading="lazy" />
+        <img src="customers/little-lights-logo.png"    alt="Little Lights"     width="110" height="32" loading="lazy" />
+        <img src="customers/logo_big.svg"              alt="Logo Big"          width="100" height="32" loading="lazy" />
+        <img src="customers/logo-banner.svg"           alt="Logo Banner"       width="120" height="32" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Associations -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="assoc-section">
+        <p class="eyebrow mb-16" data-de="Mitgliedschaften" data-en="Memberships">Mitgliedschaften</p>
+        <h2 class="display-md text-white mb-40" data-de="Professionelle Verbände" data-en="Professional Associations">Professionelle Verbände</h2>
+
+        <div class="assoc-card reveal">
+          <div class="assoc-logo-placeholder">
+            VSSÖ<br>Logo
+          </div>
+          <div class="assoc-text">
+            <div class="assoc-name">VSSÖ — Verband der Synchron- und Servicesprecher Österreichs</div>
+            <div class="assoc-desc" data-de="Der Berufsverband für professionelle Synchron- und Servicesprecher in Österreich. Mitgliedschaft steht für nachgewiesene Qualität und professionelle Standards in der Sprecherbranche." data-en="The professional association for dubbing and service voice artists in Austria. Membership signals proven quality and professional standards in the voice industry.">
+              Der Berufsverband für professionelle Synchron- und Servicesprecher in Österreich. Mitgliedschaft steht für nachgewiesene Qualität und professionelle Standards in der Sprecherbranche.
+            </div>
+            <a href="https://www.vssoe.at" target="_blank" rel="noopener" class="assoc-link">vssoe.at ↗</a>
+          </div>
+        </div>
+
+        <!--
+          Optional: Add a second association if relevant, e.g. deutschsprachige Sprecher Datenbank,
+          Voice123, Voices.com profile link, etc.
+
+          <div class="assoc-card reveal" style="margin-top:16px;">
+            ...
+          </div>
+        -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--mid" style="text-align:center;">
+    <div class="container">
+      <div class="waveform-divider mb-40" style="justify-content:center;" aria-hidden="true">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div>
+      </div>
+      <h2 class="display-md text-white" data-de="Werden Sie mein nächster Kunde." data-en="Become my next client.">Werden Sie mein nächster Kunde.</h2>
+      <p class="mt-16 text-muted" style="max-width:480px;margin-left:auto;margin-right:auto;" data-de="Ich freue mich über Anfragen jeder Größe — vom kurzen Spot bis zum langen Hörbuchprojekt." data-en="I welcome enquiries of any size — from a short spot to a long audiobook project.">
+        Ich freue mich über Anfragen jeder Größe — vom kurzen Spot bis zum langen Hörbuchprojekt.
+      </p>
+      <a href="contact.html" class="btn btn--primary mt-40" data-de="Jetzt anfragen" data-en="Get in touch">Jetzt anfragen</a>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-name">Fresh<span>Voices</span></div>
+          <p class="footer__tagline">Professioneller Voice Over · Wien</p>
+        </div>
+        <div>
+          <div class="footer__heading">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="samples.html">Hörproben</a></li>
+            <li><a href="services.html">Leistungen</a></li>
+            <li><a href="about.html">Über mich</a></li>
+            <li><a href="clients.html">Kunden</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Kontakt</div>
+          <ul class="footer__links">
+            <li><a href="tel:+4366488473943">+43 664 884 73943</a></li>
+            <li><a href="mailto:wolf.valtiner@freshvoices.at">wolf.valtiner@freshvoices.at</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Fresh Voices · Wolf Valtiner</span>
+        <div class="footer__legal">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <style>
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.revealed { opacity:1; transform:none; }
+  </style>
+</body>
+</html>

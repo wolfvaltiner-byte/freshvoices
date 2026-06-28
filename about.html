@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über mich | Fresh Voices — Wolf Valtiner Voice Over Wien</title>
+  <meta name="description" content="Wolf Valtiner — Wiener Voice Over Artist. Wer ich bin, wie ich arbeite, und warum Stimme mehr ist als Technik." />
+  <link rel="canonical" href="https://www.freshvoices.at/about.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .about-layout {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-photo-col { position: sticky; top: 100px; }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: var(--radius);
+      filter: grayscale(15%);
+    }
+    .about-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--card);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px dashed var(--grey-dark);
+      text-align: center;
+      padding: 20px;
+    }
+    .about-photo-caption {
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .about-text h2 { color: var(--white); margin-bottom: 24px; }
+    .about-text p { font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    .about-pull {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+      margin: 40px 0;
+      padding: 0;
+      position: relative;
+      padding-left: 32px;
+    }
+    .about-pull::before {
+      content: '\201C';
+      position: absolute;
+      left: 0;
+      top: -0.15em;
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--pink);
+      font-family: Georgia, serif;
+    }
+
+    .about-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+    }
+    .fact {
+      background: var(--card);
+      padding: 28px 24px;
+    }
+    .fact__label {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .fact__value {
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .motto {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-top: 48px;
+      padding: 28px;
+      background: var(--card);
+      border-radius: var(--radius);
+    }
+    .motto__img {
+      width: 96px;
+      min-width: 96px;
+      height: 96px;
+      border-radius: var(--radius);
+      object-fit: cover;
+    }
+    .motto__text {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.5;
+    }
+    .motto__attr {
+      font-size: 0.75rem;
+      font-style: normal;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 8px;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .about-layout { grid-template-columns: 1fr; }
+      .about-photo-col { position: static; }
+      .about-facts { grid-template-columns: 1fr; }
+      .motto { flex-direction: column; text-align: center; }
+      .motto__img { width: 80px; height: 80px; min-width: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo"><img src="images/logo.svg" alt="Fresh Voices logo"></a>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="samples.html">Voice Samples</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="contact.html" class="btn btn--primary" style="padding:10px 22px;font-size:0.7rem;">Get in touch</a></li>
+        </ul>
+        <button class="nav__lang">EN</button>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <section class="page-hero section--dark">
+    <div class="container">
+      <h1 class="display-lg text-white" data-de="Wolf Valtiner" data-en="Wolf Valtiner">Wolf Valtiner</h1>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="about-layout">
+
+        <div class="about-photo-col reveal">
+          <img src="images/Portrait.jpg" alt="Wolf Valtiner — Voice Over Artist, Wien" class="about-photo" width="420" height="560" loading="lazy" />
+          <p class="about-photo-caption">Wolf Valtiner · Voice Over Artist · Wien</p>
+
+          <!-- Mini audio sample on about page -->
+          <div class="mt-24">
+            <p class="eyebrow mb-16" data-de="Schnell reinhören" data-en="Quick listen">Schnell reinhören</p>
+            <div class="audio-player" data-src="audio/hofsteigkarte.mp3">
+              <button class="audio-player__play" aria-label="Play"></button>
+              <div class="audio-player__info">
+                <div class="audio-player__title" data-de="Imagefilm — Hofsteigkarte" data-en="Image Film — Hofsteigkarte">Imagefilm — Hofsteigkarte</div>
+                <div class="audio-player__desc" data-de="Informativ, klar, Deutsch" data-en="Informative, clear, German">Informativ, klar, Deutsch</div>
+              </div>
+              <div class="audio-player__track">
+                <div class="audio-player__progress"><div class="audio-player__bar"></div></div>
+                <span class="audio-player__time">0:00 / 0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text">
+
+          <!-- DE text — hide with JS when EN selected -->
+          <div data-lang-block="de">
+            <h2 class="display-md">Verliebt in Stimme — von Kindheit an</h2>
+
+            <p>Als Kind wollte ich auf der Bühne stehen und Menschen berühren. Im Studium habe ich gelernt, wie wichtig Haltung und Sprache im Vergleich zu Inhalt sind. Und in 20 Jahren auf dem internationalen Parkett und bei tausenden Vorträgen habe ich es hautnah erlebt — die Stimme macht's!</p>
+
+            <div class="about-pull">
+              Kommunikation, über alle Kulturen hinweg, erfolgt über Zuhören und Geschichten erzählen, Menschen die eigene Begeisterung spüren lassen.
+            </div>
+
+            <p>Der Inhalt ist wichtig, aber noch mehr kommt es darauf an, wie er erzählt wird. Deshalb habe ich mich auf die Suche nach meinem Zugang gemacht und meine eigene Stimme gefunden.</p>
+
+            <p>2020, in einer kurzen Lockdown-Pause, habe ich meine Sprecherausbildung abgeschlossen. Trainiert wurde ich in den zwei Jahren davor von einigen der Besten ihres Fachs.</p>
+
+            <p>Seitdem verbringe ich immer mehr Zeit hinter dem Mikrofon und mit unterschiedlichsten Projekten, von Onlinetrainings bis zu Kinderbüchern.</p>
+
+            <p>In der Zeit abseits der Sprecherkabine arbeite ich mit meinen Partnern in anderen IT-Konzernen und entwickle mit meinen Teams gemeinsame Projekte und Verkaufsstrategien in Europa und dem Mittleren Osten. Kommunikation auf der persönlichen Ebene.</p>
+
+            <p>Darüber hinaus zieht es mich tatsächlich auf die Bühne — zu Vorträgen oder als Moderator.</p>
+          </div>
+
+          <!-- EN text (hidden by default, shown via language toggle) -->
+          <div data-lang-block="en" style="display:none;">
+            <h2 class="display-md">In love with voice — since childhood</h2>
+
+            <p>As a child, I wanted to be on stage and move people. During my studies, I learned how much posture and delivery matter compared to content alone. And in 20 years on the international stage and thousands of presentations, I experienced it firsthand — it's all about the voice!</p>
+
+            <div class="about-pull">
+              Communication, across all cultures, comes down to listening and storytelling, letting people feel your passion.
+            </div>
+
+            <p>Content matters, but what matters even more is how it's told. That's why I went looking for my own approach — and found my own voice.</p>
+
+            <p>In 2020, during a brief lockdown pause, I completed my voice-over training. In the two years before that, I was coached by some of the best in the field.</p>
+
+            <p>Since then, I've been spending more and more time behind the microphone, working on a wide range of projects — from online training to children's books.</p>
+
+            <p>Away from the recording booth, I work with partners at other IT companies, developing joint projects and sales strategies across Europe and the Middle East. Communication on a personal level.</p>
+
+            <p>Beyond that, I'm genuinely drawn to the stage — for talks or as a moderator.</p>
+          </div>
+
+          <!-- Quick facts -->
+          <div class="about-facts">
+            <div class="fact">
+              <div class="fact__label" data-de="Standort" data-en="Location">Standort</div>
+              <div class="fact__value" data-de="Wien, Österreich" data-en="Vienna, Austria">Wien, Österreich</div>
+            </div>
+            <div class="fact">
+              <div class="fact__label" data-de="Sprachen" data-en="Languages">Sprachen</div>
+              <div class="fact__value">Deutsch, Englisch</div>
+            </div>
+            <div class="fact">
+              <div class="fact__label" data-de="Erfahrung" data-en="Experience">Erfahrung</div>
+              <div class="fact__value" data-de="20+ Jahre Kommunikation" data-en="20+ years communication">20+ Jahre Kommunikation</div>
+            </div>
+            <div class="fact">
+              <div class="fact__label" data-de="Mitgliedschaft" data-en="Membership">Mitgliedschaft</div>
+              <div class="fact__value">VSSÖ</div>
+            </div>
+            <div class="fact">
+              <div class="fact__label" data-de="Remote Regie" data-en="Remote Direction">Remote Regie</div>
+              <div class="fact__value">Source-Connect, Zoom</div>
+            </div>
+            <div class="fact">
+              <div class="fact__label" data-de="Lieferzeit" data-en="Turnaround">Lieferzeit</div>
+              <div class="fact__value" data-de="48h Standard" data-en="48h standard">48h Standard</div>
+            </div>
+          </div>
+
+          <div class="motto reveal">
+            <img src="images/Motto.jpg" alt="Wolf Valtiner bei der Vorbereitung" class="motto__img" width="96" height="96" loading="lazy" />
+            <p class="motto__text">
+              &ldquo;Let your mind go and your body will follow!&rdquo;
+              <span class="motto__attr">Harris K. Telemacher (Steve Martin), L.A. Story</span>
+            </p>
+          </div>
+
+          <div class="mt-40">
+            <a href="contact.html" class="btn btn--primary" data-de="Projekt anfragen" data-en="Request a project">Projekt anfragen</a>
+            &nbsp;&nbsp;
+            <a href="samples.html" class="btn btn--ghost" data-de="Hörproben" data-en="Voice Samples">Hörproben</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-name">Fresh<span>Voices</span></div>
+          <p class="footer__tagline">Professioneller Voice Over · Wien</p>
+        </div>
+        <div>
+          <div class="footer__heading">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="samples.html">Hörproben</a></li>
+            <li><a href="services.html">Leistungen</a></li>
+            <li><a href="about.html">Über mich</a></li>
+            <li><a href="clients.html">Kunden</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Kontakt</div>
+          <ul class="footer__links">
+            <li><a href="tel:+4366488473943">+43 664 884 73943</a></li>
+            <li><a href="mailto:wolf.valtiner@freshvoices.at">wolf.valtiner@freshvoices.at</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Fresh Voices · Wolf Valtiner</span>
+        <div class="footer__legal">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- Language block toggle enhancement -->
+  <script>
+    const langBtn = document.querySelector('.nav__lang');
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        const isEN = langBtn.textContent.trim() === 'DE';
+        document.querySelectorAll('[data-lang-block]').forEach(el => {
+          el.style.display = el.dataset.langBlock === (isEN ? 'en' : 'de') ? 'block' : 'none';
+        });
+      });
+    }
+  </script>
+
+  <style>
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.revealed { opacity:1; transform:none; }
+  </style>
+</body>
+</html>

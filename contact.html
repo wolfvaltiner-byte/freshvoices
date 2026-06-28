@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt | Fresh Voices — Wolf Valtiner</title>
+  <meta name="description" content="Kontaktieren Sie Wolf Valtiner für Ihr Voice Over Projekt. Antwort innerhalb von 24 Stunden." />
+  <link rel="canonical" href="https://www.freshvoices.at/contact.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info { }
+    .contact-info__item {
+      margin-bottom: 32px;
+    }
+    .contact-info__label {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .contact-info__value {
+      font-size: 1rem;
+      color: var(--white);
+    }
+    .contact-info__value a {
+      color: var(--white);
+      transition: color var(--transition);
+    }
+    .contact-info__value a:hover { color: var(--green); }
+
+    .contact-promise {
+      background: rgba(145, 194, 104, 0.07);
+      border: 1px solid rgba(145, 194, 104, 0.2);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 40px;
+    }
+    .contact-promise__head {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .contact-promise__text { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    .contact-form-col {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 48px;
+    }
+
+    .form-error {
+      display: none;
+      font-size: 0.78rem;
+      color: #e85454;
+      margin-top: 6px;
+    }
+    .form-group.has-error input,
+    .form-group.has-error textarea,
+    .form-group.has-error select {
+      border-color: #e85454;
+    }
+    .form-group.has-error .form-error {
+      display: block;
+    }
+    .form-hidden {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
+    .form-feedback {
+      text-align: center;
+      font-size: 0.88rem;
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      display: none;
+    }
+    .form-feedback.is-success {
+      display: block;
+      background: rgba(145, 194, 104, 0.12);
+      color: var(--green);
+      border: 1px solid rgba(145, 194, 104, 0.3);
+    }
+    .form-feedback.is-error {
+      display: block;
+      background: rgba(232, 84, 84, 0.1);
+      color: #e85454;
+      border: 1px solid rgba(232, 84, 84, 0.25);
+    }
+
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .contact-form-col { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo"><img src="images/logo.svg" alt="Fresh Voices logo"></a>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="samples.html">Voice Samples</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="contact.html" class="btn btn--primary" style="padding:10px 22px;font-size:0.7rem;">Get in touch</a></li>
+        </ul>
+        <button class="nav__lang">EN</button>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <section class="page-hero section--dark">
+    <div class="container">
+      <p class="eyebrow page-hero__eyebrow" data-de="Sprechen Sie mich an" data-en="Let's talk">Sprechen Sie mich an</p>
+      <h1 class="display-lg text-white" data-de="Kontakt" data-en="Contact">Kontakt</h1>
+      <p class="mt-16" data-de="Kein langer Prozess. Schreiben Sie mir — ich antworte innerhalb von 24 Stunden." data-en="No long process. Write to me — I'll reply within 24 hours.">
+        Kein langer Prozess. Schreiben Sie mir — ich antworte innerhalb von 24 Stunden.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Left: Contact info -->
+        <div class="contact-info reveal">
+          <div class="contact-info__item">
+            <div class="contact-info__label" data-de="Telefon" data-en="Phone">Telefon</div>
+            <div class="contact-info__value"><a href="tel:+4366488473943">+43 664 884 73943</a></div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__label">E-Mail</div>
+            <div class="contact-info__value">
+              <!-- Email obfuscated from scrapers via data attribute -->
+              <a href="mailto:wolf.valtiner@freshvoices.at">wolf.valtiner@freshvoices.at</a>
+            </div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__label" data-de="Standort" data-en="Location">Standort</div>
+            <div class="contact-info__value" data-de="Wien, Österreich" data-en="Vienna, Austria">Wien, Österreich</div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__label" data-de="Social" data-en="Social">Social</div>
+            <div class="contact-info__value" style="display:flex;gap:16px;">
+              <a href="https://fb.me/Fresh.Voices.Vienna" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/wolfvaltiner" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-promise">
+            <div class="contact-promise__head" data-de="Mein Versprechen" data-en="My promise">Mein Versprechen</div>
+            <div class="contact-promise__text" data-de="Ich antworte auf jede ernsthafte Anfrage innerhalb von 24 Stunden. Wenn Sie ein Skript schicken, bitte ich gerne einen kostenlosen Probe-Take an." data-en="I reply to every serious enquiry within 24 hours. If you send a script, I'm happy to record a free demo take.">
+              Ich antworte auf jede ernsthafte Anfrage innerhalb von 24 Stunden. Wenn Sie ein Skript schicken, bitte ich gerne einen kostenlosen Probe-Take an.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Contact form -->
+        <div class="contact-form-col reveal">
+          <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+              <div class="form-group">
+                <label for="firstName" data-de="Vorname" data-en="First name">Vorname</label>
+                <input type="text" id="firstName" name="firstName" autocomplete="given-name" required minlength="2" />
+                <span class="form-error" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="lastName" data-de="Nachname" data-en="Last name">Nachname</label>
+                <input type="text" id="lastName" name="lastName" autocomplete="family-name" required minlength="2" />
+                <span class="form-error" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="company" data-de="Unternehmen / Agentur (optional)" data-en="Company / Agency (optional)">Unternehmen / Agentur (optional)</label>
+              <input type="text" id="company" name="company" autocomplete="organization" />
+            </div>
+
+            <div class="form-group">
+              <label for="projectType" data-de="Projektart" data-en="Project type">Projektart</label>
+              <select id="projectType" name="projectType" required>
+                <option value="" data-de="Bitte wählen..." data-en="Please select...">Bitte wählen...</option>
+                <option value="corporate" data-de="Corporate / Imagefilm" data-en="Corporate / Image film">Corporate / Imagefilm</option>
+                <option value="documentary" data-de="Dokumentation" data-en="Documentary">Dokumentation</option>
+                <option value="elearning" data-de="E-Learning / Training" data-en="E-Learning / Training">E-Learning / Training</option>
+                <option value="commercial" data-de="Werbung / Spot" data-en="Commercial / Spot">Werbung / Spot</option>
+                <option value="audiobook" data-de="Hörbuch" data-en="Audiobook">Hörbuch</option>
+                <option value="ivr" data-de="IVR / Telefonansage" data-en="IVR / Phone message">IVR / Telefonansage</option>
+                <option value="other" data-de="Sonstiges" data-en="Other">Sonstiges</option>
+              </select>
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="message" data-de="Nachricht / Projektbeschreibung" data-en="Message / Project description">Nachricht / Projektbeschreibung</label>
+              <textarea id="message" name="message" required minlength="10"
+                placeholder="Beschreiben Sie Ihr Projekt kurz. Textlänge, Liefertermin, Tonalität — je mehr Sie mir geben, desto schneller kann ich antworten."></textarea>
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Honeypot anti-spam (Netlify standard) -->
+            <p class="form-hidden" aria-hidden="true">
+              <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            </p>
+
+            <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;"
+                    data-de="Anfrage senden" data-en="Send enquiry">Anfrage senden</button>
+
+            <div id="formFeedback" class="form-feedback" role="status" aria-live="polite"></div>
+
+            <p class="mt-16 text-muted" style="font-size:0.78rem;text-align:center;"
+               data-de="Keine Weitergabe Ihrer Daten. Antwort innerhalb von 24 Stunden." data-en="No data shared. Reply within 24 hours.">
+              Keine Weitergabe Ihrer Daten. Antwort innerhalb von 24 Stunden.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-name">Fresh<span>Voices</span></div>
+          <p class="footer__tagline">Professioneller Voice Over · Wien</p>
+        </div>
+        <div>
+          <div class="footer__heading">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="samples.html">Hörproben</a></li>
+            <li><a href="services.html">Leistungen</a></li>
+            <li><a href="about.html">Über mich</a></li>
+            <li><a href="clients.html">Kunden</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Kontakt</div>
+          <ul class="footer__links">
+            <li><a href="tel:+4366488473943">+43 664 884 73943</a></li>
+            <li><a href="mailto:wolf.valtiner@freshvoices.at">wolf.valtiner@freshvoices.at</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Fresh Voices · Wolf Valtiner</span>
+        <div class="footer__legal">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <style>
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.revealed { opacity:1; transform:none; }
+  </style>
+</body>
+</html>
