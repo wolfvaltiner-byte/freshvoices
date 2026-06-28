@@ -558,6 +558,26 @@ h1, h2, h3, h4 {
 .grid-2-wide { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 
 /* ============================================
+   SCROLL REVEAL (JS-gated: content visible without JS)
+   ============================================ */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.js .reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 768px) {

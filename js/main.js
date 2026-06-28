@@ -2,6 +2,8 @@
    FRESH VOICES — Main JavaScript
    ============================================ */
 
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- Nav scroll behaviour ---
@@ -59,7 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const src      = player.dataset.src;
     if (!src) return;
 
-    const audio    = new Audio(src);
+    const audio    = new Audio();
+    audio.preload  = 'metadata';
+    audio.src      = src;
     const playBtn  = player.querySelector('.audio-player__play');
     const bar      = player.querySelector('.audio-player__bar');
     const progress = player.querySelector('.audio-player__progress');
@@ -84,6 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return `${m}:${sec}`;
     };
 
+    const showDuration = () => {
+      if (isFinite(audio.duration) && audio.duration > 0 && timeEl) {
+        timeEl.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+      }
+    };
+    audio.addEventListener('loadedmetadata', showDuration);
+    audio.addEventListener('durationchange', showDuration);
+
     playBtn.addEventListener('click', () => {
       document.querySelectorAll('.audio-player').forEach(p => {
         if (p !== player) {
@@ -105,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     audio.addEventListener('timeupdate', () => {
-      if (!audio.duration) return;
+      if (!isFinite(audio.duration) || audio.duration === 0) return;
       const pct = (audio.currentTime / audio.duration) * 100;
       bar.style.width = pct + '%';
       if (progress) progress.setAttribute('aria-valuenow', Math.round(pct));
