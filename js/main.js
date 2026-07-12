@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       progress.addEventListener('keydown', e => {
-        if (!audio.duration) return;
+        if (!isFinite(audio.duration) || audio.duration === 0) return;
         const step = e.shiftKey ? 10 : 5;
         if (e.key === 'ArrowRight') {
           audio.currentTime = Math.min(audio.duration, audio.currentTime + step);
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (response.ok) {
           showFeedback('success', isDE()
             ? 'Nachricht gesendet! Ich melde mich innerhalb von 24 Stunden.'
-            : 'Message sent! I'll get back to you within 24 hours.');
+            : "Message sent! I'll get back to you within 24 hours.");
           form.reset();
           btn.textContent = originalText;
         } else {
