@@ -149,6 +149,30 @@
       .ref-strip img { max-height: 26px; }
       .assoc-card { flex-direction: column; padding: 24px; }
     }
+    .client-group__heading {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      margin-top: 48px;
+    }
+    .logo-card a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .ref-strip a {
+      display: inline-flex;
+      align-items: center;
+    }
+    .ref-strip a:hover img {
+      filter: grayscale(0) brightness(1);
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body>
@@ -188,24 +212,29 @@
   <!-- Client logos -->
   <section class="section section--dark">
     <div class="container">
-      <p class="eyebrow mb-40" data-de="Ausgewählte Kunden" data-en="Selected clients">Ausgewählte Kunden</p>
+      <p class="eyebrow mb-24" data-de="Ausgewählte Kunden" data-en="Selected clients">Ausgewählte Kunden</p>
 
+      <h3 class="client-group__heading" style="margin-top:0;" data-de="Kunden" data-en="Clients">Kunden</h3>
+      <div class="logo-wall reveal" style="margin-bottom:48px;">
+        <div class="logo-card"><a href="https://hermesapotheke.at" target="_blank" rel="noopener"><img src="customers/HermesApotheke.png" alt="Hermes Apotheke"></a></div>
+        <div class="logo-card"><a href="https://www.hilfswerk.at" target="_blank" rel="noopener"><img src="customers/Hilfswerk.png" alt="Hilfswerk"></a></div>
+        <div class="logo-card"><a href="https://www.wko.at" target="_blank" rel="noopener"><img src="customers/logo-wko.png" alt="WKO"></a></div>
+        <div class="logo-card"><a href="https://oecolution.at" target="_blank" rel="noopener"><img src="customers/oecolution.jpg" alt="Oecolution"></a></div>
+        <div class="logo-card"><a href="https://paulaner-apotheke.at" target="_blank" rel="noopener"><img src="customers/Paulaner.png" alt="Paulaner Apotheke"></a></div>
+        <div class="logo-card"><a href="https://stern-apo.at" target="_blank" rel="noopener"><img src="customers/stern-apotheke.jpg" alt="Stern Apotheke"></a></div>
+        <div class="logo-card"><a href="https://en.bormeslesmimosas.com/" target="_blank" rel="noopener"><img src="customers/bormes-les-mimosas.png" alt="Bormes les Mimosas"></a></div>
+      </div>
+
+      <h3 class="client-group__heading" data-de="Studios & Agenturen" data-en="Studios & Agencies">Studios & Agenturen</h3>
       <div class="logo-wall reveal">
-        <div class="logo-card"><img src="customers/HermesApotheke.png" alt="Hermes Apotheke"></div>
-        <div class="logo-card"><img src="customers/Hilfswerk.png" alt="Hilfswerk"></div>
-        <div class="logo-card"><img src="customers/little-lights-logo.png" alt="Little Lights"></div>
-        <div class="logo-card"><img src="customers/logo-wko.png" alt="WKO"></div>
-        <div class="logo-card"><img src="customers/LoungeFM.png" alt="Lounge FM"></div>
-        <div class="logo-card"><img src="customers/macjingle-488x254.webp" alt="MacJingle"></div>
-        <div class="logo-card"><img src="customers/oecolution.jpg" alt="Oecolution"></div>
-        <div class="logo-card"><img src="customers/OVERDUB.png" alt="OVERDUB"></div>
-        <div class="logo-card"><img src="customers/Paulaner.png" alt="Paulaner"></div>
-        <div class="logo-card"><img src="customers/radio-klassik.png" alt="Radio Klassik"></div>
-        <div class="logo-card"><img src="customers/spreadfilms-logo.svg" alt="Spreadfilms"></div>
-        <div class="logo-card"><img src="customers/stern-apotheke.jpg" alt="Stern Apotheke"></div>
-        <div class="logo-card"><img src="customers/Wincom.png" alt="Wincom"></div>
-        <div class="logo-card"><img src="customers/bormes-les-mimosas.png" alt="Bormes les Mimosas"></div>
-        <div class="logo-card"><img src="customers/Logo_Schutzengel.png" alt="Schutzengel"></div>
+        <div class="logo-card"><a href="https://littlelights.studio/en" target="_blank" rel="noopener"><img src="customers/little-lights-logo.png" alt="Little Lights"></a></div>
+        <div class="logo-card"><a href="https://www.lounge.fm" target="_blank" rel="noopener"><img src="customers/LoungeFM.png" alt="Lounge FM"></a></div>
+        <div class="logo-card"><a href="https://macjingle.at" target="_blank" rel="noopener"><img src="customers/macjingle-488x254.webp" alt="MacJingle"></a></div>
+        <div class="logo-card"><a href="https://overdub.at" target="_blank" rel="noopener"><img src="customers/OVERDUB.png" alt="OVERDUB"></a></div>
+        <div class="logo-card"><a href="https://radioklassik.at" target="_blank" rel="noopener"><img src="customers/radio-klassik.png" alt="Radio Klassik"></a></div>
+        <div class="logo-card"><a href="https://spreadfilms.com" target="_blank" rel="noopener"><img src="customers/spreadfilms-logo.svg" alt="Spreadfilms"></a></div>
+        <div class="logo-card"><a href="https://www.schutzengelapotheke.wien" target="_blank" rel="noopener"><img src="customers/Logo_Schutzengel.png" alt="Schutzengel Apotheke"></a></div>
+        <div class="logo-card"><a href="https://www.wincommunication.fr/" target="_blank" rel="noopener"><img src="customers/Wincom.png" alt="Wincom"></a></div>
       </div>
 
     </div>
@@ -226,21 +255,21 @@
       <h2 class="display-md text-white" data-de="Vertrauen von Marken und Agenturen" data-en="Trusted by brands and agencies">Vertrauen von Marken und Agenturen</h2>
 
       <div class="ref-strip reveal">
-        <img src="customers/Paulaner.png"              alt="Paulaner"          width="120" height="32" loading="lazy" />
-        <img src="customers/logo-wko.png"              alt="WKO"               width="100" height="32" loading="lazy" />
-        <img src="customers/Hilfswerk.png"             alt="Hilfswerk"         width="110" height="32" loading="lazy" />
-        <img src="customers/radio-klassik.png"         alt="Radio Klassik"     width="120" height="32" loading="lazy" />
-        <img src="customers/LoungeFM.png"              alt="Lounge FM"         width="110" height="32" loading="lazy" />
-        <img src="customers/HermesApotheke.png"        alt="Hermes Apotheke"   width="100" height="32" loading="lazy" />
-        <img src="customers/stern-apotheke.jpg"        alt="Stern Apotheke"    width="100" height="32" loading="lazy" />
-        <img src="customers/Logo_Schutzengel.png"      alt="Schutzengel"       width="100" height="32" loading="lazy" />
-        <img src="customers/OVERDUB.png"               alt="OVERDUB"           width="110" height="32" loading="lazy" />
-        <img src="customers/macjingle-488x254.webp"    alt="MacJingle"         width="100" height="32" loading="lazy" />
-        <img src="customers/spreadfilms-logo.svg"      alt="Spreadfilms"       width="110" height="32" loading="lazy" />
-        <img src="customers/Wincom.png"                alt="Wincom"            width="100" height="32" loading="lazy" />
-        <img src="customers/oecolution.jpg"            alt="Oecolution"        width="100" height="32" loading="lazy" />
-        <img src="customers/bormes-les-mimosas.png"    alt="Bormes les Mimosas" width="110" height="32" loading="lazy" />
-        <img src="customers/little-lights-logo.png"    alt="Little Lights"     width="110" height="32" loading="lazy" />
+        <a href="https://paulaner-apotheke.at" target="_blank" rel="noopener"><img src="customers/Paulaner.png"           alt="Paulaner Apotheke"  width="120" height="32" loading="lazy" /></a>
+        <a href="https://www.wko.at" target="_blank" rel="noopener"><img src="customers/logo-wko.png"                    alt="WKO"               width="100" height="32" loading="lazy" /></a>
+        <a href="https://www.hilfswerk.at" target="_blank" rel="noopener"><img src="customers/Hilfswerk.png"             alt="Hilfswerk"         width="110" height="32" loading="lazy" /></a>
+        <a href="https://radioklassik.at" target="_blank" rel="noopener"><img src="customers/radio-klassik.png"          alt="Radio Klassik"     width="120" height="32" loading="lazy" /></a>
+        <a href="https://www.lounge.fm" target="_blank" rel="noopener"><img src="customers/LoungeFM.png"                 alt="Lounge FM"         width="110" height="32" loading="lazy" /></a>
+        <a href="https://hermesapotheke.at" target="_blank" rel="noopener"><img src="customers/HermesApotheke.png"       alt="Hermes Apotheke"   width="100" height="32" loading="lazy" /></a>
+        <a href="https://stern-apo.at" target="_blank" rel="noopener"><img src="customers/stern-apotheke.jpg"            alt="Stern Apotheke"    width="100" height="32" loading="lazy" /></a>
+        <a href="https://www.schutzengelapotheke.wien" target="_blank" rel="noopener"><img src="customers/Logo_Schutzengel.png" alt="Schutzengel Apotheke" width="100" height="32" loading="lazy" /></a>
+        <a href="https://overdub.at" target="_blank" rel="noopener"><img src="customers/OVERDUB.png"                     alt="OVERDUB"           width="110" height="32" loading="lazy" /></a>
+        <a href="https://macjingle.at" target="_blank" rel="noopener"><img src="customers/macjingle-488x254.webp"        alt="MacJingle"         width="100" height="32" loading="lazy" /></a>
+        <a href="https://spreadfilms.com" target="_blank" rel="noopener"><img src="customers/spreadfilms-logo.svg"       alt="Spreadfilms"       width="110" height="32" loading="lazy" /></a>
+        <a href="https://www.wincommunication.fr/" target="_blank" rel="noopener"><img src="customers/Wincom.png"        alt="Wincom"            width="100" height="32" loading="lazy" /></a>
+        <a href="https://oecolution.at" target="_blank" rel="noopener"><img src="customers/oecolution.jpg"               alt="Oecolution"        width="100" height="32" loading="lazy" /></a>
+        <a href="https://en.bormeslesmimosas.com/" target="_blank" rel="noopener"><img src="customers/bormes-les-mimosas.png" alt="Bormes les Mimosas" width="110" height="32" loading="lazy" /></a>
+        <a href="https://littlelights.studio/en" target="_blank" rel="noopener"><img src="customers/little-lights-logo.png" alt="Little Lights"  width="110" height="32" loading="lazy" /></a>
         <img src="customers/logo_big.svg"              alt="Logo Big"          width="100" height="32" loading="lazy" />
         <img src="customers/logo-banner.svg"           alt="Logo Banner"       width="120" height="32" loading="lazy" />
       </div>
@@ -256,14 +285,14 @@
 
         <div class="assoc-card reveal">
           <div class="assoc-logo-placeholder">
-            VSSÖ
+            VOICE
           </div>
           <div class="assoc-text">
-            <div class="assoc-name">VSSÖ — Verband der Synchron- und Servicesprecher Österreichs</div>
-            <div class="assoc-desc" data-de="Der Berufsverband für professionelle Synchron- und Servicesprecher in Österreich. Mitgliedschaft steht für nachgewiesene Qualität und professionelle Standards in der Sprecherbranche." data-en="The professional association for dubbing and service voice artists in Austria. Membership signals proven quality and professional standards in the voice industry.">
-              Der Berufsverband für professionelle Synchron- und Servicesprecher in Österreich. Mitgliedschaft steht für nachgewiesene Qualität und professionelle Standards in der Sprecherbranche.
+            <div class="assoc-name">VOICE — Verband für Leistungsschutz der SprecherInnen und DarstellerInnen</div>
+            <div class="assoc-desc" data-de="Der Berufsverband für professionelle SprecherInnen und DarstellerInnen in Österreich. Mitgliedschaft steht für nachgewiesene Qualität und professionelle Standards in der Sprecherbranche." data-en="The professional association for voice artists and performers in Austria. Membership signals proven quality and professional standards in the voice industry.">
+              Der Berufsverband für professionelle SprecherInnen und DarstellerInnen in Österreich. Mitgliedschaft steht für nachgewiesene Qualität und professionelle Standards in der Sprecherbranche.
             </div>
-            <a href="https://www.vssoe.at" target="_blank" rel="noopener" class="assoc-link">vssoe.at ↗</a>
+            <a href="https://www.sprecherverband.at" target="_blank" rel="noopener" class="assoc-link">sprecherverband.at ↗</a>
           </div>
         </div>
 
