@@ -111,6 +111,30 @@
       .filter-sidebar__heading { display: none; }
       .filter-btn { width: auto; }
     }
+
+    .video-embed-wrap {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+    .video-embed-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .video-embed-caption {
+      margin-top: 12px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--white);
+    }
   </style>
 </head>
 <body>
@@ -234,7 +258,7 @@
           <div class="sample-group" data-category="commercial">
             <div class="sample-group__header">
               <h2 class="sample-group__title" data-de="Werbung & Spots" data-en="Commercials & Spots">Werbung & Spots</h2>
-              <span class="sample-group__count" data-de="1 Probe" data-en="1 sample">1 Probe</span>
+              <span class="sample-group__count" data-de="1 Audio · 1 Video" data-en="1 audio · 1 video">1 Audio · 1 Video</span>
             </div>
             <div class="samples-grid">
               <div class="audio-player" data-src="audio/land-sky-schonegger-schlafstudio.mp3">
@@ -249,6 +273,21 @@
                 <div class="audio-player__track">
                   <div class="audio-player__progress"><div class="audio-player__bar"></div></div>
                   <span class="audio-player__time">0:00 / 0:00</span>
+                </div>
+              </div>
+
+              <div class="reveal">
+                <div class="video-embed-wrap">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/rTq0qVh3OMc"
+                    width="560" height="315" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    title="TV-Werbespot – Stimme des Vaters"></iframe>
+                </div>
+                <div class="video-embed-caption">
+                  <span data-de="TV-Werbespot – Stimme des Vaters" data-en="TV Commercial – Voice of the Dad">TV-Werbespot – Stimme des Vaters</span>
+                  &nbsp;<span class="sample-tag sample-tag--pink">VIDEO</span>
                 </div>
               </div>
             </div>

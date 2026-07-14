@@ -139,6 +139,25 @@
       padding: 12px 18px;
       border-radius: var(--radius);
     }
+    .hero__mute-btn {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.50);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--white);
+      transition: background var(--transition);
+      z-index: 2;
+      padding: 0;
+    }
+    .hero__mute-btn:hover { background: rgba(0,0,0,0.75); }
     .hero__demo {
       margin-top: 36px;
     }
@@ -305,6 +324,12 @@
               <source src="videos/production-hook.mp4" type="video/mp4" />
               Ihr Browser unterstützt kein HTML5-Video.
             </video>
+            <button class="hero__mute-btn" aria-label="Ton einschalten" aria-pressed="false">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+            </button>
             <div class="hero__photo-badge" data-de="Video-Hook" data-en="Video Hook">
               ✦ Video-Hook
             </div>
