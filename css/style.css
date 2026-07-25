@@ -387,9 +387,9 @@ h1, h2, h3, h4 {
 .logo-wall img {
   height: 36px;
   width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.35;
-  transition: opacity var(--transition);
+  filter: grayscale(1) brightness(1.6);
+  opacity: 0.45;
+  transition: filter var(--transition), opacity var(--transition);
 }
 .logo-wall img:hover { opacity: 0.8; }
 
