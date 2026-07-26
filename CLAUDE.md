@@ -65,13 +65,16 @@ Professional association: **VOICE** (Verband für Leistungsschutz der SprecherIn
 
 ## samples.html structure
 
-Six `.sample-group` blocks, each with `data-category` matching a `.filter-btn`'s `data-filter` (the inline `<script>` toggles `display` based on this). As of 2026-07-26:
+Five `.sample-group` blocks, each with `data-category` matching a `.filter-btn`'s `data-filter` (the inline `<script>` toggles `display` based on this). As of 2026-07-26:
 
-- **Corporate & Industrie** (`corporate`): Hofsteigkarte, Fliesenverband (Industrie-Spot, `audio/fliesenverband-fliesenleger.mp3`), Helma (Imagekampagne), Digital Life Garage (Imagekampagne, English)
-- **Dokumentation** (`documentary`): Finanzbildung
-- **Werbung & Spots** (`commercial`): Schlafstudio, Fliesenverband (Werbespot, `audio/fliesenverband-spot.mp3` — a *different* recording from the corporate one above, added 2026-07-26, deliberately kept as a separate entry rather than replacing the older corporate-tagged file), plus the one video embed
-- **Hörbücher** (`audiobook`) — new group, added 2026-07-26: Advent im Pustertal, Foxy
-- **Anrufbeantworter** (`ivr`) — new group, added 2026-07-26: Stern Apotheke
+- **Corporate & Industrie** (`corporate`): Fliesenverband (Industrie-Spot, `audio/fliesenverband-fliesenleger.mp3`), Helma (Imagekampagne), Digital Life Garage (Imagekampagne, English)
+- **Werbung & Spots** (`commercial`): Hofsteigkarte, Finanzbildung, Schlafstudio, Fliesenverband (Werbespot, `audio/fliesenverband-spot.mp3` — a *different* recording from the corporate one above, deliberately kept as a separate entry rather than replacing the older corporate-tagged file), plus the one video embed
+- **Hörbücher** (`audiobook`): Advent im Pustertal, Foxy
+- **Anrufbeantworter** (`ivr`): Stern Apotheke
+
+**No "Dokumentation" group anymore** — Hofsteigkarte and Finanzbildung moved into Werbung & Spots 2026-07-26 (both the `documentary` filter button and the now-empty group were removed; the page's `<meta name="description">` was also updated to drop "Dokumentation" from its category list). If a genuinely documentary-style sample gets added later, the group and filter button would need to be recreated.
+
+**Language toggle verified on this page** (2026-07-26, after the reorg): `.nav__lang` in the top nav does the DE↔EN swap for the whole site (see Key patterns above — no separate `/en/` URL exists anywhere on the site, English is a client-side `data-de`/`data-en` swap on the same page). Checked via Playwright that every `[data-de][data-en]` element on samples.html matches its `data-en` value after clicking the toggle — zero mismatches, including the newly moved/reorganized sample entries.
 
 The page's `<meta name="description">` already referenced "Hörbücher, IVR" before either group existed on the page — this update makes the meta description accurate. No `e-learning` category/group exists yet despite also being named in that meta description; add one if/when an E-Learning sample becomes available.
 
