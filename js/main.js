@@ -45,14 +45,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Language toggle ---
   const langBtn = document.querySelector('.nav__lang');
   if (langBtn) {
-    let lang = 'DE';
-    langBtn.addEventListener('click', () => {
-      lang = lang === 'DE' ? 'EN' : 'DE';
-      langBtn.textContent = lang === 'DE' ? 'EN' : 'DE';
-      document.documentElement.lang = lang.toLowerCase();
+    const LANG_KEY = 'fv-lang';
+    let storedLang = 'de';
+    try {
+      storedLang = localStorage.getItem(LANG_KEY) || 'de';
+    } catch (e) { /* localStorage unavailable (e.g. private browsing) — default to de */ }
+
+    const applyLang = (lang) => {
+      langBtn.textContent = lang === 'de' ? 'EN' : 'DE';
+      document.documentElement.lang = lang;
       document.querySelectorAll('[data-de], [data-en]').forEach(el => {
-        el.textContent = lang === 'DE' ? el.dataset.de : el.dataset.en;
+        const value = lang === 'de' ? el.dataset.de : el.dataset.en;
+        if (value == null) return;
+        // Some values (e.g. the homepage hero title) carry inline <br>/<em> markup —
+        // render it instead of dumping literal tags as text.
+        if (value.includes('<')) {
+          el.innerHTML = value;
+        } else {
+          el.textContent = value;
+        }
       });
+    };
+
+    let lang = storedLang;
+    applyLang(lang);
+
+    langBtn.addEventListener('click', () => {
+      lang = lang === 'de' ? 'en' : 'de';
+      try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* ignore */ }
+      applyLang(lang);
     });
   }
 

@@ -26,7 +26,9 @@ There is no build step, no linter, no test suite. Changes are visible on reload.
 
 ## Key patterns
 
-**Bilingual content** — text elements carry `data-de` and `data-en` attributes. The language toggle in `main.js` swaps `textContent` based on the current language. The `about.html` page additionally uses `data-lang-block="de|en"` for full block-level swaps (show/hide entire sections). The nav button label flips between "EN" and "DE" to indicate the *available* language.
+**Bilingual content** — text elements carry `data-de` and `data-en` attributes. The language toggle in `main.js` swaps content based on the current language: `textContent` for plain strings, but `innerHTML` for any value containing `<` (e.g. index.html's hero title, which embeds `<br>`/`<em>` for the line breaks and pink emphasis word — fixed 2026-07-27, previously these tags rendered as literal visible text after switching to English because the swap always used `textContent`). The `about.html` page additionally uses `data-lang-block="de|en"` for full block-level swaps (show/hide entire sections). The nav button label flips between "EN" and "DE" to indicate the *available* language.
+
+**Language choice persists across pages** (fixed 2026-07-27) — the toggle stores the current language in `localStorage` (`fv-lang`) and every page applies the stored value on load, so navigating to a different page (or reloading) keeps whatever the visitor last picked instead of silently resetting to German. There's still no separate `/en/` URL anywhere on the site — English is always this same client-side swap, never a distinct crawlable page. A returning EN visitor will see a brief flash of German text before `main.js` runs and reapplies English on each new page load (the swap still only happens at `DOMContentLoaded`, same timing as before) — acceptable given the site's architecture, but worth knowing about if it's ever revisited.
 
 **Audio players** — custom `.audio-player` components use `data-src` to lazy-load audio. `main.js` creates `Audio` objects, wires play/pause (with single-active-player behavior), progress bar scrubbing, and time display. Each player instance is stored as `player._audio`.
 
@@ -45,6 +47,10 @@ There is no build step, no linter, no test suite. Changes are visible on reload.
 | `--card`       | `#2E2E2E` | Card/panel backgrounds                        |
 
 Fonts: Montserrat (display/UI via `--font-display`), Inter (body via `--font-body`), loaded from Google Fonts.
+
+**Layout width** — `--max-width` (used by `.container`, the shared centering/padding wrapper on every page) widened from `1100px` to `1440px` 2026-07-27, per Wolf's feedback that the site felt too narrow with large empty margins on wide screens. `.container` still uses `padding: 0 clamp(20px, 5vw, 60px)` so side breathing room scales the same way, just with a wider ceiling.
+
+**Nav button contrast bug (fixed 2026-07-27)**: `.nav__links a` (specificity 0,1,1) was beating `.btn--primary`'s `color: var(--white)` (specificity 0,1,0), so the "Get in touch" nav button — an `<a class="btn btn--primary">` nested inside `.nav__links` — rendered with muted gray text (`--muted`, barely readable against the pink background) instead of white, on **both** desktop and the mobile hamburger menu. Found while testing the mobile menu, but it wasn't mobile-specific — it affected every page, every viewport. Fixed with a more specific `.nav__links a.btn--primary { color: var(--white); }` override in `css/style.css`.
 
 ## clients.html structure
 
@@ -139,6 +145,25 @@ The `.price-note` disclaimer now also states the prices follow VOICE's fee recom
 **Not changed:** the six service categories themselves weren't altered or expanded. VOICE's pricelist covers several offerings Fresh Voices doesn't currently list as cards — Podcasts, Audioguide, and Synchronisation (Film/Games) — left out deliberately since adding a new service line is a business decision for Wolf, not a pricing-alignment task. See `next_tasks.md`.
 
 **`docs/Voice_Preisliste_260324.md`** — the VOICE pricelist PDF (`docs/Voice_Preisliste_260324.pdf`, gültig ab 1.8.2025) converted via `markitdown`. The conversion is messy in two spots: the rotated cover-page sidebar text extracts as reversed character soup (e.g. "gültig ab 1.8.2025" → "5202.8.1 ba gitlüg"), and many tables collapse into fragmented single-column markdown tables interleaved with plain text. Usable as a reference/grep target, but don't trust it for exact figures without cross-checking the PDF — the pricing decisions above were made against the original PDF content, not the markitdown output.
+
+## Mobile testing (2026-07-27)
+
+Tested every page (index, samples, services, about, clients, contact) at iPhone 13 and Pixel 5 viewports via Playwright device emulation: zero horizontal overflow, zero console errors, hamburger menu opens/closes and locks body scroll correctly, 48×48px tap targets on the audio player controls (meets both iOS HIG and Android Material minimums), `playsinline`+`muted` already set on the autoplaying hero video (required for iOS inline autoplay), and `.hero`'s `min-height: 100vh` (not `height`) avoids the classic iOS Safari dynamic-toolbar clipping issue.
+
+**False-alarm pattern worth knowing about**: full-page mobile screenshots of this site look like they have huge blank gaps where whole sections (service cards, use-case list, CTA banners, logo walls, the contact form) are missing. They aren't — every one of these was checked directly via computed styles/bounding boxes and the content, elements, and layout are all present and correctly sized. The illusion comes from stacking three things: (1) `.reveal`/`.revealed` scroll-triggered fade-in (elements sit at `opacity:0` until their `IntersectionObserver` fires), (2) the dark-on-dark color palette, and (3) viewing a full-page screenshot of a very tall mobile page downscaled 6–8× to fit a preview — at that scale, correctly-rendered muted-gray-on-near-black content becomes visually imperceptible. If something looks missing on mobile, check a targeted element screenshot or computed style before concluding it's a bug — this cost real time twice in this session.
+
+Only one real bug turned up (see the "Nav button contrast bug" note above) — everything else mobile-specific checked out clean.
+
+## Domain / hosting (checked 2026-07-27, ahead of connecting freshvoices.at)
+
+`freshvoices.at` is currently fully on **Wix**:
+
+- Nameservers: `ns6.wixdns.net`, `ns7.wixdns.net` — Wix controls the whole DNS zone, not just a hosting record.
+- Apex `A` records (`185.230.63.107/.186/.171`) resolve to Wix's hosting IP pool — there's a live, currently-published Wix site actually serving traffic at the domain today, not just a parked/placeholder DNS setup.
+- `www.freshvoices.at` CNAMEs to Wix's CDN (`cdn1.wixdns.net`).
+- **Email is separate and must be preserved**: MX records point to Zoho Mail (`mx.zoho.eu`, `mx2.zoho.eu`, `mx3.zoho.eu`), with matching SPF (`v=spf1 include:zoho.eu ~all`) and a Zoho domain-verification TXT record. A Google site-verification TXT record is also present.
+
+To point the domain at this Netlify-deployed site, Wolf has two options, and either one must carry the Zoho MX/SPF/verification TXT records forward exactly or email breaks: (1) keep nameservers at Wix but edit the A/CNAME records in Wix's DNS panel to target Netlify's load balancer / the Netlify site's default domain, or (2) move nameservers to Netlify DNS (or another registrar-level DNS host) and recreate every existing record (Zoho MX + SPF + both verification TXTs) in the new zone. Neither of these is something to do from this repo — it's registrar/DNS-panel access Wolf has, not Claude. See `next_tasks.md`.
 
 ## Incomplete items
 

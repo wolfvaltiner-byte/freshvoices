@@ -2,6 +2,17 @@
 
 Pending decisions and follow-ups that need Wolf's input — not things Claude should just decide and change unilaterally. See `CLAUDE.md` for the technical detail behind each item.
 
+## From 2026-07-27 session — connecting freshvoices.at
+
+- **freshvoices.at is live on Wix today, not just parked.** DNS is fully delegated to Wix (`ns6/ns7.wixdns.net`), and the A records point at Wix's hosting IPs — meaning there's a currently-published Wix site actually serving visitors at this domain right now. Before repointing anything, decide what happens to that existing Wix site (archive it, keep it as a fallback, or just cut over).
+- **Email (Zoho) must survive any DNS change.** MX (`mx.zoho.eu` + 2 backups), SPF, and a Zoho verification TXT record are all live on the domain today, separate from the Wix hosting. Whatever approach connects the domain to this Netlify site, those exact records need to be recreated/preserved or Wolf's `@freshvoices.at` email stops working. A Google site-verification TXT record is also present and should carry over too.
+- **Two ways to connect the domain**, both requiring registrar/DNS-panel access (not something doable from this repo): (1) keep nameservers at Wix, edit just the A/CNAME records to point at Netlify, or (2) move nameservers off Wix entirely to Netlify DNS and rebuild every other record there. Recommend confirming with Netlify's own "add a custom domain" instructions once ready, and doing it during low-traffic hours in case of propagation delays.
+
+## From 2026-07-27 session — home page / mobile fixes
+
+- **Verify the widened layout (1440px, up from 1100px) reads well to you on your own monitor(s).** It's a subjective call — checked for zero overflow/breakage across every page at 1728px, but "does it feel right" is yours to judge.
+- **Hero video has a baked-in German-only moment.** `videos/production-hook.mp4` (the autoplaying hero clip) includes a frame with burned-in German text ("Scannt diesen QR-Code:"). Since it's burned into the video pixels, the language toggle can't translate it — an English visitor will briefly see German text mid-video. Fixable only with a new/dubbed video asset from Wolf, not a code change.
+
 ## From 2026-07-26 session
 
 - **Review new pricing floors on services.html.** Six service card prices were raised to match VOICE's recommended minimums (e.g. Corporate & Industrie €150 → €350/Projekt, Werbung & Spots €200 → €450/Spot — full table in `CLAUDE.md`). These are defensible floors based on the VOICE pricelist, but they're a real business decision — confirm they're what you actually want to charge before this goes live.
