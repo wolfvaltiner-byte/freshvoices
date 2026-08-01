@@ -193,7 +193,26 @@ Ran a full technical audit and a dual-agent design critique (`/impeccable audit`
 - **clients.html's 15 `.logo-wall` images** now have real `width`/`height` (extracted from each file's actual PNG/SVG dimensions) and `loading="lazy"`, matching the `.ref-strip` images on the same page that already had both.
 - **about.html's portrait** (`Portrait.jpg`) switched from `loading="lazy"` to `fetchpriority="high"` — it's above the fold on desktop, lazy-loading it was working against itself.
 
-**Not fixed — flagged in `next_tasks.md` as Wolf's call, not a code fix**: Dokumentation and E-Learning & Training are priced on services.html/index.html with zero audio proof anywhere on samples.html; clients.html's VOICE association card is a text-only placeholder box, not a real logo.
+**Not fixed — flagged in `next_tasks.md` as Wolf's call, not a code fix**: Dokumentation and E-Learning & Training are priced on services.html/index.html with zero audio proof anywhere on samples.html. (clients.html's VOICE association card *was* a text-only placeholder at the time of this audit — since replaced with a real logo, see below.)
+
+## VOICE association logo (2026-07-28)
+
+Replaced clients.html's `.assoc-logo-placeholder` (a dashed box literally containing the word "VOICE") with the real VOICE/Sprecherverband logo. Sourced directly from sprecherverband.at rather than the VOICE pricelist PDF, since the live site had a cleaner vector source: their Drupal theme serves a CSS sprite at `/themes/custom/voice/assets/img/sprite_voice.svg` containing several copies of the mark at different sizes; the cleanest instance was isolated, rendered at high resolution via headless Chromium, then color-keyed (global chroma-key on white, same approach as the OVERDUB logo fix — safe here since it's pure black artwork with no intentional white fills, so the "O" counter and the mic icon's highlight lines correctly go transparent too) and trimmed to `images/voice-sprecherverband-logo.png`.
+
+The source logo is black-on-transparent; on the dark card it needs `filter: brightness(0) invert(1)` (scoped to `.assoc-logo img` only, not sitewide) to render as clean white, consistent with how every other single-tone logo on the site (Hermes, Hilfswerk, etc.) is treated. `.assoc-logo-placeholder`'s fixed 80×80 dashed box was replaced with `.assoc-logo` (140px wide, `height:auto`) sized for the logo's actual ~2.15:1 aspect ratio instead of forcing it into a square.
+
+## Favicon (2026-08-01)
+
+Added a full favicon set to all 8 pages (index, samples, services, about, clients, contact, impressum, datenschutz — `nav.html` is a copy-paste reference snippet, not a real page, so it was left alone). Source: the green dot-matrix "burst" mark from `images/logo.svg` — the icon half of the nav lockup, extracted separately from the pink "Fresh Voices" wordmark text since text isn't legible at 16–32px. Isolated via the same headless-Chromium high-res-render-then-crop technique as the VOICE logo above, confirmed legible at 16×16 on both light and dark backgrounds before committing to it.
+
+Files (in `images/favicons/`, plus one at site root):
+
+- `favicon.svg` — scalable, used by browsers that support SVG favicons
+- `favicon-16x16.png`, `favicon-32x32.png`, `favicon-192x192.png` — raster fallbacks
+- `apple-touch-icon.png` (180×180) — has a solid `--base` (#1A1A1A) background baked in, since iOS doesn't reliably handle transparency on home-screen icons; iOS applies its own rounded-corner mask on top, so the source is a plain square
+- `/favicon.ico` (site root, not in the favicons folder) — legacy fallback for browsers/crawlers that probe `/favicon.ico` directly regardless of `<link>` tags
+
+Each page's `<head>` links all of these plus a `<link rel="shortcut icon" href="favicon.ico">`. No web manifest was added — that's a bigger PWA-icon-set decision (app name, theme-color, etc.) that wasn't asked for; the 192×192 PNG is there if that's revisited later.
 
 ## Incomplete items
 

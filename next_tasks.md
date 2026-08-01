@@ -2,11 +2,15 @@
 
 Pending decisions and follow-ups that need Wolf's input — not things Claude should just decide and change unilaterally. See `CLAUDE.md` for the technical detail behind each item.
 
+## From 2026-08-01 session — favicon
+
+- **Favicon added — nothing pending, informational only.** All 8 pages now reference a favicon set derived from the green dot-matrix mark in `images/logo.svg` (the icon half of the nav wordmark, extracted separately from the pink "Fresh Voices" text since that wouldn't read at favicon sizes). See `CLAUDE.md` for the full file list.
+
 ## From 2026-07-28 session — audit + critique findings that need Wolf, not code
 
 - **Impressum & Datenschutzerklärung — done.** Both pages now exist (`impressum.html`, `datenschutz.html`), built from the GISA Gewerbeschein Wolf supplied (Mag. Wolf Valtiner, Einzelunternehmen, freies Gewerbe "Sprachdienstleistungen", GISA-Zahl 37713935, Magistrat der Stadt Wien, Karolinengasse 5/15, 1040 Wien, UID ATU73347318) plus a Datenschutzerklärung covering Netlify hosting/forms, Google Fonts, and the youtube-nocookie embed — the site currently has no analytics/tracking, confirmed by Wolf. **Worth a quick read-through by Wolf** (or ideally a lawyer) before relying on it, since Claude drafted the legal language from the GISA extract and standard Austrian Impressum/DSGVO boilerplate, not a substitute for legal review.
 - **Two of the six priced services have zero audio proof.** Dokumentation (services.html, "Ab € 150 / Projekt") and E-Learning & Training (services.html, "Ab € 350 / Modul") are both sold on the homepage and services.html, but samples.html has no filter category or sample group for either — a prospect evaluating either service line finds nothing to listen to. (The E-Learning half of this was already flagged below under the 2026-07-26 session; this broadens it to include Dokumentation and ties it to the priced service cards specifically.) Either supply real samples for both, or soften/remove the promise until proof exists — Wolf's call, not a code fix.
-- **clients.html's VOICE association card is a text-only placeholder**, not an actual logo (`assoc-logo-placeholder`, a dashed box literally containing the word "VOICE"). Needs the real VOICE/Sprecherverband logo asset from Wolf or their site before it can be swapped in.
+- **clients.html's VOICE association card — done.** The placeholder dashed box is replaced with the real VOICE/Sprecherverband logo (`images/voice-sprecherverband-logo.png`), extracted from sprecherverband.at's own site assets. See `CLAUDE.md`.
 
 ## From 2026-07-27 session — connecting freshvoices.at
 
