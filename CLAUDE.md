@@ -154,21 +154,51 @@ Tested every page (index, samples, services, about, clients, contact) at iPhone 
 
 Only one real bug turned up (see the "Nav button contrast bug" note above) — everything else mobile-specific checked out clean.
 
-## Domain / hosting (checked 2026-07-27, ahead of connecting freshvoices.at)
+## Domain / hosting (Wix → Cloudflare migration, in progress as of 2026-08-01)
 
-`freshvoices.at` is currently fully on **Wix**:
+**Plan changed since the 2026-07-27 note below (kept for history): the site is no longer heading to Netlify. It's being migrated off Wix hosting directly onto Cloudflare** (DNS + Workers static assets, deployed via `npx wrangler deploy` from this GitHub repo). Full log in `domain_move.md`.
 
-- Nameservers: `ns6.wixdns.net`, `ns7.wixdns.net` — Wix controls the whole DNS zone, not just a hosting record.
-- Apex `A` records (`185.230.63.107/.186/.171`) resolve to Wix's hosting IP pool — there's a live, currently-published Wix site actually serving traffic at the domain today, not just a parked/placeholder DNS setup.
-- `www.freshvoices.at` CNAMEs to Wix's CDN (`cdn1.wixdns.net`).
-- **Email is separate and must be preserved**: MX records point to Zoho Mail (`mx.zoho.eu`, `mx2.zoho.eu`, `mx3.zoho.eu`), with matching SPF (`v=spf1 include:zoho.eu ~all`) and a Zoho domain-verification TXT record. A Google site-verification TXT record is also present.
+- **Wix hosting plan**: Premiumpaket Business, purchased 26 Jan 2026, prepaid 3 years to 14 Feb 2029. No refund available outside the original 14-day window (B2B contract, reverse-charge VAT) — plan is to request a goodwill partial credit from Wix but let the plan run to expiry rather than cancel early, since there's no financial benefit to cancelling. Remember to turn off auto-renew before Feb 2029 regardless.
+- **Registrar**: IONOS. Nameservers switched from IONOS's default to **Cloudflare's**. No DNSSEC was configured on the domain, so nothing needed disabling before the switch.
+- **Email (Zoho) needed no migration** — the original IONOS DNS had legacy/inactive `mx00/mx01.ionos.de` records, but once nameservers moved to Cloudflare, MX was already natively pointed at Zoho (`mx.zoho.eu`/`mx2`/`mx3`, SPF `v=spf1 include:zoho.eu ~all`, plus a Zoho verification TXT and a Google site-verification TXT). All of these were imported into Cloudflare's zone untouched.
+- **Wix's three apex `A` records** (`185.230.63.107/.186/.171`) were imported into Cloudflare too and initially **blocked** attaching `freshvoices.at` as a custom domain to the Worker (`Hostname already has externally managed DNS records`). Fixed by deleting those three A records; all MX/TXT/`_dmarc`/`www` CNAME records were left alone.
+- **Workers static assets have a 25 MiB per-file cap**, which the deploy hit on two video files — `videos/seeanoli-image.mp4` (65.6 MB → compressed to 7.8 MB) and `videos/wolf-alpha-master.mp4` (81.3 MB → compressed to 3.1 MB), via `ffmpeg -i input.mp4 -vcodec libx264 -crf 28 -preset slow -vf "scale=1280:-2" output.mp4`, then committed back under their original filenames (see the two most recent commits). Deploy succeeded after that.
 
-To point the domain at this Netlify-deployed site, Wolf has two options, and either one must carry the Zoho MX/SPF/verification TXT records forward exactly or email breaks: (1) keep nameservers at Wix but edit the A/CNAME records in Wix's DNS panel to target Netlify's load balancer / the Netlify site's default domain, or (2) move nameservers to Netlify DNS (or another registrar-level DNS host) and recreate every existing record (Zoho MX + SPF + both verification TXTs) in the new zone. Neither of these is something to do from this repo — it's registrar/DNS-panel access Wolf has, not Claude. See `next_tasks.md`.
+**Still open (from `domain_move.md`'s remaining-steps list)**:
+
+1. Confirm the `freshvoices.at` custom domain attaches to the Worker now that the Wix A records are gone.
+2. Add `www.freshvoices.at` as a second custom domain on the Worker; its CNAME still points at Wix's `cdn1.wixdns.net` and needs repointing.
+3. Full click-through of every page (index, about, services, samples, clients, contact, impressum, datenschutz) on the live `https://freshvoices.at` once cut over — content, images, audio, video.
+4. Two `s1/s2._domainkey.freshvoices.at` CNAMEs point at SendGrid, purpose unconfirmed — likely a Wix contact-form/newsletter feature signing mail as `@freshvoices.at`. Safe to delete once confirmed nothing on the new site depends on it.
+5. Send a test email to `wolf@freshvoices.at` from an external account post-cutover to confirm Zoho delivery still works.
+6. Submit the goodwill refund request to Wix for the unused prepaid balance.
+
+**⚠️ Contact form breaks under this plan.** The "Incomplete items" section below still describes the contact form as wired to **Netlify Forms** (`data-netlify="true"`) — that only works when the site is actually served from Netlify. Since the real deploy target is now Cloudflare Workers static assets, not Netlify, submissions will silently fail once DNS cuts over unless the form is rewired to something Cloudflare-compatible (e.g. a Cloudflare Worker/Pages Function endpoint, or a third-party form backend like Formspree). Not yet fixed — flag to Wolf before go-live.
+
+## Audit + critique fixes (2026-07-28)
+
+Ran a full technical audit and a dual-agent design critique (`/impeccable audit` + `/impeccable critique`), then fixed everything that was a code-level bug rather than a business/asset decision:
+
+- **Bilingual system now actually covers the whole site.** Nav links (`Home`/`Voice Samples`/`Services`/`About`/`Clients`/CTA button) and every footer on samples/services/about/clients/contact.html were hardcoded English or German-only with no `data-de`/`data-en` — only index.html's footer had it. All 6 pages now match index.html's footer exactly (including the social icons + address line it previously had and the others didn't) and all nav links are bilingual.
+- **about.html's biography no longer desyncs from the rest of the page on language toggle.** A duplicate inline `<script>` at the bottom of about.html toggled `[data-lang-block]` on click only, registered *before* `main.js`'s listener, so it always read the button's stale pre-toggle text — the bio text was reliably one click behind the nav/facts/buttons, and never synced at all on page load (so a returning EN-preferring visitor, via the `fv-lang` localStorage persistence, saw the whole biography still in German). Fixed by moving `[data-lang-block]` handling into `main.js`'s single `applyLang()` and deleting the duplicate script.
+- **Contact form validation actually runs now.** The `<form>` had `required`/`minlength`/`type="email"` but no `novalidate`, so the browser's native (monolingual) validation intercepted `submit` before the custom bilingual `validateForm()` ever ran — that whole code path was dead. Added `novalidate`, plus live `blur`/`input` feedback per field (was submit-only before).
+- **Form error text now passes WCAG AA contrast.** `.form-error`/`.form-feedback.is-error` used `#e85454` on `--card` (#2E2E2E) — measured 3.77:1, below the 4.5:1 minimum. Replaced with a new `--error: #F27E7E` token (5.21:1). Also tokenized the footer's hardcoded `#111111` as `--footer-bg`.
+- **Audio play/pause buttons now update their accessible name.** All ~13 `.audio-player__play` buttons kept a static `aria-label` ("Play"/"Play video demo") forever, even while playing — a WCAG 4.1.2 violation. Now toggles Play↔Pause in the label alongside the icon swap, matching the hero mute button's already-correct pattern.
+- **clients.html heading hierarchy fixed.** "Kunden" and "Studios & Agenturen" were `<h3>`s appearing before the page's first `<h2>` — promoted both to `<h2>` so heading levels no longer skip.
+- **Hamburger menu touch target widened** from ~32×24px to a full 44×44px hit area (icon itself unchanged, just centered via flex in the larger button box).
+- **Hero "Video-Demo" label renamed to "Hörprobe"/"Audio demo"** — it was labeled as video content but is actually an `.audio-player` playing an mp3; carried over unfixed from the 2026-06-28 critique until now.
+- **`nav__lang` button's `aria-label="Switch language"`** was only on index.html; now on all 6 pages.
+- **Dead code removed**: the `.testimonial` CSS component (unused by any page, and its `border-left` accent was exactly the side-stripe anti-pattern the design system should avoid) is deleted outright.
+- **Two layout-thrash CSS transitions fixed**: `.nav.scrolled` no longer animates `padding` (snaps instantly now, background/blur still animates smoothly); `.audio-player__bar`'s progress fill now animates `transform: scaleX()` instead of `width`, updated on every `timeupdate` tick.
+- **clients.html's 15 `.logo-wall` images** now have real `width`/`height` (extracted from each file's actual PNG/SVG dimensions) and `loading="lazy"`, matching the `.ref-strip` images on the same page that already had both.
+- **about.html's portrait** (`Portrait.jpg`) switched from `loading="lazy"` to `fetchpriority="high"` — it's above the fold on desktop, lazy-loading it was working against itself.
+
+**Not fixed — flagged in `next_tasks.md` as Wolf's call, not a code fix**: Dokumentation and E-Learning & Training are priced on services.html/index.html with zero audio proof anywhere on samples.html; clients.html's VOICE association card is a text-only placeholder box, not a real logo.
 
 ## Incomplete items
 
-- **Contact form**: wired to Netlify Forms (`data-netlify="true"`, POST to `/` with URL-encoded data). Includes per-field validation, bilingual error messages, honeypot spam protection (`netlify-honeypot="bot-field"`), and double-submit prevention. Will only work when deployed on Netlify.
-- **Legal pages**: `impressum.html` and `datenschutz.html` are linked but not yet created.
+- **Contact form**: wired to Netlify Forms (`data-netlify="true"`, POST to `/` with URL-encoded data). Includes per-field validation (now live on `blur`/`input`, not just submit — see 2026-07-28 fixes below), bilingual error messages, honeypot spam protection (`netlify-honeypot="bot-field"`), and double-submit prevention. Will only work when deployed on Netlify.
+- **Legal pages (done 2026-07-28)**: `impressum.html` and `datenschutz.html` now exist, built from the GISA Gewerbeschein Wolf supplied. Worth a read-through by Wolf (or a lawyer) before relying on them — Claude drafted the legal text, that's not a substitute for legal review.
 - **logo_big.svg**: removed from the clients.html ref-strip (2026-07-25). File still exists in `customers/` in case it's needed elsewhere — delete it outright once confirmed unused.
 - **logo-banner.svg**: same colour palette as bormes-les-mimosas.svg — confirmed to be a second Bormes les Mimosas logo variant. Left untouched in the ref-strip pending Wolf's decision: either link it to bormeslesmimosas.com or remove the duplicate.
 - **MacJingle logo**: `macjingle-488x254.webp` is corrupt (2 KB) and JS-rendered on the live site, so it can't be re-fetched automatically. The page now uses the flood-fill stopgap `macjingle-488x254.png`, but Wolf should still supply a real vector/SVG logo when possible.

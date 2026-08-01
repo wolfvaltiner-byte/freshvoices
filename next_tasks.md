@@ -2,6 +2,12 @@
 
 Pending decisions and follow-ups that need Wolf's input — not things Claude should just decide and change unilaterally. See `CLAUDE.md` for the technical detail behind each item.
 
+## From 2026-07-28 session — audit + critique findings that need Wolf, not code
+
+- **Impressum & Datenschutzerklärung — done.** Both pages now exist (`impressum.html`, `datenschutz.html`), built from the GISA Gewerbeschein Wolf supplied (Mag. Wolf Valtiner, Einzelunternehmen, freies Gewerbe "Sprachdienstleistungen", GISA-Zahl 37713935, Magistrat der Stadt Wien, Karolinengasse 5/15, 1040 Wien, UID ATU73347318) plus a Datenschutzerklärung covering Netlify hosting/forms, Google Fonts, and the youtube-nocookie embed — the site currently has no analytics/tracking, confirmed by Wolf. **Worth a quick read-through by Wolf** (or ideally a lawyer) before relying on it, since Claude drafted the legal language from the GISA extract and standard Austrian Impressum/DSGVO boilerplate, not a substitute for legal review.
+- **Two of the six priced services have zero audio proof.** Dokumentation (services.html, "Ab € 150 / Projekt") and E-Learning & Training (services.html, "Ab € 350 / Modul") are both sold on the homepage and services.html, but samples.html has no filter category or sample group for either — a prospect evaluating either service line finds nothing to listen to. (The E-Learning half of this was already flagged below under the 2026-07-26 session; this broadens it to include Dokumentation and ties it to the priced service cards specifically.) Either supply real samples for both, or soften/remove the promise until proof exists — Wolf's call, not a code fix.
+- **clients.html's VOICE association card is a text-only placeholder**, not an actual logo (`assoc-logo-placeholder`, a dashed box literally containing the word "VOICE"). Needs the real VOICE/Sprecherverband logo asset from Wolf or their site before it can be swapped in.
+
 ## From 2026-07-27 session — connecting freshvoices.at
 
 - **freshvoices.at is live on Wix today, not just parked.** DNS is fully delegated to Wix (`ns6/ns7.wixdns.net`), and the A records point at Wix's hosting IPs — meaning there's a currently-published Wix site actually serving visitors at this domain right now. Before repointing anything, decide what happens to that existing Wix site (archive it, keep it as a fallback, or just cut over).
@@ -29,6 +35,5 @@ Pending decisions and follow-ups that need Wolf's input — not things Claude sh
 - **Lounge FM logo** — site blocks automated fetches (403); re-fetch manually if the current file looks stale.
 - **Oecolution logo** — oecolution.at had an SSL cert issue at audit time; re-fetch manually if a cleaner source becomes available.
 - **Wincom logo** — legible but faint at the logo wall's small size; consider a bolder/simplified mark if it needs to stand out more.
-- **Legal pages** — `impressum.html` and `datenschutz.html` are linked from the footer but don't exist yet.
 - **Unused video files** — `videos/seeanoli-image.mp4` (65 MB, safe to delete) and `videos/wolf-alpha-master.mp4` (81 MB, decide: embed or delete).
 - **logo_big.svg** — removed from the clients.html trust strip; file still on disk in `customers/`, delete outright once confirmed unused elsewhere.

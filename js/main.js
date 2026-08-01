@@ -65,6 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
           el.textContent = value;
         }
       });
+      // Full block-level swaps (e.g. about.html's biography), same single source of truth.
+      document.querySelectorAll('[data-lang-block]').forEach(el => {
+        el.style.display = el.dataset.langBlock === lang ? 'block' : 'none';
+      });
     };
 
     let lang = storedLang;
@@ -93,6 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const pauseIcon= `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="1" width="4" height="14" rx="1"/><rect x="10" y="1" width="4" height="14" rx="1"/></svg>`;
 
     playBtn.innerHTML = playIcon;
+    const playLabel  = playBtn.getAttribute('aria-label') || 'Play';
+    const pauseLabel = playLabel.replace(/^Play/, 'Pause');
+    const setPlayBtnState = (isPlaying) => {
+      playBtn.innerHTML = isPlaying ? pauseIcon : playIcon;
+      playBtn.setAttribute('aria-label', isPlaying ? pauseLabel : playLabel);
+    };
 
     if (progress) {
       progress.setAttribute('role', 'slider');
@@ -123,31 +133,33 @@ document.addEventListener('DOMContentLoaded', () => {
           const a = p._audio;
           if (a && !a.paused) {
             a.pause();
-            p.querySelector('.audio-player__play').innerHTML = playIcon;
+            const otherBtn = p.querySelector('.audio-player__play');
+            otherBtn.innerHTML = playIcon;
+            otherBtn.setAttribute('aria-label', (otherBtn.getAttribute('aria-label') || 'Play').replace(/^Pause/, 'Play'));
           }
         }
       });
 
       if (audio.paused) {
         audio.play();
-        playBtn.innerHTML = pauseIcon;
+        setPlayBtnState(true);
       } else {
         audio.pause();
-        playBtn.innerHTML = playIcon;
+        setPlayBtnState(false);
       }
     });
 
     audio.addEventListener('timeupdate', () => {
       if (!isFinite(audio.duration) || audio.duration === 0) return;
       const pct = (audio.currentTime / audio.duration) * 100;
-      bar.style.width = pct + '%';
+      bar.style.transform = `scaleX(${pct / 100})`;
       if (progress) progress.setAttribute('aria-valuenow', Math.round(pct));
       if (timeEl) timeEl.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
     });
 
     audio.addEventListener('ended', () => {
-      playBtn.innerHTML = playIcon;
-      bar.style.width = '0%';
+      setPlayBtnState(false);
+      bar.style.transform = 'scaleX(0)';
       if (progress) progress.setAttribute('aria-valuenow', '0');
     });
 
@@ -219,9 +231,20 @@ document.addEventListener('DOMContentLoaded', () => {
       message:   { de: 'Bitte Nachricht eingeben (mind. 10 Zeichen).', en: 'Please enter a message (min. 10 characters).' },
     };
 
+    const requiredFields = ['firstName', 'lastName', 'email', 'projectType', 'message'];
+
     function clearErrors() {
       form.querySelectorAll('.form-group.has-error').forEach(g => g.classList.remove('has-error'));
       form.querySelectorAll('.form-error').forEach(el => { el.textContent = ''; });
+    }
+
+    function clearFieldError(name) {
+      const field = form.querySelector(`[name="${name}"]`);
+      const group = field && field.closest('.form-group');
+      if (!group) return;
+      group.classList.remove('has-error');
+      const errorEl = group.querySelector('.form-error');
+      if (errorEl) errorEl.textContent = '';
     }
 
     function showFieldError(name, msg) {
@@ -233,20 +256,38 @@ document.addEventListener('DOMContentLoaded', () => {
       if (errorEl) errorEl.textContent = msg;
     }
 
+    function validateField(name) {
+      const el = form.querySelector(`[name="${name}"]`);
+      if (!el) return true;
+      if (el.validity.valid) {
+        clearFieldError(name);
+        return true;
+      }
+      showFieldError(name, validationMessages[name][isDE() ? 'de' : 'en']);
+      return false;
+    }
+
     function validateForm() {
       clearErrors();
-      const lang = isDE() ? 'de' : 'en';
       let valid = true;
-      const fields = ['firstName', 'lastName', 'email', 'projectType', 'message'];
-      fields.forEach(name => {
-        const el = form.querySelector(`[name="${name}"]`);
-        if (el && !el.validity.valid) {
-          showFieldError(name, validationMessages[name][lang]);
-          valid = false;
-        }
+      requiredFields.forEach(name => {
+        if (!validateField(name)) valid = false;
       });
       return valid;
     }
+
+    // Live feedback: flag a field once the visitor leaves it, clear the
+    // error as soon as they've fixed it (so correction is confirmed while typing).
+    requiredFields.forEach(name => {
+      const el = form.querySelector(`[name="${name}"]`);
+      if (!el) return;
+      el.addEventListener('blur', () => validateField(name));
+      el.addEventListener('input', () => {
+        if (el.closest('.form-group').classList.contains('has-error') && el.validity.valid) {
+          clearFieldError(name);
+        }
+      });
+    });
 
     function showFeedback(type, message) {
       const fb = document.getElementById('formFeedback');

@@ -97,23 +97,17 @@
       border-radius: var(--radius);
       padding: 32px 40px;
     }
-    .assoc-logo-placeholder {
-      width: 80px;
-      height: 80px;
-      min-width: 80px;
-      background: var(--surface);
-      border: 1px dashed rgba(255,255,255,0.15);
-      border-radius: var(--radius);
+    .assoc-logo {
+      width: 140px;
+      min-width: 140px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--muted);
-      font-size: 0.65rem;
-      font-family: var(--font-display);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 8px;
+    }
+    .assoc-logo img {
+      width: 100%;
+      height: auto;
+      filter: brightness(0) invert(1);
     }
     .assoc-text {}
     .assoc-name {
@@ -182,14 +176,14 @@
       <div class="nav__inner">
         <a href="index.html" class="nav__logo"><img src="images/logo.svg" alt="Fresh Voices logo"></a>
         <ul class="nav__links" id="navLinks">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="samples.html">Voice Samples</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="clients.html">Clients</a></li>
-          <li><a href="contact.html" class="btn btn--primary" style="padding:10px 22px;font-size:0.7rem;">Get in touch</a></li>
+          <li><a href="index.html" data-de="Home" data-en="Home">Home</a></li>
+          <li><a href="samples.html" data-de="Hörproben" data-en="Voice Samples">Hörproben</a></li>
+          <li><a href="services.html" data-de="Leistungen" data-en="Services">Leistungen</a></li>
+          <li><a href="about.html" data-de="Über mich" data-en="About">Über mich</a></li>
+          <li><a href="clients.html" data-de="Kunden" data-en="Clients">Kunden</a></li>
+          <li><a href="contact.html" class="btn btn--primary" style="padding:10px 22px;font-size:0.7rem;" data-de="Jetzt anfragen" data-en="Get in touch">Jetzt anfragen</a></li>
         </ul>
-        <button class="nav__lang">EN</button>
+        <button class="nav__lang" aria-label="Switch language">EN</button>
         <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span><span></span>
         </button>
@@ -212,27 +206,27 @@
     <div class="container">
       <p class="eyebrow mb-24" data-de="Ausgewählte Kunden" data-en="Selected clients">Ausgewählte Kunden</p>
 
-      <h3 class="client-group__heading" style="margin-top:0;" data-de="Kunden" data-en="Clients">Kunden</h3>
+      <h2 class="client-group__heading" style="margin-top:0;" data-de="Kunden" data-en="Clients">Kunden</h2>
       <div class="logo-wall reveal" style="margin-bottom:48px;">
-        <div class="logo-card"><a href="https://hermesapotheke.at" target="_blank" rel="noopener"><img src="customers/hermes-apotheke.png" alt="Hermes Apotheke"></a></div>
-        <div class="logo-card"><a href="https://www.hilfswerk.at" target="_blank" rel="noopener"><img src="customers/hilfswerk.svg" alt="Hilfswerk"></a></div>
-        <div class="logo-card"><a href="https://www.wko.at" target="_blank" rel="noopener"><img src="customers/wko.svg" alt="WKO"></a></div>
-        <div class="logo-card"><a href="https://oecolution.at" target="_blank" rel="noopener"><img src="customers/oecolution.png" alt="Oecolution"></a></div>
-        <div class="logo-card"><a href="https://paulaner-apotheke.at" target="_blank" rel="noopener"><img src="customers/paulaner-apotheke.png" alt="Paulaner Apotheke"></a></div>
-        <div class="logo-card"><a href="https://stern-apo.at" target="_blank" rel="noopener"><img src="customers/stern-apotheke.png" alt="Stern Apotheke"></a></div>
-        <div class="logo-card"><a href="https://en.bormeslesmimosas.com/" target="_blank" rel="noopener"><img src="customers/bormes-les-mimosas.svg" alt="Bormes les Mimosas"></a></div>
+        <div class="logo-card"><a href="https://hermesapotheke.at" target="_blank" rel="noopener"><img src="customers/hermes-apotheke.png" alt="Hermes Apotheke" width="367" height="379" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://www.hilfswerk.at" target="_blank" rel="noopener"><img src="customers/hilfswerk.svg" alt="Hilfswerk" width="378" height="378" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://www.wko.at" target="_blank" rel="noopener"><img src="customers/wko.svg" alt="WKO" width="160" height="38" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://oecolution.at" target="_blank" rel="noopener"><img src="customers/oecolution.png" alt="Oecolution" width="287" height="86" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://paulaner-apotheke.at" target="_blank" rel="noopener"><img src="customers/paulaner-apotheke.png" alt="Paulaner Apotheke" width="300" height="232" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://stern-apo.at" target="_blank" rel="noopener"><img src="customers/stern-apotheke.png" alt="Stern Apotheke" width="178" height="190" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://en.bormeslesmimosas.com/" target="_blank" rel="noopener"><img src="customers/bormes-les-mimosas.svg" alt="Bormes les Mimosas" width="443" height="407" loading="lazy"></a></div>
       </div>
 
-      <h3 class="client-group__heading" data-de="Studios & Agenturen" data-en="Studios & Agencies">Studios & Agenturen</h3>
+      <h2 class="client-group__heading" data-de="Studios & Agenturen" data-en="Studios & Agencies">Studios & Agenturen</h2>
       <div class="logo-wall reveal">
-        <div class="logo-card"><a href="https://littlelights.studio/en" target="_blank" rel="noopener"><img src="customers/little-lights-logo-transparent.png" alt="Little Lights"></a></div>
-        <div class="logo-card"><a href="https://www.lounge.fm" target="_blank" rel="noopener"><img src="customers/LoungeFM.png" alt="Lounge FM"></a></div>
-        <div class="logo-card"><a href="https://macjingle.at" target="_blank" rel="noopener"><img src="customers/macjingle-488x254.png" alt="MacJingle"></a></div>
-        <div class="logo-card"><a href="https://overdub.at" target="_blank" rel="noopener"><img src="customers/OVERDUB-transparent.png" alt="OVERDUB"></a></div>
-        <div class="logo-card"><a href="https://radioklassik.at" target="_blank" rel="noopener"><img src="customers/radio-klassik.png" alt="Radio Klassik"></a></div>
-        <div class="logo-card"><a href="https://spreadfilms.com" target="_blank" rel="noopener"><img src="customers/spreadfilms-logo.svg" alt="Spreadfilms"></a></div>
-        <div class="logo-card"><a href="https://www.schutzengelapotheke.wien" target="_blank" rel="noopener"><img src="customers/Logo_Schutzengel.png" alt="Schutzengel Apotheke"></a></div>
-        <div class="logo-card"><a href="https://www.wincommunication.fr/" target="_blank" rel="noopener"><img src="customers/wincom.png" alt="Wincom"></a></div>
+        <div class="logo-card"><a href="https://littlelights.studio/en" target="_blank" rel="noopener"><img src="customers/little-lights-logo-transparent.png" alt="Little Lights" width="221" height="121" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://www.lounge.fm" target="_blank" rel="noopener"><img src="customers/LoungeFM.png" alt="Lounge FM" width="800" height="132" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://macjingle.at" target="_blank" rel="noopener"><img src="customers/macjingle-488x254.png" alt="MacJingle" width="488" height="254" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://overdub.at" target="_blank" rel="noopener"><img src="customers/OVERDUB-transparent.png" alt="OVERDUB" width="1904" height="343" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://radioklassik.at" target="_blank" rel="noopener"><img src="customers/radio-klassik.png" alt="Radio Klassik" width="118" height="118" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://spreadfilms.com" target="_blank" rel="noopener"><img src="customers/spreadfilms-logo.svg" alt="Spreadfilms" width="45" height="52" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://www.schutzengelapotheke.wien" target="_blank" rel="noopener"><img src="customers/Logo_Schutzengel.png" alt="Schutzengel Apotheke" width="464" height="167" loading="lazy"></a></div>
+        <div class="logo-card"><a href="https://www.wincommunication.fr/" target="_blank" rel="noopener"><img src="customers/wincom.png" alt="Wincom" width="157" height="128" loading="lazy"></a></div>
       </div>
 
     </div>
@@ -281,8 +275,8 @@
         <h2 class="display-md text-white mb-40" data-de="Professionelle Verbände" data-en="Professional Associations">Professionelle Verbände</h2>
 
         <div class="assoc-card reveal">
-          <div class="assoc-logo-placeholder">
-            VOICE
+          <div class="assoc-logo">
+            <img src="images/voice-sprecherverband-logo.png" alt="VOICE Sprecherverband" width="140" height="65" loading="lazy">
           </div>
           <div class="assoc-text">
             <div class="assoc-name">VOICE — Verband für Leistungsschutz der SprecherInnen und DarstellerInnen</div>
@@ -328,23 +322,32 @@
       <div class="footer__inner">
         <div>
           <div class="footer__brand-name">Fresh<span>Voices</span></div>
-          <p class="footer__tagline">Professioneller Voice Over · Wien</p>
+          <p class="footer__tagline" data-de="Professioneller Voice Over · Wien" data-en="Professional Voice Over · Vienna">Professioneller Voice Over · Wien</p>
+          <div class="footer__social">
+            <a href="https://fb.me/Fresh.Voices.Vienna" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/wolfvaltiner" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
         </div>
         <div>
-          <div class="footer__heading">Navigation</div>
+          <div class="footer__heading" data-de="Navigation" data-en="Navigation">Navigation</div>
           <ul class="footer__links">
-            <li><a href="samples.html">Hörproben</a></li>
-            <li><a href="services.html">Leistungen</a></li>
-            <li><a href="about.html">Über mich</a></li>
-            <li><a href="clients.html">Kunden</a></li>
-            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="samples.html" data-de="Hörproben" data-en="Voice Samples">Hörproben</a></li>
+            <li><a href="services.html" data-de="Leistungen & Preise" data-en="Services & Pricing">Leistungen & Preise</a></li>
+            <li><a href="about.html" data-de="Über mich" data-en="About">Über mich</a></li>
+            <li><a href="clients.html" data-de="Kunden & Referenzen" data-en="Clients & References">Kunden & Referenzen</a></li>
+            <li><a href="contact.html" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
           </ul>
         </div>
         <div>
-          <div class="footer__heading">Kontakt</div>
+          <div class="footer__heading" data-de="Kontakt" data-en="Contact">Kontakt</div>
           <ul class="footer__links">
             <li><a href="tel:+4366488473943">+43 664 884 73943</a></li>
             <li><a href="mailto:wolf.valtiner@freshvoices.at">wolf.valtiner@freshvoices.at</a></li>
+            <li style="margin-top:16px; font-size:0.85rem; color:var(--muted);" data-de="Wien, Österreich" data-en="Vienna, Austria">Wien, Österreich</li>
           </ul>
         </div>
       </div>
@@ -352,7 +355,7 @@
         <span class="footer__copy">© 2026 Fresh Voices · Wolf Valtiner</span>
         <div class="footer__legal">
           <a href="impressum.html">Impressum</a>
-          <a href="datenschutz.html">Datenschutzerklärung</a>
+          <a href="datenschutz.html" data-de="Datenschutzerklärung" data-en="Privacy Policy">Datenschutzerklärung</a>
         </div>
       </div>
     </div>
