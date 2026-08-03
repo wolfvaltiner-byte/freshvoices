@@ -2,9 +2,9 @@
 
 Pending decisions and follow-ups that need Wolf's input — not things Claude should just decide and change unilaterally. See `CLAUDE.md` for the technical detail behind each item.
 
-## From 2026-08-01 session — favicon
+## From 2026-08-01 / 2026-08-03 sessions — favicon
 
-- **Favicon added — nothing pending, informational only.** All 8 pages now reference a favicon set derived from the green dot-matrix mark in `images/logo.svg` (the icon half of the nav wordmark, extracted separately from the pink "Fresh Voices" text since that wouldn't read at favicon sizes). See `CLAUDE.md` for the full file list.
+- **Favicon redesigned — nothing pending, informational only.** The first version (green dot-matrix mark, unchanged from `images/logo.svg`) turned out barely visible in real browser tabs — halftone dot textures don't survive downsampling to 16×16 regardless of color. Replaced 2026-08-03 with a bold solid dark silhouette derived from the same mark's overall shape. See `CLAUDE.md` for the full story and file list. Worth a glance in your actual browser tab bar to confirm it reads well to your eye — that's inherently a judgment call.
 
 ## From 2026-07-28 session — audit + critique findings that need Wolf, not code
 

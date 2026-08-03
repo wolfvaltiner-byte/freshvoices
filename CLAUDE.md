@@ -201,18 +201,24 @@ Replaced clients.html's `.assoc-logo-placeholder` (a dashed box literally contai
 
 The source logo is black-on-transparent; on the dark card it needs `filter: brightness(0) invert(1)` (scoped to `.assoc-logo img` only, not sitewide) to render as clean white, consistent with how every other single-tone logo on the site (Hermes, Hilfswerk, etc.) is treated. `.assoc-logo-placeholder`'s fixed 80×80 dashed box was replaced with `.assoc-logo` (140px wide, `height:auto`) sized for the logo's actual ~2.15:1 aspect ratio instead of forcing it into a square.
 
-## Favicon (2026-08-01)
+## Favicon (2026-08-01, redesigned 2026-08-03)
 
-Added a full favicon set to all 8 pages (index, samples, services, about, clients, contact, impressum, datenschutz — `nav.html` is a copy-paste reference snippet, not a real page, so it was left alone). Source: the green dot-matrix "burst" mark from `images/logo.svg` — the icon half of the nav lockup, extracted separately from the pink "Fresh Voices" wordmark text since text isn't legible at 16–32px. Isolated via the same headless-Chromium high-res-render-then-crop technique as the VOICE logo above, confirmed legible at 16×16 on both light and dark backgrounds before committing to it.
+Added a full favicon set to all 8 pages (index, samples, services, about, clients, contact, impressum, datenschutz — `nav.html` is a copy-paste reference snippet, not a real page, so it was left alone).
+
+**First attempt (2026-08-01) — reverted:** used the green dot-matrix "burst" mark from `images/logo.svg` as-is (the icon half of the nav lockup, extracted separately from the pink "Fresh Voices" wordmark since text isn't legible at 16–32px). Tested at 16×16 with a fake 8x device-scale-factor render and it looked fine — but that test was misleading: it rendered the SVG at ~128px and displayed the result at 16px CSS size, never actually producing a true 16×16-pixel image. Wolf reported the real favicon was "barely visible" on the site. Recoloring green→dark alone didn't fix it either (tested) — the root cause is the halftone dot texture itself: at genuine 16×16/32×32 pixel resolution, individual dots and gaps between them average into a flat, low-contrast gray smear regardless of color. Fine stippled/halftone textures fundamentally don't survive downsampling to favicon resolution.
+
+**Current version (2026-08-03):** a bold solid silhouette, not a recolor. Computed the convex hull of just the dot pattern's dense central cluster (circles with radius ≥ 0.95 in the original artwork — the sparse, fine peripheral "wave tail" dots were excluded since they add width without mass and are exactly what would blur away first), then smoothed the hull polygon into a single closed shape via Catmull-Rom-to-Bezier spline conversion for organic, non-blocky curves. Filled solid with `#1A1A1A` (`--base`). This reads clearly as a bold dark mark at true 16×16 and 32×32 — verified by rendering at actual 1:1 pixel size (no fake upscaling) against white, light-gray, and dark tab-bar-like backgrounds. It no longer reproduces the literal dot-matrix texture — it's a simplified, single-shape abstraction of the same overall form — but it is legibly on-brand and, more importantly, actually visible, which the literal recolor could not achieve at this size. `apple-touch-icon.png` was **not** changed — it still uses the original green halftone mark, which reads perfectly fine at its native 180×180 with a real background behind it; the resolution problem is specific to tiny browser-tab sizes.
 
 Files (in `images/favicons/`, plus one at site root):
 
-- `favicon.svg` — scalable, used by browsers that support SVG favicons
-- `favicon-16x16.png`, `favicon-32x32.png`, `favicon-192x192.png` — raster fallbacks
-- `apple-touch-icon.png` (180×180) — has a solid `--base` (#1A1A1A) background baked in, since iOS doesn't reliably handle transparency on home-screen icons; iOS applies its own rounded-corner mask on top, so the source is a plain square
-- `/favicon.ico` (site root, not in the favicons folder) — legacy fallback for browsers/crawlers that probe `/favicon.ico` directly regardless of `<link>` tags
+- `favicon.svg` — the solid smoothed-hull shape, scalable, used by browsers that support SVG favicons
+- `favicon-16x16.png`, `favicon-32x32.png`, `favicon-192x192.png` — raster fallbacks, same shape
+- `apple-touch-icon.png` (180×180) — unchanged from 2026-08-01: original green dot-matrix mark on a solid `--base` (#1A1A1A) background (iOS doesn't reliably handle transparency on home-screen icons; iOS applies its own rounded-corner mask on top, so the source is a plain square)
+- `/favicon.ico` (site root, not in the favicons folder) — legacy fallback for browsers/crawlers that probe `/favicon.ico` directly regardless of `<link>` tags, same solid-hull shape
 
 Each page's `<head>` links all of these plus a `<link rel="shortcut icon" href="favicon.ico">`. No web manifest was added — that's a bigger PWA-icon-set decision (app name, theme-color, etc.) that wasn't asked for; the 192×192 PNG is there if that's revisited later.
+
+**Lesson for next time**: when testing whether a small icon/logo will be legible at a target size, always render at the *actual* target pixel dimensions (`deviceScaleFactor: 1`, no upscaling), not a scaled-up simulation — the two can look completely different for anything with fine detail or texture.
 
 ## Incomplete items
 
