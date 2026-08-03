@@ -156,7 +156,9 @@ Only one real bug turned up (see the "Nav button contrast bug" note above) — e
 
 ## Domain / hosting (Wix → Cloudflare migration, in progress as of 2026-08-01)
 
-**Plan changed since the 2026-07-27 note below (kept for history): the site is no longer heading to Netlify. It's being migrated off Wix hosting directly onto Cloudflare** (DNS + Workers static assets, deployed via `npx wrangler deploy` from this GitHub repo). Full log in `domain_move.md`.
+**Plan changed since the 2026-07-27 note below (kept for history): the site is no longer heading to Netlify. It's being migrated off Wix hosting directly onto Cloudflare** (DNS + Workers static assets). Full log in `domain_move.md`.
+
+**Deploys are automatic (confirmed 2026-08-03)**: Cloudflare's native Git integration is connected to this GitHub repo — every push to `main` triggers a Workers static-assets deploy on its own, no GitHub Actions workflow file needed (there isn't one in this repo) and no manual `npx wrangler deploy` required. Verified by pushing a favicon change and diffing the live `https://freshvoices.at/favicon.ico` bytes against the local repo file — identical, deployed automatically without any manual step. There's also no `wrangler.toml` committed to this repo; the Worker's config lives entirely in the Cloudflare dashboard's Git-connected build settings, not in-repo.
 
 - **Wix hosting plan**: Premiumpaket Business, purchased 26 Jan 2026, prepaid 3 years to 14 Feb 2029. No refund available outside the original 14-day window (B2B contract, reverse-charge VAT) — plan is to request a goodwill partial credit from Wix but let the plan run to expiry rather than cancel early, since there's no financial benefit to cancelling. Remember to turn off auto-renew before Feb 2029 regardless.
 - **Registrar**: IONOS. Nameservers switched from IONOS's default to **Cloudflare's**. No DNSSEC was configured on the domain, so nothing needed disabling before the switch.
