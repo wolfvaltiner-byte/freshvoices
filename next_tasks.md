@@ -4,7 +4,7 @@ Pending decisions and follow-ups that need Wolf's input — not things Claude sh
 
 ## From 2026-08-01 / 2026-08-03 sessions — favicon
 
-- **Favicon redesigned — nothing pending, informational only.** The first version (green dot-matrix mark, unchanged from `images/logo.svg`) turned out barely visible in real browser tabs — halftone dot textures don't survive downsampling to 16×16 regardless of color. Replaced 2026-08-03 with a bold solid dark silhouette derived from the same mark's overall shape. See `CLAUDE.md` for the full story and file list. Worth a glance in your actual browser tab bar to confirm it reads well to your eye — that's inherently a judgment call.
+- **Favicon now uses the real logo image, per your instruction — worth a glance in a real browser tab.** After two redesign attempts (a barely-visible literal recolor, then a legible-but-unrecognizable computed shape you correctly rejected as "nothing to do with my logo"), the favicon is now the actual `images/logo.svg` artwork (dot-matrix mark + "Fresh Voices" wordmark, colors/design untouched) cropped into a square. Tradeoff to be aware of: at true 16×16/32×32 browser-tab size it's close to illegible — the dot texture and small text both blur into a colored smear, same limitation as the first attempt — but that's the deliberate choice now (real logo over small-size clarity). Full history in `CLAUDE.md`.
 
 ## From 2026-07-28 session — audit + critique findings that need Wolf, not code
 
