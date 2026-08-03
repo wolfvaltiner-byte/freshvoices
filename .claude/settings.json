@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node render_logo.js)",
+      "Bash(node render_logo2.js)",
+      "Bash(python extract_mark.py)",
+      "Bash(python3 -c ' *)",
+      "Bash(python convex_hull_mark.py)",
+      "Bash(python convex_hull_core.py)"
+    ]
+  }
+}
