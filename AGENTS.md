@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## Project overview
 
@@ -148,7 +148,7 @@ warum sie verworfen wurden. Diese Datei bleibt eine Anleitung; Verlauf gehört i
 ## Incomplete items
 
 - **Contact form**: wired to Netlify Forms (`data-netlify="true"`, POST to `/` with URL-encoded data). Includes per-field validation (now live on `blur`/`input`, not just submit — see 2026-07-28 fixes below), bilingual error messages, honeypot spam protection (`netlify-honeypot="bot-field"`), and double-submit prevention. Will only work when deployed on Netlify.
-- **Legal pages (done 2026-07-28)**: `impressum.html` and `datenschutz.html` now exist, built from the GISA Gewerbeschein Wolf supplied. Worth a read-through by Wolf (or a lawyer) before relying on them — Claude drafted the legal text, that's not a substitute for legal review.
+- **Legal pages (done 2026-07-28)**: `impressum.html` and `datenschutz.html` now exist, built from the GISA Gewerbeschein Wolf supplied. Worth a read-through by Wolf (or a lawyer) before relying on them — Codex drafted the legal text, that's not a substitute for legal review.
 - **logo_big.svg**: removed from the clients.html ref-strip (2026-07-25). File still exists in `customers/` in case it's needed elsewhere — delete it outright once confirmed unused.
 - **logo-banner.svg**: same colour palette as bormes-les-mimosas.svg — confirmed to be a second Bormes les Mimosas logo variant. Left untouched in the ref-strip pending Wolf's decision: either link it to bormeslesmimosas.com or remove the duplicate.
 - **MacJingle logo**: `macjingle-488x254.webp` is corrupt (2 KB) and JS-rendered on the live site, so it can't be re-fetched automatically. The page now uses the flood-fill stopgap `macjingle-488x254.png`, but Wolf should still supply a real vector/SVG logo when possible.
