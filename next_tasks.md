@@ -4,14 +4,16 @@
 
 - **Review-Board und Karten liegen in `docs/review-2026-09/`** (`README.md` = Board, `REVIEW_FINDINGS.md` = Befunde mit Belegen, `WP-01`…`WP-07` = Ceremony-Karten mit Modell, Scope, Akzeptanzkriterien, Session-Prompt).
 - **Erledigt auf Branch `review-2026-09`:** WP-01 Mobile-Nav-Hotfix, WP-05 Bilder, WP-06 Eleventy-Migration. **Vor dem Merge nach `main`:** Cloudflare-Build-Einstellungen setzen — siehe `docs/review-2026-09/CUTOVER-eleventy.md`.
-- **Offen:** WP-02 Kontaktformular (Cloudflare Worker), WP-03 Mobile Hero, WP-04 Logo/Wortmarke (Entscheidung: neue typografische Wortmarke), WP-07 Politur/QA. Token-Batch (`rgba()` → Tokens, Rest-Inline-Styles) als eigenes Haiku-Paket.
+- **Erledigt (2026-09-06):** WP-04 Logo/Wortmarke — Wolfs Entscheidung war **Option A (Legacy-Logo bereinigen)**, nicht die geplante neue Wortmarke; siehe `CLAUDE.md` → Brand tokens/Brand assets und `docs/ASSETS.md` → Brand.
+- **Offen:** WP-02 Kontaktformular (Cloudflare Worker), WP-03 Mobile Hero, WP-07 Politur/QA. Token-Batch (`rgba()` → Tokens, Rest-Inline-Styles) als eigenes Haiku-Paket.
 - **Löschentscheidung:** Dateien in `_unused/` (alte Originalbilder, zwei ungenutzte Videos) endgültig löschen oder behalten.
 
 Pending decisions and follow-ups that need Wolf's input — not things Claude should just decide and change unilaterally. See `CLAUDE.md` for the technical detail behind each item.
 
 ## From 2026-08-01 / 2026-08-03 sessions — favicon
 
-- **Favicon now uses the real logo image, per your instruction — worth a glance in a real browser tab.** After two redesign attempts (a barely-visible literal recolor, then a legible-but-unrecognizable computed shape you correctly rejected as "nothing to do with my logo"), the favicon is now the actual `images/logo.svg` artwork (dot-matrix mark + "Fresh Voices" wordmark, colors/design untouched) cropped into a square. Tradeoff to be aware of: at true 16×16/32×32 browser-tab size it's close to illegible — the dot texture and small text both blur into a colored smear, same limitation as the first attempt — but that's the deliberate choice now (real logo over small-size clarity). Full history in `CLAUDE.md`.
+- **Done (WP-04, 2026-09-06):** the favicon is now a purpose-built dot distillate (`src/images/favicons/favicon.svg`, 4 green dots in a diamond on a rounded dark square), not a crop of the full logo artwork — it stays a recognizable diamond at both 16px and 32px, replacing the old approach described below (which traded real-logo fidelity for illegibility at tab size). Full rationale — including why 9 or 5 dots were tried and rejected first — in `docs/ASSETS.md` → Brand.
+- Historical note (superseded): the favicon previously used the actual `images/logo.svg` artwork (dot-matrix mark + "Fresh Voices" wordmark, colors/design untouched) cropped into a square, which was close to illegible at true 16×16/32×32 browser-tab size — the dot texture and small text both blurred into a colored smear.
 
 ## From 2026-07-28 session — audit + critique findings that need Wolf, not code
 
@@ -44,7 +46,6 @@ Pending decisions and follow-ups that need Wolf's input — not things Claude sh
 - **logo-banner.svg** in the clients.html trust strip — confirmed second Bormes les Mimosas logo variant. Decide: link it to bormeslesmimosas.com, or remove the duplicate.
 - **MacJingle logo** — real vector/SVG logo still needed from Wolf; current site uses a flood-fill transparency stopgap.
 - **Lounge FM logo** — site blocks automated fetches (403); re-fetch manually if the current file looks stale.
-- **Oecolution logo** — oecolution.at had an SSL cert issue at audit time; re-fetch manually if a cleaner source becomes available.
+- **Oecolution logo — resolved (WP-04, 2026-09-06).** `logo_big.svg` turned out to be a clean vector of the Oecolution logo (misfiled in earlier notes as a Fresh Voices asset); renamed to `src/customers/oecolution.svg` and now used in clients.html instead of the `oecolution.png` flood-fill stopgap — no need to re-fetch `oecolution.jpg` from the (SSL-broken) source anymore.
 - **Wincom logo** — legible but faint at the logo wall's small size; consider a bolder/simplified mark if it needs to stand out more.
 - **Unused video files** — `videos/seeanoli-image.mp4` (65 MB, safe to delete) and `videos/wolf-alpha-master.mp4` (81 MB, decide: embed or delete).
-- **logo_big.svg** — removed from the clients.html trust strip; file still on disk in `customers/`, delete outright once confirmed unused elsewhere.

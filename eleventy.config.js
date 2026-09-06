@@ -7,6 +7,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/audio");
   eleventyConfig.addPassthroughCopy("src/videos");
   eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "favicon.ico" });
+  eleventyConfig.addPassthroughCopy({ "src/site.webmanifest": "site.webmanifest" });
 
   // robots.txt / _headers: not present in this repo yet. Add a passthrough
   // copy line here (eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });)
