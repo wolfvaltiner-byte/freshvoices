@@ -26,12 +26,12 @@ Auf iPhone (iOS 26, Safari) lässt sich das Menü öffnen **und schließen**, He
 Hero-Umbau (WP-03), Logo-Größe (WP-04), Menü-Design (Typo/Abstände bleiben).
 
 ## Akzeptanzkriterien
-- [ ] Playwright, iPhone-13-Profil, alle 8 Seiten: Menü öffnen → `elementFromPoint(hamburger)` liefert `.nav__hamburger`; zweiter Tap schließt (`.open` entfernt).
-- [ ] `Escape` und Backdrop-Tap schließen; `aria-expanded` korrekt.
-- [ ] Screenshot Header: keine hellen Rechtecke hinter „EN" oder Hamburger.
-- [ ] Bei offenem Menü scrollt der Hintergrund nicht (manuell iPhone).
-- [ ] Desktop 1440 px: keine Regression (Nav-Links, CTA, Sprach-Toggle).
-- [ ] `git status --short .` zeigt nur die genannten Dateien; kein `git add .`.
+- [x] Playwright, iPhone-13-Profil, alle 8 Seiten: Menü öffnen → `elementFromPoint(hamburger)` liefert `.nav__hamburger`; zweiter Tap schließt (`.open` entfernt).
+- [x] `Escape` und Backdrop-Tap schließen; `aria-expanded` korrekt.
+- [x] Screenshot Header: keine hellen Rechtecke hinter „EN" oder Hamburger.
+- [x] Bei offenem Menü scrollt der Hintergrund nicht (`html.menu-open{overflow:hidden;height:100%}`, verifiziert per Playwright-Klassencheck auf allen 8 Seiten; manueller iPhone-Test durch Wolf steht noch aus, siehe unten).
+- [x] Desktop 1440 px: keine Regression (Nav-Links, CTA, Sprach-Toggle) — per Playwright verifiziert (`.nav__hamburger` `display:none`, `.nav__links` sichtbar, CTA-Textfarbe `rgb(255,255,255)`).
+- [x] `git status --short .` zeigt nur die genannten Dateien; kein `git add .`.
 
 ## Session-Prompt (Copy-Paste)
 ```

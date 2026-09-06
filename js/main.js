@@ -17,19 +17,78 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Mobile menu ---
   const hamburger = document.querySelector('.nav__hamburger');
   const navLinks  = document.querySelector('.nav__links');
+  const mainEl    = document.getElementById('main');
+  const footerEl  = document.querySelector('.footer');
+  let scrollPos   = 0;
+
+  const menuLabels = () => {
+    const isDE = document.documentElement.lang !== 'en';
+    return {
+      open:  isDE ? 'Menü öffnen'   : 'Open menu',
+      close: isDE ? 'Menü schließen' : 'Close menu',
+    };
+  };
+
+  const openMenu = () => {
+    scrollPos = window.scrollY;
+    navLinks.classList.add('open');
+    hamburger.classList.add('is-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', menuLabels().close);
+    document.documentElement.classList.add('menu-open');
+    if (mainEl) mainEl.setAttribute('inert', '');
+    if (footerEl) footerEl.setAttribute('inert', '');
+    const firstLink = navLinks.querySelector('a');
+    if (firstLink) firstLink.focus();
+  };
+
+  const closeMenu = () => {
+    navLinks.classList.remove('open');
+    hamburger.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', menuLabels().open);
+    document.documentElement.classList.remove('menu-open');
+    if (mainEl) mainEl.removeAttribute('inert');
+    if (footerEl) footerEl.removeAttribute('inert');
+    window.scrollTo(0, scrollPos);
+    hamburger.focus();
+  };
+
   if (hamburger && navLinks) {
+    hamburger.setAttribute('aria-label', menuLabels().open);
+
     hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      const isOpen = navLinks.classList.contains('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (navLinks.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
+
     // Close on link click
     navLinks.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        document.body.style.overflow = '';
+        if (navLinks.classList.contains('open')) closeMenu();
       });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // Close on click on the overlay itself (not on a link)
+    navLinks.addEventListener('click', (e) => {
+      if (e.target === navLinks) closeMenu();
+    });
+
+    // Close on resize past the mobile breakpoint
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
+        closeMenu();
+      }
     });
   }
 
