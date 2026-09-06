@@ -42,3 +42,54 @@ Automated background removal (Python/Pillow) on the raster logos that lacked rea
 | `OVERDUB-transparent.png` | `OVERDUB.png` | **Global color-key** (±24 tolerance on white), not corner flood-fill | The corner-only fill left the letter counters (holes in O/D/R/U/B) opaque white, since it's pure black-on-white with no intentional white artwork, a global color-key was safe here and also cleared the interior holes. Confirmed clean under both the resting (grayscale) and hover (full-color) states. |
 
 `radio-klassik.png` has no separate background to remove (the diamond pattern is full-bleed to the edges), so flood-fill was skipped entirely — it's used as-is and looks fine once the grayscale filter fix (above) stopped forcing it to solid white.
+
+---
+
+## Bildoptimierung 2026-09 (WP-05)
+
+Scope 1–5 umgesetzt (Commit 2026-09-06): about.html-Bilder responsive optimiert, ungenutzte Assets in `_unused/` geparkt.
+
+### Scope 1–2: about.html-Bilder (responsive WebP + JPG-Fallback)
+
+| Bild | Vorher (Bytes) | Nachher (Bytes) | Varianten | Ersparnis |
+| --- | --- | ---: | --- | ---: |
+| `images/Portrait.jpg` | 3,566,976 | 395,798 | `portrait-420.webp` (51,576), `portrait-840.webp` (145,782), `portrait-840.jpg` (197,440) | 3,171,178 (89%) |
+| `images/Motto.jpg` | 4,617,088 | 8,375 | `motto-192.webp` (3,272), `motto-192.jpg` (5,103) | 4,608,713 (100%) |
+| **Gesamt about-Bilder** | **8,184,064** | **404,173** | — | **7,779,891 (95%)** |
+
+Referenzen in `about.html` auf `<picture>` mit responsive `srcset`/`sizes` und WebP-first `<source>` umgestellt (Fallback JPG mit `width="420" height="560"` / `width="96" height="96"`). Alle ursprünglichen HTML-Attribute (alt, class, fetchpriority, loading) beibehalten.
+
+### Scope 3: Ungenutzte Assets nach `_unused/` verschoben
+
+Dateien mit Leerzeichen in Dateinamen wurden in kebab-case umbenannt:
+
+| Ursprünglicher Pfad | Neuer Pfad | Grund |
+| --- | --- | --- |
+| `images/mic and plopp.jpg` | `_unused/mic-and-plopp.jpg` | Ungenutzt (grep bestätigt) |
+| `images/with Mic.jpg` | `_unused/with-mic.jpg` | Ungenutzt (grep bestätigt) |
+| `images/fresh-demos-cover.jpg` | `_unused/fresh-demos-cover.jpg` | Ungenutzt (grep bestätigt) |
+| `videos/seeanoli-image.mp4` | `_unused/seeanoli-image.mp4` | Ungenutzt (grep bestätigt) |
+| `videos/wolf-alpha-master.mp4` | `_unused/wolf-alpha-master.mp4` | Ungenutzt (grep bestätigt) |
+
+**Hinweis**: Diese Dateien sind noch nicht gelöscht — sie liegen in `_unused/` und Wolf entscheidet über endgültige Löschung (siehe `next_tasks.md`).
+
+### Scope 4: PNG-Optimierung (verlustfrei via Pillow)
+
+Dateigrößen über 20 KB mit `optimize=True` neu gespeichert, nur Dateien mit tatsächlich kleinerer Größe behalten:
+
+| Datei | Vorher | Nachher | Ersparnis | Modus | Größe (px) |
+| --- | ---: | ---: | ---: | --- | --- |
+| `customers/radio-klassik-transparent.png` | 23,227 | 23,210 | 17 | RGBA | 118×118 |
+| `customers/radio-klassik.png` | 21,306 | 21,164 | 142 | RGB | 118×118 |
+| `customers/oecolution.png` | 20,523 | 19,867 | 656 | RGBA | 287×86 |
+| `customers/OVERDUB-transparent.png` | 48,633 | — | 0 (keine Einsparung) | RGBA | — |
+| `customers/OVERDUB.png` | 47,579 | — | 0 (keine Einsparung) | RGB | — |
+
+Insgesamt Scope 4: **815 Bytes eingespart**.
+
+---
+
+**Verifikation durchgeführt:**
+- (a) grep-Check: Keine Referenzen zu `mic and plopp`, `with Mic`, `fresh-demos-cover`, `seeanoli-image`, `wolf-alpha-master` in HTML/CSS/JS
+- (b) about-Bilder: 404,173 Bytes gesamt (< 1 MB ✓)
+- (c) Alle neu generierten Bilder vorhanden: `identify` auf alle `.webp`/`.jpg` bestätigt

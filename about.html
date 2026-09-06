@@ -188,7 +188,10 @@
       <div class="about-layout">
 
         <div class="about-photo-col reveal">
-          <img src="images/Portrait.jpg" alt="Wolf Valtiner — Voice Over Artist, Wien" class="about-photo" width="420" height="560" fetchpriority="high" />
+          <picture>
+            <source type="image/webp" srcset="images/portrait-420.webp 420w, images/portrait-840.webp 840w" sizes="(max-width: 768px) 100vw, 420px" />
+            <img src="images/portrait-840.jpg" srcset="images/portrait-840.jpg 840w" alt="Wolf Valtiner — Voice Over Artist, Wien" class="about-photo" width="420" height="560" fetchpriority="high" />
+          </picture>
           <p class="about-photo-caption">Wolf Valtiner · Voice Over Artist · Wien</p>
 
           <!-- Mini audio sample on about page -->
@@ -281,7 +284,10 @@
           </div>
 
           <div class="motto reveal">
-            <img src="images/Motto.jpg" alt="Wolf Valtiner bei der Vorbereitung" class="motto__img" width="96" height="96" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="images/motto-192.webp 192w" sizes="96px" />
+              <img src="images/motto-192.jpg" alt="Wolf Valtiner bei der Vorbereitung" class="motto__img" width="96" height="96" loading="lazy" />
+            </picture>
             <p class="motto__text">
               &ldquo;Let your mind go and your body will follow!&rdquo;
               <span class="motto__attr">Harris K. Telemacher (Steve Martin), L.A. Story</span>

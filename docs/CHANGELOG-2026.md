@@ -5,6 +5,18 @@ erledigt: es erklärt, *wie* etwas entstanden ist, nicht wie man heute arbeitet.
 
 ---
 
+## WP-05: Bildoptimierung (2026-09-06)
+
+Scopes 1–5 umgesetzt (Review WP-05): about.html-Bilder mit responsive WebP+JPG `<picture>`-Markup optimiert, ungenutzte Assets in `_unused/` geparkt.
+
+- **Scope 1–2**: `images/Portrait.jpg` (3,5 MB) → `portrait-420.webp`, `portrait-840.webp`, `portrait-840.jpg` (Gesamt 396 KB, 89% Ersparnis); `images/Motto.jpg` (4,5 MB) → `motto-192.webp`, `motto-192.jpg` (Gesamt 8,4 KB, 100% Ersparnis aus Zentral-Crop und Verkleinerung auf 192×192). About-page: Bilder jetzt 404 KB gesamt (< 1 MB ✓).
+- **Scope 3**: Ungenutzte Dateien nach `_unused/` verschoben (mit Dateinamenberechtigung für Leerzeichen→Bindestriche): `mic and plopp.jpg`, `with Mic.jpg`, `fresh-demos-cover.jpg`, `seeanoli-image.mp4`, `wolf-alpha-master.mp4`.
+- **Scope 4**: PNG-Optimierung (verlustfrei) für Logos > 20 KB: `radio-klassik-transparent.png` (-17 B), `radio-klassik.png` (-142 B), `oecolution.png` (-656 B); OVERDUBs keine Einsparungen.
+- **Scope 5**: `docs/ASSETS.md` mit vollständiger Dokumentation aktualisiert (Vorher/Nachher-Tabellen, Liste `_unused/`-Dateien).
+- **Verifikation**: ✓ Alle Bildvarianten vorhanden, ✓ responsives `<picture>`/`srcset` in about.html, ✓ Playwright bestätigt WebP auf Desktop und iPhone 13.
+
+---
+
 ## Mobile testing (2026-07-27)
 
 Tested every page (index, samples, services, about, clients, contact) at iPhone 13 and Pixel 5 viewports via Playwright device emulation: zero horizontal overflow, zero console errors, hamburger menu opens/closes and locks body scroll correctly, 48×48px tap targets on the audio player controls (meets both iOS HIG and Android Material minimums), `playsinline`+`muted` already set on the autoplaying hero video (required for iOS inline autoplay), and `.hero`'s `min-height: 100vh` (not `height`) avoids the classic iOS Safari dynamic-toolbar clipping issue.
