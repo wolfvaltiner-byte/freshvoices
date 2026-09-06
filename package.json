@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "eleventy",
-    "dev": "eleventy --serve"
+    "dev": "eleventy --serve",
+    "test": "node --test worker/*.test.mjs"
   },
   "repository": {
     "type": "git",

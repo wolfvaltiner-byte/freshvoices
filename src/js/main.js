@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => observer.observe(el));
   }
 
-  // --- Contact form (Netlify Forms) ---
+  // --- Contact form (Cloudflare Worker: POST /api/contact) ---
   const form = document.getElementById('contactForm');
   if (form) {
     const isDE = () => {
@@ -289,6 +289,8 @@ document.addEventListener('DOMContentLoaded', () => {
       projectType: { de: 'Bitte Projektart wählen.', en: 'Please select a project type.' },
       message:   { de: 'Bitte Nachricht eingeben (mind. 10 Zeichen).', en: 'Please enter a message (min. 10 characters).' },
     };
+
+    const captchaMessage = { de: 'Bitte Sicherheitsprüfung bestätigen.', en: 'Please confirm the security check.' };
 
     const requiredFields = ['firstName', 'lastName', 'email', 'projectType', 'message'];
 
@@ -367,26 +369,38 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = isDE() ? 'Wird gesendet…' : 'Sending…';
       btn.disabled = true;
 
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
       try {
-        const response = await fetch('/', {
+        const response = await fetch('/api/contact', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(new FormData(form)).toString(),
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
         });
 
-        if (response.ok) {
+        let data = null;
+        try { data = await response.json(); } catch { /* non-JSON response, fall through to status check */ }
+
+        if (response.ok && data && data.ok) {
           showFeedback('success', isDE()
             ? 'Nachricht gesendet! Ich melde mich innerhalb von 24 Stunden.'
             : "Message sent! I'll get back to you within 24 hours.");
           form.reset();
+          if (window.turnstile) window.turnstile.reset();
+          btn.textContent = originalText;
+        } else if (data && data.error === 'captcha') {
+          showFeedback('error', captchaMessage[isDE() ? 'de' : 'en']);
+          if (window.turnstile) window.turnstile.reset();
           btn.textContent = originalText;
         } else {
-          throw new Error(response.status);
+          throw new Error((data && data.error) || String(response.status));
         }
       } catch {
         showFeedback('error', isDE()
           ? 'Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie an wolf.valtiner@freshvoices.at.'
           : 'Failed to send. Please try again or email wolf.valtiner@freshvoices.at.');
+        if (window.turnstile) window.turnstile.reset();
         btn.textContent = originalText;
       } finally {
         btn.disabled = false;

@@ -1,0 +1,27 @@
+{
+  // "name" must match the Worker's existing name in the Cloudflare dashboard
+  // (Workers & Pages → freshvoices). Wolf: please confirm this is correct
+  // before the first `wrangler deploy` — a mismatch creates a *new* Worker
+  // instead of updating the one already attached to freshvoices.at.
+  "name": "freshvoices",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./_site",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "CONTACT_TO": "wolf.valtiner@freshvoices.at",
+    "CONTACT_FROM": "Fresh Voices <kontakt@freshvoices.at>"
+  },
+  // Secrets — NOT stored in this file, NOT in the repo. Set them via
+  // `npx wrangler secret put <NAME>` or the Cloudflare dashboard
+  // (Workers & Pages → freshvoices → Settings → Variables):
+  //   RESEND_API_KEY      — Resend API key used to send the contact-form mail
+  //   TURNSTILE_SECRET_KEY — Cloudflare Turnstile secret key for server-side verification
+  "observability": {
+    "enabled": true
+  }
+}

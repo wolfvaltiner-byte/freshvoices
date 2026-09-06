@@ -7,6 +7,8 @@ canonical: "https://www.freshvoices.at/contact.html"
 pageCss: "css/pages/contact.css"
 ---
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <section class="page-hero section--dark">
     <div class="container">
       <p class="eyebrow page-hero__eyebrow" data-de="Sprechen Sie mich an" data-en="Let's talk">Sprechen Sie mich an</p>
@@ -60,8 +62,7 @@ pageCss: "css/pages/contact.css"
 
         <!-- Right: Contact form -->
         <div class="contact-form-col reveal">
-          <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-            <input type="hidden" name="form-name" value="contact" />
+          <form id="contactForm" name="contact" action="/api/contact" method="POST" novalidate>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
               <div class="form-group">
@@ -109,10 +110,19 @@ pageCss: "css/pages/contact.css"
               <span class="form-error" aria-live="polite"></span>
             </div>
 
-            <!-- Honeypot anti-spam (Netlify standard) -->
+            <!-- Honeypot anti-spam -->
             <p class="form-hidden" aria-hidden="true">
               <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
             </p>
+
+            <!--
+              Cloudflare Turnstile widget. The site key below is Turnstile's
+              published "always passes" test key (1x00000000000000000000AA) —
+              replace it in src/_data/site.json (turnstileSiteKey) with the
+              real site key from the Cloudflare dashboard before go-live.
+              See docs/review-2026-09/CUTOVER-eleventy.md.
+            -->
+            <div class="cf-turnstile" data-sitekey="{{ site.turnstileSiteKey }}" data-theme="dark"></div>
 
             <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;"
                     data-de="Anfrage senden" data-en="Send enquiry">Anfrage senden</button>

@@ -27,12 +27,12 @@ Eine abgeschickte Anfrage landet zuverlässig in Wolfs Zoho-Postfach (`wolf.valt
 Formular-Design, neue Felder, Newsletter.
 
 ## Akzeptanzkriterien
-- [ ] Test-Anfrage von iPhone + Desktop kommt in Zoho an (Absender per Reply-To antwortbar).
-- [ ] Leeres/ungültiges Formular → Fehlermeldung inline, kein Request.
-- [ ] Honeypot-Füllung → stiller Drop, UI zeigt „gesendet".
-- [ ] Netzwerkfehler → sichtbare Fehlermeldung DE/EN, Button wieder aktiv.
-- [ ] `datenschutz.html` erwähnt Netlify nicht mehr.
-- [ ] Keine Secrets im Repo (`git grep -i "api_key\|secret"` leer).
+- [ ] Test-Anfrage von iPhone + Desktop kommt in Zoho an (Absender per Reply-To antwortbar). **Offen bis Cutover** — braucht echten Resend-Key + Turnstile-Secret im Cloudflare-Dashboard, nicht aus dieser Sandbox-Session prüfbar. Siehe `docs/review-2026-09/CUTOVER-eleventy.md` → „Kontaktformular (WP-02)".
+- [x] Leeres/ungültiges Formular → Fehlermeldung inline, kein Request. Verifiziert per Playwright (`_site/contact.html`, iPhone 13 + 1440px): alle fünf Pflichtfeld-Fehlermeldungen erscheinen, kein Request feuert.
+- [x] Honeypot-Füllung → stiller Drop, UI zeigt „gesendet". Verifiziert per `worker/contact.test.mjs` (`node --test`): `bot-field` gefüllt → `200 {ok:true}`, null externe Calls.
+- [x] Netzwerkfehler → sichtbare Fehlermeldung DE/EN, Button wieder aktiv. Bestehende Logik in `src/js/main.js` unverändert übernommen (catch-Block zeigt DE/EN-Meldung, `finally` reaktiviert den Button, zusätzlich `turnstile.reset()`).
+- [x] `datenschutz.html` erwähnt Netlify nicht mehr. `git grep -i netlify` über `src/` und `_site/` liefert keine Treffer mehr.
+- [x] Keine Secrets im Repo (`git grep -i "api_key\|secret"` leer). Treffer sind ausschließlich Variablennamen (`RESEND_API_KEY`, `TURNSTILE_SECRET_KEY`) und Mock-Strings in den Tests (`test-resend-key`, `test-turnstile-secret`) — keine echten Werte.
 
 ## Session-Prompt (Copy-Paste)
 ```
