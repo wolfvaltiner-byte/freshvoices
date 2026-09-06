@@ -22,6 +22,14 @@ Umsetzung der Opus-Entscheidung aus `docs/review-2026-09/WP-03-mobile-hero.md` (
 - **Verifikation**: `npm run build` clean. Playwright (iPhone 13 390×664 dsf3, iPhone-17-ähnlich 402×874 dsf3): `h1.top<300` ✓, CTA `bottom≤innerHeight` und `≤640px` ✓, `scrollWidth===innerWidth` ✓ (kein horizontaler Overflow), Video-`top` > CTA-`bottom` ✓ auf beiden Geräten. Desktop 1440px: Struktur (zwei Spalten, Inhalte) unverändert, aber Pixel-Diff der Hero-Region liegt bei ~49% statt < 3% — Ursache und Screenshots siehe oben/`WP-03-mobile-hero.md`. Mobile-Menü-Test aus WP-01 wiederholt (Hamburger öffnen/schließen, Escape, `html.menu-open`) — weiterhin grün. Lighthouse-LCP-Messung nicht durchgeführt (kein Tooling in der Sandbox); Poster ist jetzt aber das LCP-Element statt des Videos.
 - **Nicht committet/gepusht**: diese Session hat auf explizite Dateien committet, aber nicht gepusht (siehe WP-03-Karte für offene Rückfrage an Wolf zum Container-Breite-Fix).
 
+### Folge-Commit "WP-03 fix: no subline clamp, cap desktop video height" (2026-09-06)
+
+Zwei Nacharbeiten nach Review-Feedback:
+
+- **Mobile Subline nicht mehr per `-webkit-line-clamp` abgeschnitten** (der Satz „Auf Deutsch und…" wirkte fehlerhaft) — volle Subline steht wieder da, Platz kompensiert über `font-size:1rem` und engere Abstände statt Kürzung. CTA bleibt mit `bottom=440px` (iPhone 13, `innerHeight=664`) klar im ersten Viewport.
+- **Desktop-Video-Höhe gedeckelt**: das volle 4/5-Video war bei ~620px Spaltenbreite ~775px hoch, klebte am Header und schob die Audio-Card unter den Fold. `.hero__photo-wrap` bekommt ab 769px eine feste `height:min(56vh,520px)` plus `width:fit-content; align-self:center`, `.hero__photo` wird per `height:100%; width:auto; aspect-ratio:4/5; object-fit:cover` reinskaliert — zentriert statt rechtsbündig, damit Badge/Mute-Button symmetrisch im Video-Block bleiben statt an die Spaltenkante zu rutschen.
+- **Gemessen**: 1440×900 — Lücke Header→Video 66.6px, Audio-Card endet bei 832.9px (< 900); 1280×720 (Laptop) — Lücke 27.1px, Audio-Card endet bei 692.5px (< 720). Beide: Video **und** Audio-Card vollständig sichtbar, Badge bleibt innerhalb des Containers, kein horizontaler Overflow. Mobile- und WP-01-Menütest erneut grün. Screenshots: `desktop-hero-after2.png`, `desktop-hero-1280.png`, `mobile-top-iphone13-2.png` in `/home/claude/work/wp03-shots/`.
+
 ## WP-05: Bildoptimierung (2026-09-06)
 
 Scopes 1–5 umgesetzt (Review WP-05): about.html-Bilder mit responsive WebP+JPG `<picture>`-Markup optimiert, ungenutzte Assets in `_unused/` geparkt.

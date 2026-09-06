@@ -61,6 +61,44 @@ Screenshots: `desktop-hero-before.png` (kaputter Ist-Zustand vor dieser Session)
 empfohlen, ob dieser Fix so gewünscht ist — inhaltlich ändert er nichts an Text/Bild, macht aber das
 Video auf Desktop erstmals wieder sichtbar.
 
+## Nacharbeit: "WP-03 fix: no subline clamp, cap desktop video height" (2026-09-06, Folge-Commit)
+
+Zwei Korrekturen nach Review-Feedback:
+
+1. **Mobile Subline nicht mehr abgeschnitten**: `-webkit-line-clamp:3` entfernt — der Satz „Auf
+   Deutsch und…" wirkte fehlerhaft. Volle Subline steht jetzt da; um trotzdem Platz zu sparen wurde
+   `font-size` mobil auf `1rem` (vorher 1.1rem geerbt) und `margin-bottom` auf 24px gesetzt.
+   Gemessen (iPhone 13, 390×664): CTA `bottom=440.1px`, deutlich unter `innerHeight=664` und der
+   640px-Vorgabe — mit der vollen Subline bleibt also noch Reserve.
+2. **Desktop-Video-Höhe gedeckelt**: das 4/5-Video füllte die volle ~620px-Spaltenbreite und wurde
+   dadurch ~775px hoch — klebte am Header und schob die Audio-Card unter den Fold. Fix:
+   `.hero__photo-wrap` bekommt `@media (min-width:769px)` eine feste `height: min(56vh, 520px)` und
+   `width: fit-content` + `align-self:center` (schrumpft/zentriert den Video-Block statt ihn über die
+   volle Spaltenbreite zu strecken); `.hero__photo` bekommt `height:100%; width:auto; max-width:100%;
+   aspect-ratio:4/5; object-fit:cover`. Zentriert statt rechtsbündig gewählt, weil das den Badge/
+   Mute-Button symmetrisch im Video-Block hält statt an die Spaltenkante zu drücken. Grid
+   `align-items:center` auf `.hero__inner` unverändert gelassen.
+
+**Gemessen:**
+
+| Viewport | nav.bottom | video-wrap.top | Lücke Header→Video | Audio-Card `bottom` | `innerHeight` | Badge `right` ≤ Container `right`? |
+|---|---|---|---|---|---|---|
+| 1440×900 | 80.4 | 147.0 | 66.6 px | 832.9 | 900 | ja (1287.6 ≤ 1440) |
+| 1280×720 | 80.4 | 107.5 | 27.1 px | 692.5 | 720 | ja (1127.3 ≤ 1280) |
+
+Beide Geräte: Video **und** Audio-Card vollständig innerhalb des jeweiligen `innerHeight` sichtbar,
+Video beginnt mit ≥ 24 px Luft unterhalb des Headers (1280×720 mit 27 px knapper, aber erfüllt).
+Kein horizontaler Overflow (`scrollWidth === innerWidth`) auf allen geprüften Breiten.
+
+Mobile erneut geprüft (iPhone 13, 390×664, nach Entfernen des Clamps): `h1.top=143.0`,
+CTA `bottom=440.1`, `scrollWidth===innerWidth` — weiterhin grün. WP-01-Menü-Test wiederholt
+(Hamburger öffnen/schließen, Escape, `html.menu-open`) — weiterhin grün.
+
+Screenshots: `desktop-hero-after2.png` (1440), `desktop-hero-1280.png` (1280×720),
+`mobile-top-iphone13-2.png` in `/home/claude/work/wp03-shots/`.
+
+**Nicht durchgeführt**: Lighthouse-LCP (weiterhin kein Tooling in der Sandbox).
+
 ## Session-Prompt (Copy-Paste, Umsetzung)
 ```
 Lies CLAUDE.md und docs/review-2026-09/WP-03-mobile-hero.md; Entscheidung aus Abschnitt

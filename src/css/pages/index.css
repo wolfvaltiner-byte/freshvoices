@@ -106,6 +106,32 @@
   border-radius: var(--radius);
   filter: grayscale(20%);
 }
+
+@media (min-width: 769px) {
+  /* Cap the video's height so the whole right-hand column (video +
+     audio-card) fits inside a typical 900px viewport with room below
+     the header — a full 4/5-ratio video spanning a ~620px-wide column
+     rendered ~775px tall, clipped against the header and pushing the
+     audio-card off-screen. The wrap gets a fixed height and shrinks to
+     the video's own (narrower) width; centering it keeps the badge and
+     mute button — anchored to the wrap's corners — inside the column
+     instead of overhanging it. The audio-card below is unaffected and
+     stays full column width (`.hero__visual`'s default stretch).
+  */
+  .hero__photo-wrap {
+    height: min(56vh, 520px);
+    max-height: none;
+    width: fit-content;
+    align-self: center;
+  }
+  .hero__photo {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+  }
+}
 /* Placeholder for photo */
 .hero__photo-placeholder {
   width: 100%;
@@ -239,13 +265,10 @@
     margin-bottom: 20px;
   }
   .hero__subtitle {
-    margin-bottom: 28px;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
     max-width: none;
-    /* keep subline to ~3 lines so the primary CTA stays in the first viewport */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
   .hero__photo-placeholder { aspect-ratio: 16/9; }
   .hero__photo-wrap { aspect-ratio: 16/9; }
