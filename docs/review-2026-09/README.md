@@ -9,12 +9,12 @@ Modellzuordnung und Copy-Paste-Prompt für die Claude-Code-Session.
 | WP | Titel | Prio | Modell | Status | Braucht Wolf-Entscheid |
 |---|---|---|---|---|---|
 | WP-01 | Mobile-Navigation Hotfix | P0 | Sonnet 5 | ☑ umgesetzt (Branch review-2026-09) | nein |
-| WP-02 | Kontaktformular → Cloudflare | P0 | Sonnet 5 (B: Opus 5) | ☐ offen | Entschieden: B (Worker) |
-| WP-03 | Mobile Hero neu ordnen | P1 | Opus 5 → Sonnet 5 | ☐ offen | ja: Layout-Variante, Stats |
-| WP-04 | Logo- & Markensystem | P1 | Opus 5 → Sonnet 5 → Haiku 4.5 | ☐ offen | Entschieden: B (neue Wortmarke) |
+| WP-02 | Kontaktformular → Cloudflare | P0 | Sonnet 5 (B: Opus 5) | ☑ Code + Tests fertig · Dashboard-Setup offen (Cutover) | Entschieden: B (Worker) |
+| WP-03 | Mobile Hero neu ordnen | P1 | Opus 5 → Sonnet 5 | ☑ umgesetzt · Stats-Inhalt offen | Stats-Inhalt (Wolf) |
+| WP-04 | Logo- & Markensystem | P1 | Opus 5 → Sonnet 5 → Haiku 4.5 | ☑ umgesetzt (Original-Logo bereinigt, Favicon-Destillat, OG) | Entschieden: Original-Logo behalten |
 | WP-05 | Bilder & Assets | P1 | Haiku 4.5 | ☑ umgesetzt | nein |
-| WP-06 | Templating & CSS-Hygiene | P2 | Opus 5 → Sonnet 5 → Haiku 4.5 | ☑ Eleventy umgesetzt · Token-Batch offen · Cutover offen | Entschieden: 11ty |
-| WP-07 | Design-Politur & QA-Matrix | P2 | Opus 5 → Sonnet 5 → Haiku 4.5 | ☐ offen | nein |
+| WP-06 | Templating & CSS-Hygiene | P2 | Opus 5 → Sonnet 5 → Haiku 4.5 | ☑ Eleventy + Token-Batch umgesetzt · Cutover offen | Entschieden: 11ty |
+| WP-07 | Design-Politur & QA-Matrix | P2 | Opus 5 → Sonnet 5 → Haiku 4.5 | ☑ umgesetzt · Realgeräte/Lighthouse nach Cutover | Stats/Logo-Strip (Scope 3) |
 
 Empfohlene Reihenfolge: **WP-01 → WP-02 → WP-05** (sofort, keine Entscheidungen nötig) ·
 dann Entscheidungen B7 / Formular / 11ty in **einer** Cowork-Session (Opus 5, ~30 min) ·
