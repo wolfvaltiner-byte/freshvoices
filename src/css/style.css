@@ -587,43 +587,20 @@ html.menu-open body {
 .page-hero p { font-size: 1.1rem; color: var(--muted); max-width: 560px; margin: 0 auto; }
 
 /* ============================================
-   UTILITY
+   UTILITY (colour/layout primitives — spacing/text overrides live in
+   css/utilities.css, loaded LAST so they beat page CSS like inline styles did)
    ============================================ */
 .text-pink  { color: var(--pink); }
 .text-green { color: var(--green); }
 .text-muted { color: var(--muted); }
 .text-white { color: var(--white); }
-.mt-0  { margin-top: 0; }
-.mt-8  { margin-top: 8px; }
-.mt-16 { margin-top: 16px; }
-.mt-24 { margin-top: 24px; }
-.mt-40 { margin-top: 40px; }
-.mt-60 { margin-top: 60px; }
-.mb-8  { margin-bottom: 8px; }
-.mb-16 { margin-bottom: 16px; }
-.mb-24 { margin-bottom: 24px; }
-.mb-40 { margin-bottom: 40px; }
-.mb-48 { margin-bottom: 48px; }
-.mb-60 { margin-bottom: 60px; }
-.mx-auto { margin-left: auto; margin-right: auto; }
-.text-xs { font-size: 0.7rem; }
-.text-sm { font-size: 0.78rem; }
-.text-body { font-size: 0.95rem; line-height: 1.7; }
-.text-center { text-align: center; }
-.text-sm-center { font-size: 0.78rem; text-align: center; }
 .flex { display: flex; }
 .flex-center { display: flex; align-items: center; justify-content: center; }
-.justify-center { justify-content: center; }
-.w-full { width: 100%; }
-.max-w-480 { max-width: 480px; }
 .gap-16 { gap: 16px; }
-.gap-20 { gap: 20px; }
 .gap-24 { gap: 24px; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.grid-2-gap-20 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .grid-2-wide { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.hidden { display: none !important; }
 
 /* ============================================
    SCROLL REVEAL (JS-gated: content visible without JS)
