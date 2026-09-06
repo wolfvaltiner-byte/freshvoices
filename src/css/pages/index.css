@@ -2,13 +2,33 @@
 
 /* Hero */
 .hero {
-  min-height: 100vh;
-  min-height: 100svh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 80px;
+}
+.hero > .container {
+  /* .hero is a flex container with a single child; without an explicit
+     width the child's flex-basis:auto falls back to content-based
+     (shrink-to-fit) sizing, which changed once the hero video gained a
+     large-intrinsic-size poster image — pin it to fill the flex line. */
+  width: 100%;
+}
+
+@media (min-width: 769px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--nav-h) + env(safe-area-inset-top) + 24px);
+    padding-bottom: 48px;
+  }
 }
 .hero__bg {
   position: absolute;
@@ -211,10 +231,37 @@
 .cta-banner__text p  { color: var(--muted); max-width: 440px; }
 
 @media (max-width: 768px) {
-  .hero__inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero__visual { order: -1; }
+  .hero__inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero__eyebrow { margin-bottom: 16px; }
+  .hero__title {
+    font-size: clamp(2.4rem, 11vw, 3.2rem);
+    line-height: 1.0;
+    margin-bottom: 20px;
+  }
+  .hero__subtitle {
+    margin-bottom: 28px;
+    max-width: none;
+    /* keep subline to ~3 lines so the primary CTA stays in the first viewport */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
   .hero__photo-placeholder { aspect-ratio: 16/9; }
-  .stats__inner { grid-template-columns: repeat(2, 1fr); }
+  .hero__photo-wrap { aspect-ratio: 16/9; }
+  .hero__photo {
+    aspect-ratio: 16/9;
+    max-height: 45svh;
+    object-fit: cover;
+  }
+  .hero__mute-btn {
+    width: 44px;
+    height: 44px;
+    /* icon stays visually 18px; padding around it grows the tap target to 44x44 */
+  }
+  .hero__demo { margin-top: 24px; }
+  .stats { padding: 28px 0; }
+  .stats__inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .use-case-list { grid-template-columns: 1fr; }
   .cta-banner { flex-direction: column; padding: 40px 32px; }
 }

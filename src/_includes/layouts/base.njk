@@ -41,6 +41,9 @@
 {% if pageCss %}
   <link rel="stylesheet" href="{{ pageCss }}" />
 {% endif %}
+{% if preloadHero %}
+  <link rel="preload" as="image" href="images/hero-poster.jpg" fetchpriority="high" />
+{% endif %}
 </head>
 <body>
 
