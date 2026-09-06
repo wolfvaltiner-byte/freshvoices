@@ -49,5 +49,5 @@
   padding: 20px 24px;
   border-radius: var(--radius);
 }
-.spec__label { font-size: 0.7rem; font-family: var(--font-display); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.spec__label { font-size: 0.7rem; font-family: var(--font-display); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-soft); margin-bottom: 6px; }
 .spec__value { font-size: 0.9rem; color: var(--white); }

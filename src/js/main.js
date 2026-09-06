@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
           observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.05, rootMargin: '0px 0px 15% 0px' });
     revealEls.forEach(el => observer.observe(el));
   }
 

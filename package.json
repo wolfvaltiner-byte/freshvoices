@@ -6,7 +6,8 @@
   "scripts": {
     "build": "eleventy",
     "dev": "eleventy --serve",
-    "test": "node --test worker/*.test.mjs"
+    "test": "node --test worker/*.test.mjs",
+    "qa": "npm run build && node scripts/qa-shots.js"
   },
   "repository": {
     "type": "git",

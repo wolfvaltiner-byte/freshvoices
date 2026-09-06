@@ -60,12 +60,14 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-soft);
   margin-bottom: 16px;
 }
 .filter-btn {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
+  min-height: 44px;
   text-align: left;
   background: none;
   border: none;
@@ -78,6 +80,7 @@
   cursor: pointer;
   transition: all var(--transition);
   margin-bottom: 4px;
+  box-sizing: border-box;
 }
 .filter-btn:hover { color: var(--white); background: var(--card); }
 .filter-btn.active { color: var(--green); background: var(--green-08); }
@@ -97,7 +100,7 @@
   .filter-sidebar { position: static; }
   .filter-sidebar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .filter-sidebar__heading { display: none; }
-  .filter-btn { width: auto; }
+  .filter-btn { width: auto; min-width: 44px; justify-content: center; }
 }
 
 .video-embed-wrap {

@@ -22,9 +22,11 @@ Site fühlt sich auf iPhone wie auf Desktop bewusst gestaltet an; Regressionen w
 7. **Realgeräte-Checkliste** `docs/QA-CHECKLIST.md`: iPhone Safari (Menü, Sprache, Audio-Play, Formular), Android Chrome, Desktop Safari/Chrome/Firefox; Lighthouse Mobile ≥ 90 Performance/A11y.
 
 ## Akzeptanzkriterien
-- [ ] `node scripts/qa-shots.js` läuft grün (alle Checks) auf `main`.
-- [ ] Lighthouse Mobile (index, samples, contact): Performance ≥ 90, Accessibility ≥ 95.
-- [ ] Wolf-Abnahme auf iPhone: Menü, Hero, Hörprobe abspielen, Formular senden — ohne Kommentar „sieht komisch aus".
+- [x] `node scripts/qa-shots.js` läuft grün (alle Checks) — verifiziert auf Branch `review-2026-09` (32/32 Seite×Viewport-Kombinationen, Exit-Code 0). Noch nicht auf `main` gegen den echten Deploy erneut gelaufen.
+- [ ] Lighthouse Mobile (index, samples, contact): Performance ≥ 90, Accessibility ≥ 95. — nicht ausführbar in dieser Sandbox (braucht eine live/deployte URL); Checkbox in `docs/QA-CHECKLIST.md`.
+- [ ] Wolf-Abnahme auf iPhone: Menü, Hero, Hörprobe abspielen, Formular senden — ohne Kommentar „sieht komisch aus". — noch offen, Realgerät-Test.
+
+**Umsetzungsstatus (2026-09-06, Sonnet 5 · medium):** Scope 1, 2, 4, 5, 6, 7 umgesetzt. **Scope 3 (Hero-Badge/Stats, Kunden-Logo-Strip auf der Startseite) bewusst NICHT umgesetzt** — Inhaltsentscheidung von Wolf noch offen. Details, Kontrastwerte, Tap-Ziel-Maße und Vorher/Nachher-Höhen: `docs/CHANGELOG-2026.md` → „WP-07 — Contrast, reveal timing, nav hierarchy, tap targets, QA script".
 
 ## Session-Prompt (Copy-Paste, Schritt 2+3)
 ```

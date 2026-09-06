@@ -209,7 +209,7 @@
 .stat__number span { color: var(--pink); }
 .stat__label {
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--muted-soft);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-family: var(--font-display);

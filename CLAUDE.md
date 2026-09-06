@@ -12,9 +12,12 @@ freshvoices.at — a static portfolio site for Wolf Valtiner, a professional voi
 npm install        # once
 npm run dev         # eleventy --serve — build + local server with live reload
 npm run build        # eleventy — one-off build into _site/
+npm run qa           # npm run build && node scripts/qa-shots.js — Playwright QA (see below)
 ```
 
-Never edit files under `_site/` — it's generated and gitignored. Edit the sources under `src/` instead; `npm run dev` rebuilds on save. There is still no linter and no test suite beyond the manual/Playwright verification described in `docs/review-2026-09/`.
+Never edit files under `_site/` — it's generated and gitignored. Edit the sources under `src/` instead; `npm run dev` rebuilds on save. There is still no linter and no unit test suite beyond `npm test` (the contact-form Worker, see Architecture below) and the Playwright QA script.
+
+**`npm run qa`** (added WP-07, 2026-09): builds the site, then runs `scripts/qa-shots.js`, which serves `_site/` over a throwaway `node:http` static server (no Python needed) and drives Playwright/Chromium across four viewports (`iphone13`, `iphone17` — 402×874, no built-in Playwright device for it yet — `ipad`, `desktop` 1440×900) and all 8 pages. Per page/viewport it takes a top screenshot, a menu-open screenshot (mobile only), and a full-page screenshot (with every `.reveal` forced to `.revealed` first, so it doesn't get mistaken for the "empty section" false alarm in Traps that already bit below), and checks: no horizontal overflow, `h1` inside the top 60% of the viewport, mobile-menu open/close/Escape behavior, no uncaught JS errors, no failed requests outside a small CDN/media whitelist, and every `<img>` fully loaded. Needs Playwright installed (`NODE_PATH` pointed at a global install works, or a local `devDependency`) — not currently a committed `devDependency`, since this sandbox only had a global install available. Output: a console table, `.qa/report.json`, screenshots under `.qa/<viewport>/` (all gitignored). `scripts/` lives outside `src/`, so Eleventy never copies it into `_site/`. See `docs/QA-CHECKLIST.md` for the complementary real-device/Lighthouse checklist this script can't replace.
 
 ## Architecture
 
@@ -53,6 +56,8 @@ Never edit files under `_site/` — it's generated and gitignored. Edit the sour
 | `--base`       | `#1A1A1A` | Page background                               |
 | `--surface`    | `#252525` | Section backgrounds                           |
 | `--card`       | `#2E2E2E` | Card/panel backgrounds                        |
+| `--muted`      | `#B3B3B3` | Secondary/body text on dark backgrounds (raised from `#9A9A9A` in WP-07, 2026-09, for contrast: 8.30:1 on `--base`, 6.48:1 on `--card`) |
+| `--muted-soft` | `#9A9A9A` | The old `--muted` value, kept for uppercase/letter-spaced "label" typography only — eyebrows-adjacent small caps like `.footer__heading`, `.form-group label`, `.stat__label`, `.filter-sidebar__heading`, `.spec__label`, `.fact__label`, `.client-group__heading`, `.contact-info__label`. Body text, captions, links, and disclaimers stay on `--muted`. |
 
 Fonts: Montserrat (display/UI via `--font-display`), Inter (body via `--font-body`), loaded from Google Fonts.
 

@@ -15,7 +15,8 @@
   --card:       #2E2E2E;
   --white:      #FFFFFF;
   --text:       #E8E8E8;
-  --muted:      #9A9A9A;
+  --muted:      #B3B3B3;
+  --muted-soft: #9A9A9A;
   --error:      #F27E7E;
   --footer-bg:  #111111;
 
@@ -267,13 +268,14 @@ html.menu-open body {
   text-transform: uppercase;
   color: var(--muted);
   background: transparent;
-  border: 1px solid var(--grey-dark);
+  border: 1px solid transparent;
   padding: 6px 14px;
   border-radius: var(--radius);
   cursor: pointer;
   transition: all var(--transition);
 }
-.nav__lang:hover {
+.nav__lang:hover,
+.nav__lang:focus-visible {
   color: var(--white);
   border-color: var(--green);
 }
@@ -489,7 +491,7 @@ html.menu-open body {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-soft);
   margin-bottom: 8px;
 }
 .form-group input,
@@ -533,8 +535,8 @@ html.menu-open body {
 .footer__tagline { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
 .footer__social { display: flex; gap: 16px; }
 .footer__social a {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--white-15);
   border-radius: var(--radius);
   display: flex;
@@ -550,7 +552,7 @@ html.menu-open body {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-soft);
   margin-bottom: 20px;
 }
 .footer__links li { margin-bottom: 10px; }
@@ -626,6 +628,7 @@ html.menu-open body {
    RESPONSIVE
    ============================================ */
 @media (max-width: 768px) {
+  .js .reveal { transform: none; transition: opacity 0.3s ease; }
   .nav__links { display: none; }
   .nav__links.open {
     display: flex;
@@ -646,7 +649,14 @@ html.menu-open body {
   }
   .nav__links.open a { font-size: 1.1rem; }
   .nav__hamburger { display: flex; }
-  .nav__lang { margin-left: auto; margin-right: 16px; }
+  .nav__lang {
+    margin-left: auto;
+    margin-right: 16px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+  }
   .nav__logo img { height: 34px; }
   .footer__logo img { height: 48px; }
   .grid-2 { grid-template-columns: 1fr; }

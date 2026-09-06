@@ -175,3 +175,41 @@ Follow-up to WP-04 above, from review feedback on the header screenshot.
 - **Footer logo enlarged**: `.footer__logo img` raised from 44px to **56px** desktop, **48px** mobile (new rule inside the existing `@media (max-width: 768px)` block); `footer.njk`'s `<img>` width/height attributes updated to `112`/`56` to match the new display size and the ~1.994:1 aspect ratio.
 - **Header logo width/height corrected**: `nav.njk`'s `<img>` now uses `width="80" height="40"` (was `66`×`40`, computed against the old incorrect ~1.65:1 aspect before the crop fix; now matches the true ~1.994:1 ratio). Displayed heights (40px desktop / 34px mobile) are unchanged from the first WP-04 pass.
 - **Verification**: `npm run build` clean. Playwright re-screenshots of header (iPhone 13 + 1440px), footer (desktop + mobile), and 3× closeups of both logo placements confirm no stray dots anywhere and a correct 2:1 crop; computed styles confirm 40/34px header and 56/48px footer heights render as expected. The WP-01 mobile-menu open/close test was re-run against the rebuilt site and still passes. `grep -rn "logo\.svg\|logo-white\.svg\|footer__brand-name" src/ _site/` still returns only the new `images/brand/` paths and the unrelated `spreadfilms-logo.svg`. Old (stray-dot) screenshots in `/home/claude/work/wp04-shots/` were replaced with corrected versions.
+
+## WP-07 — Contrast, reveal timing, nav hierarchy, tap targets, QA script (2026-09-06)
+
+Scope 1, 2, 4, 5, 6, 7 from `docs/review-2026-09/WP-07-design-polish-qa.md`. Scope 3 (hero-badge/stats, customer logo strip on the homepage) intentionally **not done** — content decision still open, tracked separately.
+
+- **Contrast (Scope 1)**: `--muted` raised from `#9A9A9A` to `#B3B3B3` — computed contrast **8.30:1** on `--base` (`#1A1A1A`) and **6.48:1** on `--card` (`#2E2E2E`), clearing the ≥7:1 / ≥5.5:1 targets. New token `--muted-soft: #9A9A9A` (the old `--muted` value) keeps the original dimmer tone for uppercase, letter-spaced "label" typography only — `.footer__heading`, `.form-group label`, `.stat__label` (index), `.filter-sidebar__heading` (samples), `.spec__label` (services), `.fact__label` (about), `.client-group__heading` (clients), `.contact-info__label` (contact). Every other `--muted` selector (body copy, captions, footer links/copy, legal text, price notes, etc.) keeps `--muted` and gets the brighter value automatically.
+- **Reveal (Scope 2)**: `src/js/main.js`'s `IntersectionObserver` now uses `{ threshold: 0.05, rootMargin: '0px 0px 15% 0px' }` (was `{ threshold: 0.12 }`) — elements fire earlier during fast scrolling. `src/css/style.css` gained `@media (max-width:768px) { .js .reveal { transform: none; transition: opacity .3s ease } }` — mobile reveal is now opacity-only (no translateY), addressing the "empty section" false-alarm pattern documented in `CLAUDE.md` under Traps that already bit.
+- **Nav hierarchy (Scope 4)**: `.nav__lang` (`src/css/style.css`) changed from a solid `1px solid var(--grey-dark)` border to `1px solid transparent`, with `border-color: var(--green)` added on both `:hover` and the new `:focus-visible`. It now reads as a ghost text toggle; the "Jetzt anfragen" / "Get in touch" CTA (`.btn--primary`) remains the only filled button in the nav, on both desktop and mobile. Mobile (`≤768px`) `.nav__lang` gained `min-height: 44px`, `display: inline-flex`, `align-items: center` so the tap target clears 44px even though the visual chip stays small.
+- **Tap targets ≥44×44 (Scope 5)**, measured via Playwright `getBoundingClientRect()` on iPhone 13 (390×844):
+  | Element | Before | After |
+  |---|---|---|
+  | `.filter-btn` (samples, mobile chip) | ~36×24px (10px 14px padding, no min-height) | `min-height: 44px`, `min-width: 44px`, flex-centered — verified ≥44×44 |
+  | `.audio-player__play` | 48×48px | unchanged (already compliant) |
+  | `.footer__social a` | 36×36px | 44×44px (icon SVGs stay 16×16, only the box grew) |
+- **QA script (Scope 6)**: new `scripts/qa-shots.js` (Node + Playwright, not copied into `_site/` since it lives outside `src/`). `npm run qa` = `npm run build && node scripts/qa-shots.js`. Spins up its own `node:http` static server for `_site/` on a free port (no Python needed). Viewports: `iphone13` (Playwright's `devices['iPhone 13']`), `iphone17` (402×874, dsf 3, custom mobile UA — no built-in Playwright device yet), `ipad` (`devices['iPad (gen 7)']`), `desktop` (1440×900). For each of the 8 pages × 4 viewports: a top screenshot, a menu-open screenshot (mobile viewports only), and a full-page screenshot with every `.reveal` forced to `.revealed` first. Checks: no horizontal overflow, `h1` top < 60% of viewport height, mobile menu open/close (hamburger click → `menu-open` class + `elementFromPoint` over the hamburger center resolves to the hamburger itself; second click closes; `Escape` closes), no uncaught `pageerror`s, no failed requests outside a whitelist regex (Google Fonts, YouTube-nocookie, Cloudflare Turnstile, `.mp3`/`.mp4`), and every `<img>` has `naturalWidth > 0` (lazy/offscreen images get `scrollIntoView()`'d first). Output: a console table, `.qa/report.json`, and screenshots under `.qa/<viewport>/`; `.qa/` added to `.gitignore`. Exit code 1 on any failing check.
+- **Real-device checklist (Scope 7)**: new `docs/QA-CHECKLIST.md` — checkbox list covering iPhone Safari (menu, language toggle, audio playback, contact form + Turnstile, video autoplay/mute), Android Chrome, Desktop Safari/Chrome/Firefox, Lighthouse Mobile (≥90 Performance, ≥95 Accessibility), and a share-preview check via opengraph.xyz.
+
+**Verification**: `npm run build && npm run qa` — **32/32 page×viewport combinations pass, exit code 0** (run inside this sandbox, `NODE_PATH` pointed at the global Playwright install; some requests to `fonts.googleapis.com`/`challenges.cloudflare.com`/`youtube-nocookie.com` are rejected by the sandbox's egress proxy as expected — they're covered by the QA script's whitelist regex and don't fail the run).
+
+Full-page screenshot heights, before (this branch pre-WP-07) vs. after, per page — `ipad`/`desktop` are byte-for-byte unchanged (0px diff, confirming no unintended layout shift on those viewports); `iphone13`/`iphone17` grow by a consistent **+8px** (+11/12px on `samples.html`, which also has the `.filter-btn` tap-target change), fully explained by the intentional `.footer__social a` 36→44px and `.filter-btn` 44px-min-height changes surfacing in the mobile stacked layout:
+
+| Page | iphone13 before→after | iphone17 before→after | ipad | desktop |
+|---|---|---|---|---|
+| index.html | 3875→3883 | 3818→3826 | 2798→2798 | 2858→2858 |
+| samples.html | 4590→4601 | 4483→4495 | 3564→3564 | 3666→3666 |
+| services.html | 5132→5140 | 5083→5091 | 2888→2888 | 2930→2930 |
+| about.html | 4464→4472 | 4435→4443 | 3450→3450 | 2223→2223 |
+| clients.html | 4069→4077 | 4069→4077 | 2990→2990 | 3111→3111 |
+| contact.html | 2714→2722 | 2691→2699 | 2244→2244 | 1848→1848 |
+| impressum.html | 2958→2966 | 2931→2939 | 2254→2254 | 2379→2379 |
+| datenschutz.html | 4745→4753 | 4636→4644 | 3248→3248 | 3373→3373 |
+
+Contrast values (computed via WCAG relative-luminance formula, not measured from a screenshot):
+- `--muted` `#B3B3B3` on `--base` `#1A1A1A`: **8.30:1** (target ≥7:1 ✓)
+- `--muted` `#B3B3B3` on `--card` `#2E2E2E`: **6.48:1** (target ≥5.5:1 ✓)
+- `--muted-soft` `#9A9A9A` on `--base`: 6.19:1 (unchanged from the old `--muted` — intentional, label-only use)
+
+**Open items**: Scope 3 (hero badge/stats finalization, customer logo strip on the homepage) is explicitly out of scope for this WP-07 pass — content decision still pending from Wolf; see the WP-07 board card. Lighthouse and real-device checks in `docs/QA-CHECKLIST.md` are unticked — they require a live/deployed URL and real hardware, neither available in this sandboxed session.
