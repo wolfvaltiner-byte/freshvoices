@@ -1,5 +1,12 @@
 # Next Tasks
 
+## From 2026-09-06 Cowork review — Design-/Code-Review, 7 Arbeitspakete
+
+- **Review-Board und Karten liegen in `docs/review-2026-09/`** (`README.md` = Board, `REVIEW_FINDINGS.md` = Befunde mit Belegen, `WP-01`…`WP-07` = Ceremony-Karten mit Modell, Scope, Akzeptanzkriterien, Session-Prompt).
+- **Erledigt auf Branch `review-2026-09`:** WP-01 Mobile-Nav-Hotfix, WP-05 Bilder, WP-06 Eleventy-Migration. **Vor dem Merge nach `main`:** Cloudflare-Build-Einstellungen setzen — siehe `docs/review-2026-09/CUTOVER-eleventy.md`.
+- **Offen:** WP-02 Kontaktformular (Cloudflare Worker), WP-03 Mobile Hero, WP-04 Logo/Wortmarke (Entscheidung: neue typografische Wortmarke), WP-07 Politur/QA. Token-Batch (`rgba()` → Tokens, Rest-Inline-Styles) als eigenes Haiku-Paket.
+- **Löschentscheidung:** Dateien in `_unused/` (alte Originalbilder, zwei ungenutzte Videos) endgültig löschen oder behalten.
+
 Pending decisions and follow-ups that need Wolf's input — not things Claude should just decide and change unilaterally. See `CLAUDE.md` for the technical detail behind each item.
 
 ## From 2026-08-01 / 2026-08-03 sessions — favicon

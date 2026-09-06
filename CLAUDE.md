@@ -65,7 +65,7 @@ The client logo section is split into two subgroups under the "Ausgewählte Kund
 - **Kunden** (h3): Hermes Apotheke, Hilfswerk, WKO, Oecolution, Paulaner Apotheke, Stern Apotheke, Bormes les Mimosas
 - **Studios & Agenturen** (h3): Little Lights, Lounge FM, MacJingle, OVERDUB, Radio Klassik, Spreadfilms, Schutzengel Apotheke, Wincom
 
-Every logo in both the grid and the trust strip (`ref-strip`) is wrapped in a linked `<a target="_blank" rel="noopener">`. Exception: `customers/logo-banner.svg` in the strip is left unlinked — it's a second Bormes les Mimosas logo variant and needs a manual decision (link it or remove the duplicate) before launch. `customers/logo_big.svg` (Fresh Voices' own wordmark) has been removed from the strip entirely — the file is kept on disk but no longer referenced from clients.html.
+Every logo in both the grid and the trust strip (`ref-strip`) is wrapped in a linked `<a target="_blank" rel="noopener">`. Exception: `customers/logo-banner.svg` in the strip is left unlinked — it's a second Bormes les Mimosas logo variant and needs a manual decision (link it or remove the duplicate) before launch. `customers/logo_big.svg` — **corrected 2026-09-06: this file is the Oecolution logo, not a Fresh Voices wordmark** (earlier notes here were wrong) — has been removed from the strip entirely; the file is kept on disk (now `src/customers/`) but no longer referenced from clients. WP-04 decides whether it can replace the `oecolution.png` flood-fill stopgap.
 
 **Logo rendering treatment (fixed 2026-07-25):** `.logo-wall img` used to have `filter: brightness(0) invert(1)` (in `css/style.css`), a monochrome-white trick that only works if the source image has a genuinely transparent background — any opaque background gets flattened to solid white right along with the artwork, which is why WKO, Oecolution, Stern Apotheke, Little Lights, MacJingle, OVERDUB, Radio Klassik and Wincom were all rendering as blank/placeholder-looking boxes. Changed to `filter: grayscale(1) brightness(1.6)` (same treatment already used on `.ref-strip img`), which preserves luminance contrast instead of collapsing everything to one flat color — this alone fixed WKO, OVERDUB (pre-transparency-fix) and Radio Klassik with zero file changes. `.logo-card:hover img` now also resets to `grayscale(0) brightness(1)` to reveal full brand color on hover, matching the ref-strip's existing hover behavior. Diagnosed by serving the site locally and inspecting real rendered pixels via a throwaway Playwright script (all image requests returned 200 — this was a pure CSS/asset-format issue, not a loading bug).
 
@@ -168,3 +168,10 @@ warum sie verworfen wurden. Diese Datei bleibt eine Anleitung; Verlauf gehört i
 - **images/fresh-demos-cover.jpg**: a demo-reel cover image dropped alongside the 2026-07-26 audio batch, moved into `images/` but not referenced from any page. Decide if/where it should be used (e.g. an og:image, a samples.html hero graphic) or delete it.
 - **services.html vs. VOICE offering**: VOICE's pricelist includes Podcasts, Audioguide, and Synchronisation (Film/Games) — none of which are currently service cards on services.html. Only pricing floors were aligned 2026-07-26 (see `services.html` section above); adding new service categories is a separate decision for Wolf. Tracked in `next_tasks.md`.
 - **E-Learning sample gap**: samples.html's meta description promises an "E-Learning" category but no such group/sample exists yet on the page.
+
+## Review 2026-09 (Cowork)
+
+Design-/Code-Review vom 2026-09-06: Befunde und sieben Arbeitspakete mit Modellzuordnung liegen in
+**`docs/review-2026-09/`** (Board: `README.md`). Jede WP-Session liest zuerst die jeweilige Karte.
+Stand: WP-01, WP-05, WP-06 umgesetzt auf Branch `review-2026-09`; Cutover-Anleitung für den
+Eleventy-Build in `docs/review-2026-09/CUTOVER-eleventy.md`.
