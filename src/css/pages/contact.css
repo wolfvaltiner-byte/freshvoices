@@ -29,8 +29,8 @@
 .contact-info__value a:hover { color: var(--green); }
 
 .contact-promise {
-  background: rgba(145, 194, 104, 0.07);
-  border: 1px solid rgba(145, 194, 104, 0.2);
+  background: var(--green-07);
+  border: 1px solid var(--green-20);
   border-radius: var(--radius);
   padding: 24px;
   margin-top: 40px;
@@ -48,7 +48,7 @@
 
 .contact-form-col {
   background: var(--card);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid var(--white-06);
   border-radius: var(--radius);
   padding: 48px;
 }
@@ -84,15 +84,15 @@
 }
 .form-feedback.is-success {
   display: block;
-  background: rgba(145, 194, 104, 0.12);
+  background: var(--green-12);
   color: var(--green);
-  border: 1px solid rgba(145, 194, 104, 0.3);
+  border: 1px solid var(--green-30);
 }
 .form-feedback.is-error {
   display: block;
-  background: rgba(232, 84, 84, 0.1);
+  background: var(--error-10);
   color: var(--error);
-  border: 1px solid rgba(232, 84, 84, 0.25);
+  border: 1px solid var(--error-25);
 }
 
 @media (max-width: 900px) {

@@ -34,8 +34,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 60% at 70% 50%, rgba(145, 194, 104, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 50% at 30% 80%, rgba(255, 99, 161, 0.06) 0%, transparent 70%);
+    radial-gradient(ellipse 60% 60% at 70% 50%, var(--green-07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 30% 80%, var(--pink-06) 0%, transparent 70%);
 }
 .hero__waveform-bg {
   position: absolute;
@@ -166,8 +166,8 @@
   position: absolute;
   bottom: 12px;
   right: 12px;
-  background: rgba(0,0,0,0.50);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: var(--overlay-50);
+  border: 1px solid var(--white-15);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -180,7 +180,7 @@
   z-index: 2;
   padding: 0;
 }
-.hero__mute-btn:hover { background: rgba(0,0,0,0.75); }
+.hero__mute-btn:hover { background: var(--overlay-75); }
 .hero__demo {
   margin-top: 36px;
 }
@@ -188,8 +188,8 @@
 /* Stats strip */
 .stats {
   background: var(--surface);
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid var(--white-05);
+  border-bottom: 1px solid var(--white-05);
   padding: 40px 0;
 }
 .stats__inner {
@@ -245,7 +245,7 @@
 /* CTA banner */
 .cta-banner {
   background: var(--surface);
-  border: 1px solid rgba(145, 194, 104, 0.2);
+  border: 1px solid var(--green-20);
   border-radius: var(--radius);
   padding: 60px 80px;
   display: flex;

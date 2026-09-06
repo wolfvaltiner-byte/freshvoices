@@ -19,6 +19,36 @@
   --error:      #F27E7E;
   --footer-bg:  #111111;
 
+  /* Alpha tokens — for transparent overlays, subtle borders, and layered effects */
+  --white-05:          rgba(255, 255, 255, 0.05);
+  --white-06:          rgba(255, 255, 255, 0.06);
+  --white-07:          rgba(255, 255, 255, 0.07);
+  --white-08:          rgba(255, 255, 255, 0.08);
+  --white-10:          rgba(255, 255, 255, 0.10);
+  --white-15:          rgba(255, 255, 255, 0.15);
+  --white-30:          rgba(255, 255, 255, 0.30);
+
+  --green-07:          rgba(145, 194, 104, 0.07);
+  --green-08:          rgba(145, 194, 104, 0.08);
+  --green-12:          rgba(145, 194, 104, 0.12);
+  --green-15:          rgba(145, 194, 104, 0.15);
+  --green-20:          rgba(145, 194, 104, 0.20);
+  --green-25:          rgba(145, 194, 104, 0.25);
+  --green-30:          rgba(145, 194, 104, 0.30);
+  --green-50:          rgba(145, 194, 104, 0.50);
+
+  --pink-06:           rgba(255, 99, 161, 0.06);
+  --pink-12:           rgba(255, 99, 161, 0.12);
+  --pink-25:           rgba(255, 99, 161, 0.25);
+
+  --error-10:          rgba(232, 84, 84, 0.10);
+  --error-25:          rgba(232, 84, 84, 0.25);
+
+  --overlay-50:        rgba(0, 0, 0, 0.50);
+  --overlay-75:        rgba(0, 0, 0, 0.75);
+
+  --nav-bg-frosted:    rgba(26, 26, 26, 0.96);
+
   --font-display: 'Montserrat', sans-serif;
   --font-body:    'Inter', sans-serif;
 
@@ -173,11 +203,11 @@ html.menu-open body {
   transition: background var(--transition);
 }
 .nav.scrolled {
-  background: rgba(26, 26, 26, 0.96);
+  background: var(--nav-bg-frosted);
   backdrop-filter: blur(12px);
   padding: 14px 0;
   padding-top: calc(14px + env(safe-area-inset-top));
-  border-bottom: 1px solid rgba(145, 194, 104, 0.15);
+  border-bottom: 1px solid var(--green-15);
 }
 .nav__inner {
   position: relative;
@@ -307,7 +337,7 @@ html.menu-open body {
 .btn--ghost {
   background: transparent;
   color: var(--white);
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid var(--white-30);
 }
 .btn--ghost:hover {
   border-color: var(--green);
@@ -323,7 +353,7 @@ html.menu-open body {
    ============================================ */
 .audio-player {
   background: var(--card);
-  border: 1px solid rgba(145, 194, 104, 0.2);
+  border: 1px solid var(--green-20);
   border-radius: var(--radius);
   padding: 20px 24px;
   display: flex;
@@ -331,7 +361,7 @@ html.menu-open body {
   gap: 20px;
   transition: border-color var(--transition);
 }
-.audio-player:hover { border-color: rgba(145, 194, 104, 0.5); }
+.audio-player:hover { border-color: var(--green-50); }
 .audio-player__play {
   width: 48px;
   height: 48px;
@@ -368,7 +398,7 @@ html.menu-open body {
 .audio-player__progress {
   width: 100%;
   height: 3px;
-  background: rgba(255,255,255,0.1);
+  background: var(--white-10);
   border-radius: 2px;
   position: relative;
   cursor: pointer;
@@ -467,7 +497,7 @@ html.menu-open body {
 .form-group select {
   width: 100%;
   background: var(--card);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid var(--white-10);
   border-radius: var(--radius);
   padding: 14px 18px;
   color: var(--white);
@@ -489,7 +519,7 @@ html.menu-open body {
    ============================================ */
 .footer {
   background: var(--footer-bg);
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--white-06);
   padding: 60px 0 32px;
 }
 .footer__inner {
@@ -505,7 +535,7 @@ html.menu-open body {
 .footer__social a {
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid var(--white-15);
   border-radius: var(--radius);
   display: flex;
   align-items: center;
@@ -532,7 +562,7 @@ html.menu-open body {
 .footer__links a:hover { color: var(--white); }
 .footer__location { margin-top: 16px; font-size: 0.85rem; color: var(--muted); }
 .footer__bottom {
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--white-06);
   padding-top: 28px;
   display: flex;
   justify-content: space-between;
@@ -563,6 +593,7 @@ html.menu-open body {
 .text-green { color: var(--green); }
 .text-muted { color: var(--muted); }
 .text-white { color: var(--white); }
+.mt-0  { margin-top: 0; }
 .mt-8  { margin-top: 8px; }
 .mt-16 { margin-top: 16px; }
 .mt-24 { margin-top: 24px; }
@@ -572,15 +603,27 @@ html.menu-open body {
 .mb-16 { margin-bottom: 16px; }
 .mb-24 { margin-bottom: 24px; }
 .mb-40 { margin-bottom: 40px; }
+.mb-48 { margin-bottom: 48px; }
 .mb-60 { margin-bottom: 60px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.text-xs { font-size: 0.7rem; }
+.text-sm { font-size: 0.78rem; }
+.text-body { font-size: 0.95rem; line-height: 1.7; }
 .text-center { text-align: center; }
+.text-sm-center { font-size: 0.78rem; text-align: center; }
 .flex { display: flex; }
 .flex-center { display: flex; align-items: center; justify-content: center; }
+.justify-center { justify-content: center; }
+.w-full { width: 100%; }
+.max-w-480 { max-width: 480px; }
 .gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
 .gap-24 { gap: 24px; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.grid-2-gap-20 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .grid-2-wide { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.hidden { display: none !important; }
 
 /* ============================================
    SCROLL REVEAL (JS-gated: content visible without JS)

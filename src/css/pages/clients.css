@@ -13,7 +13,7 @@
 }
 .logo-card {
   background: var(--card);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid var(--white-06);
   border-radius: var(--radius);
   padding: 24px 16px;
   display: flex;
@@ -44,11 +44,11 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: 1px dashed rgba(255,255,255,0.08);
+  border: 1px dashed var(--white-08);
   transition: border-color var(--transition), opacity var(--transition);
   opacity: 0.5;
 }
-.logo-cell:hover { opacity: 1; border-color: rgba(145,194,104,0.3); }
+.logo-cell:hover { opacity: 1; border-color: var(--green-30); }
 
 .ref-strip {
   display: flex;
@@ -74,14 +74,14 @@
 .assoc-section {
   margin-top: 80px;
   padding-top: 60px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--white-06);
 }
 .assoc-card {
   display: flex;
   align-items: center;
   gap: 32px;
   background: var(--card);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid var(--white-06);
   border-radius: var(--radius);
   padding: 32px 40px;
 }

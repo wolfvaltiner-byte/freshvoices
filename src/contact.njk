@@ -42,7 +42,7 @@ pageCss: "css/pages/contact.css"
           </div>
           <div class="contact-info__item">
             <div class="contact-info__label" data-de="Social" data-en="Social">Social</div>
-            <div class="contact-info__value" style="display:flex;gap:16px;">
+            <div class="contact-info__value flex gap-16">
               <a href="https://fb.me/Fresh.Voices.Vienna" target="_blank" rel="noopener" aria-label="Facebook">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
               </a>
@@ -64,7 +64,7 @@ pageCss: "css/pages/contact.css"
         <div class="contact-form-col reveal">
           <form id="contactForm" name="contact" action="/api/contact" method="POST" novalidate>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div class="grid-2-gap-20">
               <div class="form-group">
                 <label for="firstName" data-de="Vorname" data-en="First name">Vorname</label>
                 <input type="text" id="firstName" name="firstName" autocomplete="given-name" required minlength="2" />
@@ -124,12 +124,12 @@ pageCss: "css/pages/contact.css"
             -->
             <div class="cf-turnstile" data-sitekey="{{ site.turnstileSiteKey }}" data-theme="dark"></div>
 
-            <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;"
+            <button type="submit" class="btn btn--primary w-full justify-center"
                     data-de="Anfrage senden" data-en="Send enquiry">Anfrage senden</button>
 
             <div id="formFeedback" class="form-feedback" role="status" aria-live="polite"></div>
 
-            <p class="mt-16 text-muted" style="font-size:0.78rem;text-align:center;"
+            <p class="mt-16 text-muted text-sm-center"
                data-de="Keine Weitergabe Ihrer Daten. Antwort innerhalb von 24 Stunden." data-en="No data shared. Reply within 24 hours.">
               Keine Weitergabe Ihrer Daten. Antwort innerhalb von 24 Stunden.
             </p>
