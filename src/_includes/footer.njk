@@ -1,0 +1,43 @@
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-name">Fresh<span>Voices</span></div>
+          <p class="footer__tagline" data-de="Professioneller Voice Over · Wien" data-en="Professional Voice Over · Vienna">Professioneller Voice Over · Wien</p>
+          <div class="footer__social">
+            <a href="{{ site.social.facebook }}" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="{{ site.social.linkedin }}" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__heading" data-de="Navigation" data-en="Navigation">Navigation</div>
+          <ul class="footer__links">
+            <li><a href="samples.html" data-de="Hörproben" data-en="Voice Samples">Hörproben</a></li>
+            <li><a href="services.html" data-de="Leistungen & Preise" data-en="Services & Pricing">Leistungen & Preise</a></li>
+            <li><a href="about.html" data-de="Über mich" data-en="About">Über mich</a></li>
+            <li><a href="clients.html" data-de="Kunden & Referenzen" data-en="Clients & References">Kunden & Referenzen</a></li>
+            <li><a href="contact.html" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading" data-de="Kontakt" data-en="Contact">Kontakt</div>
+          <ul class="footer__links">
+            <li><a href="{{ site.phoneHref }}">{{ site.phone }}</a></li>
+            <li><a href="{{ site.emailHref }}">{{ site.email }}</a></li>
+            <li class="footer__location" data-de="{{ site.address.de }}" data-en="{{ site.address.en }}">{{ site.address.de }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© {{ year }} Fresh Voices · Wolf Valtiner</span>
+        <div class="footer__legal">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html" data-de="Datenschutzerklärung" data-en="Privacy Policy">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </div>
+  </footer>

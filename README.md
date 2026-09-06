@@ -3,42 +3,46 @@
 
 ---
 
-### File structure
+### Build (Eleventy, since WP-06 / 2026-09)
+
+The site is now built with [Eleventy](https://www.11ty.dev/) (11ty 3.x). Sources live under
+`src/`, output is generated into `_site/` (gitignored, never commit it).
+
+```bash
+npm install       # once
+npm run dev       # build + serve with live reload, for local editing
+npm run build     # one-off build into _site/
+```
+
+Nav, footer, and the `<head>` boilerplate now exist exactly once (`src/_includes/`) instead of
+being copy-pasted across 8 HTML files — **edit those, never the rendered `_site/*.html`.**
+See `CLAUDE.md` → Architecture for the full source layout.
+
+---
+
+### File structure (source, `src/`)
 
 ```
 freshvoices/
-├── index.html          ← Homepage
-├── samples.html        ← Voice Samples (most important page)
-├── services.html       ← Services & Pricing
-├── about.html          ← About Wolf
-├── clients.html        ← Clients, testimonials, associations
-├── contact.html        ← Contact form
-├── impressum.html      ← (create manually, Austrian legal requirement)
-├── datenschutz.html    ← (create manually, GDPR / DSG)
-├── css/
-│   └── style.css       ← All styles, brand tokens, components
-├── js/
-│   └── main.js         ← Nav, audio players, form, scroll reveal
-├── audio/
-│   ├── demo-reel.mp3           ← Main demo reel (homepage + about)
-│   ├── demo-reel-short.mp3     ← 30s version (about page sidebar)
-│   ├── corporate-imagefilm.mp3
-│   ├── corporate-messe.mp3
-│   ├── documentary-natur.mp3
-│   ├── documentary-history-en.mp3
-│   ├── elearning-compliance.mp3
-│   ├── elearning-softskills-en.mp3
-│   ├── commercial-radio.mp3
-│   ├── audiobook-sachbuch.mp3
-│   └── ivr-banking.mp3
-└── images/
-    ├── wolf-valtiner.jpg       ← Hero photo (4:5 ratio, min 1000px wide)
-    ├── wolf-portrait.jpg       ← About page (3:4 ratio, min 800px wide)
-    └── clients/
-        ├── client-01.svg       ← Client logos (SVG preferred, PNG ok)
-        ├── client-02.svg
-        └── ...
+├── eleventy.config.js         ← 11ty config: input src/, output _site/, passthrough copies
+├── package.json                ← npm scripts: build, dev
+└── src/
+    ├── index.njk, samples.njk, services.njk, about.njk,
+    │   clients.njk, contact.njk, impressum.njk, datenschutz.njk
+    │                            ← one page each, permalinked to the same *.html URL as before
+    ├── _includes/
+    │   ├── layouts/base.njk     ← shared <html>/<head>/<body> skeleton
+    │   ├── nav.njk               ← nav, once
+    │   └── footer.njk            ← footer, once
+    ├── _data/site.json, year.js ← contact details, copyright year
+    ├── css/style.css             ← design system (unchanged)
+    ├── css/pages/*.css           ← page-specific styles, one file per page
+    ├── js/main.js, js/pages/*.js ← shared + per-page behaviour
+    ├── audio/, images/, customers/, videos/, favicon.ico
 ```
+
+`docs/`, `_unused/`, and other root-level Markdown files are **not** part of the Eleventy input
+and are never copied into `_site/`.
 
 ---
 

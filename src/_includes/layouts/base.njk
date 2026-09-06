@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}" />
+{%- if keywords %}
+  <meta name="keywords" content="{{ keywords }}" />
+{%- endif %}
+{%- if robots %}
+  <meta name="robots" content="{{ robots }}" />
+{%- endif %}
+  <link rel="canonical" href="{{ canonical }}" />
+{% if ogTitle %}
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ ogTitle }}" />
+  <meta property="og:description" content="{{ ogDescription }}" />
+  <meta property="og:url" content="{{ canonical }}" />
+  <meta property="og:type" content="website" />
+{% endif %}
+  <!-- Fonts -->
+  <link rel="icon" type="image/svg+xml" href="images/favicons/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicons/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+{% if pageCss %}
+  <link rel="stylesheet" href="{{ pageCss }}" />
+{% endif %}
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+{% include "nav.njk" %}
+
+  <main id="main">
+
+{{ content | safe }}
+
+  </main>
+
+{% include "footer.njk" %}
+
+  <script src="js/main.js"></script>
+{% if pageJs %}
+  <script src="{{ pageJs }}"></script>
+{% endif %}
+
+</body>
+</html>

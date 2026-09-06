@@ -1,0 +1,19 @@
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo"><img src="images/logo.svg" alt="Fresh Voices logo"></a>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="index.html"{% if page.url == "/index.html" %} class="active"{% endif %} data-de="Home" data-en="Home">Home</a></li>
+          <li><a href="samples.html"{% if page.url == "/samples.html" %} class="active"{% endif %} data-de="Hörproben" data-en="Voice Samples">Hörproben</a></li>
+          <li><a href="services.html"{% if page.url == "/services.html" %} class="active"{% endif %} data-de="Leistungen" data-en="Services">Leistungen</a></li>
+          <li><a href="about.html"{% if page.url == "/about.html" %} class="active"{% endif %} data-de="Über mich" data-en="About">Über mich</a></li>
+          <li><a href="clients.html"{% if page.url == "/clients.html" %} class="active"{% endif %} data-de="Kunden" data-en="Clients">Kunden</a></li>
+          <li><a href="contact.html" class="btn btn--primary btn--nav{% if page.url == "/contact.html" %} active{% endif %}" data-de="Jetzt anfragen" data-en="Get in touch">Jetzt anfragen</a></li>
+        </ul>
+        <button class="nav__lang" aria-label="Switch language">EN</button>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>

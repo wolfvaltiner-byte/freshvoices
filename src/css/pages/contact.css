@@ -1,0 +1,101 @@
+/* --- contact.html page-specific styles --- */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.contact-info { }
+.contact-info__item {
+  margin-bottom: 32px;
+}
+.contact-info__label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.contact-info__value {
+  font-size: 1rem;
+  color: var(--white);
+}
+.contact-info__value a {
+  color: var(--white);
+  transition: color var(--transition);
+}
+.contact-info__value a:hover { color: var(--green); }
+
+.contact-promise {
+  background: rgba(145, 194, 104, 0.07);
+  border: 1px solid rgba(145, 194, 104, 0.2);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 40px;
+}
+.contact-promise__head {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+.contact-promise__text { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+.contact-form-col {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  padding: 48px;
+}
+
+.form-error {
+  display: none;
+  font-size: 0.78rem;
+  color: var(--error);
+  margin-top: 6px;
+}
+.form-group.has-error input,
+.form-group.has-error textarea,
+.form-group.has-error select {
+  border-color: var(--error);
+}
+.form-group.has-error .form-error {
+  display: block;
+}
+.form-hidden {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+.form-feedback {
+  text-align: center;
+  font-size: 0.88rem;
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  display: none;
+}
+.form-feedback.is-success {
+  display: block;
+  background: rgba(145, 194, 104, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(145, 194, 104, 0.3);
+}
+.form-feedback.is-error {
+  display: block;
+  background: rgba(232, 84, 84, 0.1);
+  color: var(--error);
+  border: 1px solid rgba(232, 84, 84, 0.25);
+}
+
+@media (max-width: 900px) {
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-form-col { padding: 32px 24px; }
+}

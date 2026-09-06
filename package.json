@@ -1,0 +1,18 @@
+{
+  "name": "freshvoices",
+  "version": "1.0.0",
+  "description": "freshvoices.at — Wolf Valtiner Voice Over, static site built with Eleventy",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfvaltiner-byte/freshvoices.git"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

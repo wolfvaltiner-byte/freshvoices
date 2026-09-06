@@ -1,0 +1,53 @@
+/* --- services.html page-specific styles --- */
+.process-list { counter-reset: steps; }
+.process-step {
+  counter-increment: steps;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  align-items: start;
+}
+.process-step:last-child { border-bottom: none; }
+.process-step__num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgba(145,194,104,0.25);
+  line-height: 1;
+  padding-top: 4px;
+}
+.process-step__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.process-step__text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+.price-note {
+  background: rgba(145, 194, 104, 0.07);
+  border: 1px solid rgba(145, 194, 104, 0.2);
+  border-radius: var(--radius);
+  padding: 24px 32px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.price-note strong { color: var(--white); }
+
+.studio-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+.spec {
+  background: var(--card);
+  padding: 20px 24px;
+  border-radius: var(--radius);
+}
+.spec__label { font-size: 0.7rem; font-family: var(--font-display); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.spec__value { font-size: 0.9rem; color: var(--white); }

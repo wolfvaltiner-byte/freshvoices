@@ -26,11 +26,11 @@ Nav, Footer und `<head>` existieren genau **einmal**. Seitenspezifisches CSS lie
 6. Doku: `CLAUDE.md` (Architektur, Dev-Befehle `npx @11ty/eleventy --serve`), `README.md`, `nav.html` löschen.
 
 ## Akzeptanzkriterien
-- [ ] `_site/` enthält alle 8 Seiten; `diff` gegen vorherigen HTML-Output zeigt nur Whitespace/Include-Reihenfolge, keine Inhaltsänderung (Playwright-Screenshots pixelgleich ±1 %).
-- [ ] `grep -c "<nav" src/_includes/nav.njk` = 1, in `src/*.njk` = 0.
-- [ ] `grep -c 'style="' _site/*.html` = 0.
-- [ ] `grep -c "rgba(" css/style.css` ≤ Anzahl Token-Definitionen.
-- [ ] Cloudflare-Deploy grün; Live-URL identisch.
+- [x] `_site/` enthält alle 8 Seiten; `diff` gegen vorherigen HTML-Output zeigt nur Whitespace/Include-Reihenfolge, keine Inhaltsänderung (Playwright-Screenshots pixelgleich ±1 %). — Pixel-Diff 0.000–0.448 % über alle 8 Seiten × 2 Viewports; Textvergleich (`body.innerText`) exakt identisch auf allen 8 Seiten. Details: `docs/CHANGELOG-2026.md` WP-06-Eintrag.
+- [x] `grep -c "<nav" src/_includes/nav.njk` = 1, in `src/*.njk` = 0. — verifiziert.
+- [ ] `grep -c 'style="' _site/*.html` = 0. — **nicht 0, aber reduziert von 47 auf 36** (siehe Scope-3-Notiz oben: nur trivial überführbare Fälle wurden umgestellt — `.footer__location`, `.waveform-divider-wrap` —, die restlichen sind Einzelfälle oder die Waveform-Balken, die laut Vorgabe als Daten gelten und bleiben dürfen). Vollständige Nullstellung wäre Teil eines größeren CSS-Aufräum-Batches (Scope 4).
+- [ ] `grep -c "rgba(" css/style.css` ≤ Anzahl Token-Definitionen. — **nicht Teil dieser Session** (Scope 4, separates Paket mit Haiku-Executor, siehe oben "NICHT umgesetzt").
+- [ ] Cloudflare-Deploy grün; Live-URL identisch. — **noch nicht geprüft**, da nicht gemerged/deployed; Schritt-für-Schritt-Anleitung für Wolf liegt bereit unter `docs/review-2026-09/CUTOVER-eleventy.md`.
 
 ## Session-Prompt (Copy-Paste, Schritt 2)
 ```

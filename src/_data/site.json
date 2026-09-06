@@ -1,0 +1,17 @@
+{
+  "name": "Fresh Voices",
+  "person": "Wolf Valtiner",
+  "phone": "+43 664 884 73943",
+  "phoneHref": "tel:+4366488473943",
+  "email": "wolf.valtiner@freshvoices.at",
+  "emailHref": "mailto:wolf.valtiner@freshvoices.at",
+  "address": {
+    "de": "Wien, Österreich",
+    "en": "Vienna, Austria"
+  },
+  "social": {
+    "facebook": "https://fb.me/Fresh.Voices.Vienna",
+    "linkedin": "https://www.linkedin.com/in/wolfvaltiner"
+  },
+  "baseUrl": "https://www.freshvoices.at"
+}

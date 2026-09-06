@@ -4,25 +4,31 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-freshvoices.at — a static portfolio site for Wolf Valtiner, a professional voice-over artist based in Vienna. The site is bilingual (German/English), dark-themed, and built with plain HTML/CSS/JS (no build tools, no framework, no package manager).
+freshvoices.at — a static portfolio site for Wolf Valtiner, a professional voice-over artist based in Vienna. The site is bilingual (German/English) and dark-themed. **Since WP-06 (2026-09), it is built with [Eleventy](https://www.11ty.dev/) (11ty 3.x)** — sources live under `src/`, HTML/CSS/JS output is generated into `_site/` (gitignored). There is no other framework, no bundler, no CSS preprocessor.
 
 ## Development
 
-Open any `.html` file directly in a browser, or use a local server:
-
 ```bash
-npx serve .          # or python -m http.server
+npm install        # once
+npm run dev         # eleventy --serve — build + local server with live reload
+npm run build        # eleventy — one-off build into _site/
 ```
 
-There is no build step, no linter, no test suite. Changes are visible on reload.
+Never edit files under `_site/` — it's generated and gitignored. Edit the sources under `src/` instead; `npm run dev` rebuilds on save. There is still no linter and no test suite beyond the manual/Playwright verification described in `docs/review-2026-09/`.
 
 ## Architecture
 
-**Pages** — each page is a standalone HTML file with its own `<style>` block for page-specific styles, plus a shared `<link>` to `css/style.css`. Nav and footer markup are duplicated in every page (no templating). When changing the nav or footer, update all pages: `index.html`, `samples.html`, `services.html`, `about.html`, `clients.html`, `contact.html`.
+**Pages** — each of the 8 pages is a single Nunjucks template directly under `src/` (`src/index.njk`, `src/samples.njk`, `src/services.njk`, `src/about.njk`, `src/clients.njk`, `src/contact.njk`, `src/impressum.njk`, `src/datenschutz.njk`). Each sets an explicit `permalink` in its front matter (e.g. `permalink: "/samples.html"`) so the output URL is byte-identical to the pre-Eleventy site — no trailing-slash change, no `index.html` folder redirects. A page's front matter also carries its `<head>` data (`title`, `description`, `canonical`, optionally `keywords`/`ogTitle`/`ogDescription`/`robots`) and, where needed, `pageCss` / `pageJs` pointers to its page-specific stylesheet/script.
 
-**Styles** — `css/style.css` holds the design system: CSS custom properties (tokens), reset, typography, layout primitives, and all shared components (nav, buttons, audio player, service cards, logo wall, testimonials, contact form, footer, utilities). Page-specific styles live in `<style>` tags within each HTML file.
+**Nav and footer exist exactly once** — `src/_includes/nav.njk` and `src/_includes/footer.njk` — pulled into every page via `src/_includes/layouts/base.njk`, the shared `<html>`/`<head>`/`<body>` skeleton every page template uses as its `layout`. **To change the nav or footer, edit only these two include files** — never a rendered page. `data-de`/`data-en` attributes and ARIA attributes are preserved verbatim from the pre-Eleventy markup. The active nav-link class is now set server-side in `nav.njk` (comparing `page.url` to each link's target) instead of purely by client JS; the corresponding logic in `main.js` still runs too (idempotent — it just re-adds the same class) as a no-JS-build-step fallback pattern, kept intentionally rather than removed.
 
-**JavaScript** — `js/main.js` handles all interactive behavior: nav scroll effect, mobile hamburger menu, active nav link, language toggle, custom audio players, scroll-reveal (IntersectionObserver), and contact form submission. The samples page adds inline filter logic in a `<script>` tag.
+**Styles** — `src/css/style.css` (passed through unchanged to `_site/css/style.css`) holds the design system: CSS custom properties (tokens), reset, typography, layout primitives, and all shared components (nav, buttons, audio player, service cards, logo wall, testimonials, contact form, footer, utilities). Page-specific styles that used to live in inline `<style>` blocks now live in `src/css/pages/<page>.css` (e.g. `src/css/pages/index.css`), one file per page, referenced via each template's `pageCss` front-matter key. `.footer__location` and `.waveform-divider-wrap` were added as small new shared classes to remove a handful of duplicated inline `style="..."` attributes (the footer's "Wien, Österreich" `<li>`, and the three identical waveform-divider wrapper `<div>`s on index/services/clients) — this was the only inline-style cleanup done as part of WP-06; the larger `rgba()` → token batch is a separate, not-yet-done piece of work (see WP-06 scope 4 in `docs/review-2026-09/`).
+
+**JavaScript** — `src/js/main.js` (passed through unchanged) handles all interactive behavior: nav scroll effect, mobile hamburger menu, active nav link (client-side fallback), language toggle, custom audio players, scroll-reveal (IntersectionObserver), and contact form submission. The samples page's filter logic, previously an inline `<script>` tag, now lives in `src/js/pages/samples.js` and is included via the `pageJs` front-matter key.
+
+**Data** — `src/_data/site.json` holds contact details (phone, email, address, social links) used by `footer.njk`; `src/_data/year.js` computes the copyright year at build time (`new Date().getFullYear()`) instead of a hardcoded string.
+
+**Prepared for `/en/` (not yet built)** — Eleventy's data cascade makes a future English URL structure comparatively cheap: when a first English page is actually needed, create `src/en/` with its own data file setting `lang: en` (Eleventy's directory data files apply automatically to everything under that directory) and add `hreflang` alternate `<link>` tags in `base.njk` once at least one such page exists. Nothing under `src/en/` exists yet — this is a note for future work, not a live feature. The language toggle described below remains the only bilingual mechanism on the site today.
 
 ## Key patterns
 
@@ -117,6 +123,8 @@ The `.price-note` disclaimer now also states the prices follow VOICE's fee recom
 **Plan changed since the 2026-07-27 note below (kept for history): the site is no longer heading to Netlify. It's being migrated off Wix hosting directly onto Cloudflare** (DNS + Workers static assets). Full log in `domain_move.md`.
 
 **Deploys are automatic (confirmed 2026-08-03)**: Cloudflare's native Git integration is connected to this GitHub repo — every push to `main` triggers a Workers static-assets deploy on its own, no GitHub Actions workflow file needed (there isn't one in this repo) and no manual `npx wrangler deploy` required. Verified by pushing a favicon change and diffing the live `https://freshvoices.at/favicon.ico` bytes against the local repo file — identical, deployed automatically without any manual step. There's also no `wrangler.toml` committed to this repo; the Worker's config lives entirely in the Cloudflare dashboard's Git-connected build settings, not in-repo.
+
+**⚠️ Build settings must change for WP-06 (Eleventy migration, see below)**: before WP-06, the deploy served the repo root directly (a pure static site, no build step). Since the site now builds with Eleventy into `_site/`, the Cloudflare dashboard's Git-connected build settings (Workers & Pages → freshvoices → Settings → Build) must be updated to **Build command: `npx @11ty/eleventy`**, **Deploy/output directory: `_site`** — otherwise Cloudflare will keep deploying the old root-level HTML files (which no longer exist post-migration) or fail outright. Step-by-step cutover instructions for Wolf: `docs/review-2026-09/CUTOVER-eleventy.md`.
 
 - **Wix hosting plan**: Premiumpaket Business, purchased 26 Jan 2026, prepaid 3 years to 14 Feb 2029. No refund available outside the original 14-day window (B2B contract, reverse-charge VAT) — plan is to request a goodwill partial credit from Wix but let the plan run to expiry rather than cancel early, since there's no financial benefit to cancelling. Remember to turn off auto-renew before Feb 2029 regardless.
 - **Registrar**: IONOS. Nameservers switched from IONOS's default to **Cloudflare's**. No DNSSEC was configured on the domain, so nothing needed disabling before the switch.
