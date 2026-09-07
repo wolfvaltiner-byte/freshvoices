@@ -110,7 +110,10 @@ async function verifyTurnstile({ token, secret, ip, fetchImpl }) {
     // anything, so fail closed rather than silently accepting all submissions.
     return false;
   }
-  if (!token) return false;
+  if (!token) {
+    console.warn('turnstile rejected: no cf-turnstile-response in submission');
+    return false;
+  }
   const body = new URLSearchParams();
   body.set('secret', secret);
   body.set('response', token);
@@ -122,10 +125,22 @@ async function verifyTurnstile({ token, secret, ip, fetchImpl }) {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: body.toString(),
     });
-    if (!res.ok) return false;
+    if (!res.ok) {
+      console.warn('turnstile siteverify HTTP ' + res.status);
+      return false;
+    }
     const data = await res.json();
+    if (data.success !== true) {
+      // Diagnostics only — never log the token or the secret.
+      console.warn('turnstile rejected: ' + JSON.stringify({
+        errorCodes: data['error-codes'] || [],
+        hostname: data.hostname || null,
+        tokenLength: token.length,
+      }));
+    }
     return data.success === true;
-  } catch {
+  } catch (err) {
+    console.warn('turnstile siteverify failed: ' + (err && err.message));
     return false;
   }
 }
