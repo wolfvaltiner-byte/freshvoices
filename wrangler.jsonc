@@ -6,6 +6,12 @@
   "name": "freshvoices",
   "main": "worker/index.js",
   "compatibility_date": "2026-09-01",
+  // Build step runs inside `wrangler deploy` itself, so the Eleventy output
+  // exists even if the dashboard's "Build command" is empty (bit us 2026-09-06).
+  "build": {
+    "command": "npm run build",
+    "watch_dir": "src"
+  },
   "assets": {
     "directory": "./_site",
     "binding": "ASSETS",

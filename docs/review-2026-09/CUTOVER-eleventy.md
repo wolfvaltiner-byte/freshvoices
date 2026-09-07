@@ -7,8 +7,10 @@ build settings updated once, before (or right after) this branch is merged to `m
 ## Steps for Wolf
 
 1. **Cloudflare Dashboard → Workers & Pages → freshvoices → Settings → Build**
-   - **Build command**: `npx @11ty/eleventy`
-   - **Deploy command / output directory**: `_site`
+   - **Build command**: `npx @11ty/eleventy` (optional since `wrangler.jsonc` now carries
+     `build.command = "npm run build"` — Wrangler builds before deploying either way)
+   - **Deploy command**: `npx wrangler deploy` (a *command*, not a folder — `_site` is read from
+     `wrangler.jsonc` → `assets.directory`; entering `_site` here yields "Invalid request body")
    - **Root directory**: `/` (unchanged)
    - Save.
 2. **Merge this branch (`review-2026-09`) into `main`.** Cloudflare's Git integration deploys

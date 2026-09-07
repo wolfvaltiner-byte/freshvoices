@@ -16,6 +16,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
-    "playwright": "^1.56.0"
+    "playwright": "^1.56.0",
+    "wrangler": "^4.129.0"
   }
 }
