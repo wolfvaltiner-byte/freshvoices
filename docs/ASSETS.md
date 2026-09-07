@@ -59,6 +59,8 @@ Scope 1–5 umgesetzt (Commit 2026-09-06): about.html-Bilder responsive optimier
 
 Referenzen in `about.html` auf `<picture>` mit responsive `srcset`/`sizes` und WebP-first `<source>` umgestellt (Fallback JPG mit `width="420" height="560"` / `width="96" height="96"`). Alle ursprünglichen HTML-Attribute (alt, class, fetchpriority, loading) beibehalten.
 
+**Update (Preview-Feedback 2026-09-07):** `motto-192.jpg`/`.webp` (das Hemd-Foto oben) wurden durch eine eigene SVG-Illustration ersetzt — `src/images/motto-freeway-sign.svg` (~1.6 KB), ein kalifornisches Freeway-Hinweisschild als Anspielung auf das sprechende Schild in *L.A. Story*, kein Filmstill und keine Marken/Logos. Beide alten Rasterdateien liegen jetzt in `_unused/` (`git mv`). `.motto` ist jetzt spaltenweise (Bild oben, Zitat darunter) statt Bild-neben-Text, auch auf Desktop.
+
 ### Scope 3: Ungenutzte Assets nach `_unused/` verschoben
 
 Dateien mit Leerzeichen in Dateinamen wurden in kebab-case umbenannt:

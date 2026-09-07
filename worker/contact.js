@@ -241,6 +241,18 @@ async function handleContact(request, env, opts = {}) {
       : htmlResponse(noJsFallbackPage({ ok: false, error: 'validation', isDE: true }), 400);
   }
 
+  // Cutover guard: before either Resend or Turnstile secrets are set (see
+  // docs/review-2026-09/CUTOVER-eleventy.md), fail fast with a clear status
+  // instead of a confusing captcha/mail-send error further down. Checked
+  // after field validation so a visitor still gets normal validation
+  // feedback, but before the Turnstile network round-trip.
+  if (!env.RESEND_API_KEY || !env.TURNSTILE_SECRET_KEY) {
+    console.warn('contact form: not_configured — missing RESEND_API_KEY and/or TURNSTILE_SECRET_KEY Worker secret(s)');
+    return asJson
+      ? jsonResponse({ ok: false, error: 'not_configured' }, 503)
+      : htmlResponse(noJsFallbackPage({ ok: false, error: 'not_configured', isDE: true }), 503);
+  }
+
   const turnstileToken = fields['cf-turnstile-response'];
   const turnstileOk = await verifyTurnstile({
     token: turnstileToken,

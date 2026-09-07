@@ -218,6 +218,39 @@ async function runChecks(page, { pageName, viewportName, isMobile, baseUrl, fail
     }
   }
 
+  // 3b. Hero: no element overflows the right edge of the viewport (iOS
+  // Safari-specific bug, WP preview feedback 2026-09-07 — Safari counts a
+  // <video>'s poster intrinsic width toward the grid track's min-content,
+  // pushing .hero__subtitle and the video wider than the viewport). Checked
+  // on every page/viewport that has a .hero section, not just index, and
+  // against every element inside it, not just the obvious ones.
+  const heroOverflow = await page.evaluate(() => {
+    const hero = document.querySelector('.hero');
+    if (!hero) return null;
+    const innerWidth = window.innerWidth;
+    let maxRight = -Infinity;
+    let worstSelector = null;
+    const els = [hero, ...hero.querySelectorAll('*')];
+    for (const el of els) {
+      const rect = el.getBoundingClientRect();
+      if (rect.width === 0 && rect.height === 0) continue; // not rendered
+      if (rect.right > maxRight) {
+        maxRight = rect.right;
+        worstSelector =
+          el.tagName.toLowerCase() +
+          (el.className && typeof el.className === 'string' ? '.' + el.className.trim().split(/\s+/).join('.') : '');
+      }
+    }
+    return { innerWidth, maxRight, worstSelector };
+  });
+  if (heroOverflow) {
+    checks.push({
+      name: 'hero-no-right-overflow',
+      pass: heroOverflow.maxRight <= heroOverflow.innerWidth + 1,
+      detail: `maxRight=${heroOverflow.maxRight.toFixed(1)} innerWidth=${heroOverflow.innerWidth} worst=${heroOverflow.worstSelector}`,
+    });
+  }
+
   // 4. No JS pageerrors.
   checks.push({
     name: 'no-pageerrors',

@@ -355,6 +355,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!fb) return;
       fb.className = 'form-feedback is-' + type;
       fb.textContent = message;
+      // iOS Safari leaves the on-screen keyboard open (and the feedback
+      // below the fold behind it) unless focus is explicitly moved away
+      // from the field the visitor was last in.
+      if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur();
+      }
+      fb.setAttribute('tabindex', '-1');
+      fb.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      fb.focus({ preventScroll: true });
     }
 
     form.addEventListener('submit', async (e) => {
@@ -392,6 +401,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (data && data.error === 'captcha') {
           showFeedback('error', captchaMessage[isDE() ? 'de' : 'en']);
           if (window.turnstile) window.turnstile.reset();
+          btn.textContent = originalText;
+        } else if (response.status === 503 && data && data.error === 'not_configured') {
+          showFeedback('error', isDE()
+            ? 'Das Formular ist noch nicht freigeschaltet – bitte direkt an wolf.valtiner@freshvoices.at schreiben.'
+            : "The form isn't live yet – please email wolf.valtiner@freshvoices.at directly.");
           btn.textContent = originalText;
         } else {
           throw new Error((data && data.error) || String(response.status));

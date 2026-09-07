@@ -106,3 +106,26 @@ Lies CLAUDE.md und docs/review-2026-09/WP-03-mobile-hero.md; Entscheidung aus Ab
 1440 px) die Akzeptanzkriterien, committe mit expliziten Dateinamen, aktualisiere CLAUDE.md
 und docs/CHANGELOG-2026.md.
 ```
+
+## Preview-Feedback 2026-09-07 (iOS Safari): Rechtsrand-Overflow
+
+Wolf meldete aus der Cloudflare-Preview auf iPhone Safari, dass Subline und Video rechts über den
+Frame hinausliefen (Text abgeschnitten, Showreel-Badge halb sichtbar) — auf iPad/Desktop/Chromium
+nicht sichtbar. Ursache: `.hero__inner`'s `grid-template-columns: 1fr` ist `minmax(auto, 1fr)`,
+und Safari zählt (anders als Chromium) die intrinsische Breite des `<video>`-Posters (1280px) zur
+`auto`-Mindestbreite der Spalte. Fix in `src/css/pages/index.css`: `minmax(0, 1fr)` statt `1fr`
+(mobil einspaltig **und** Desktop zweispaltig), `min-width: 0` auf `.hero__content`/`.hero__visual`,
+`overflow: hidden; max-width: 100%` auf `.hero__photo-wrap` (mobil), `width: 100%; height: auto`
+auf `.hero__photo` (mobil, `max-height: 45svh` + `object-fit: cover` bleiben), `overflow-wrap: anywhere`
+auf `.hero__subtitle`.
+
+**Nicht in WebKit verifizierbar**: `npx playwright install webkit` schlägt am Netzwerk-Allowlist
+dieser Sandbox fehl (403 auf den Playwright-CDN-Hosts). Chromium reproduziert den zugrunde liegenden
+Bug selbst nicht (nutzt das Poster nicht für intrinsic sizing) — `maxRight === innerWidth` war dort
+vor und nach dem Fix identisch, insofern kein Vorher/Nachher-Beweis in diesem Sandbox möglich.
+Stattdessen als Regressionsschutz: `scripts/qa-shots.js` hat einen neuen `hero-no-right-overflow`-
+Check, der jedes Element in `.hero` gegen `getBoundingClientRect().right <= innerWidth + 1` prüft,
+für jede Seite/jeden Viewport — hätte den Original-Bug auf jeder Engine gefangen, die ihn zeigt.
+
+`npm run qa` grün (32/32 inkl. neuem Check). Screenshot: `index-top-iphone13.png` in
+`/home/claude/work/p16-shots/`.

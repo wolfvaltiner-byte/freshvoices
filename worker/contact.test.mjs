@@ -165,6 +165,28 @@ test('rate limit: 6th request within a minute from the same IP is rejected', asy
   assert.equal(lastRes.status, 429);
 });
 
+test('missing RESEND_API_KEY: returns 503 not_configured, no Turnstile/Resend call', async () => {
+  const { fetchImpl, calls } = mockFetch();
+  const env = { ...BASE_ENV, RESEND_API_KEY: undefined };
+  const request = makeRequest({ body: VALID_FIELDS });
+  const res = await handleContact(request, env, { fetchImpl, now: () => 1000 });
+  assert.equal(res.status, 503);
+  const data = await res.json();
+  assert.deepEqual(data, { ok: false, error: 'not_configured' });
+  assert.equal(calls.length, 0, 'no external calls should be made when secrets are missing');
+});
+
+test('missing TURNSTILE_SECRET_KEY: returns 503 not_configured, no Turnstile/Resend call', async () => {
+  const { fetchImpl, calls } = mockFetch();
+  const env = { ...BASE_ENV, TURNSTILE_SECRET_KEY: undefined };
+  const request = makeRequest({ body: VALID_FIELDS });
+  const res = await handleContact(request, env, { fetchImpl, now: () => 1000 });
+  assert.equal(res.status, 503);
+  const data = await res.json();
+  assert.deepEqual(data, { ok: false, error: 'not_configured' });
+  assert.equal(calls.length, 0, 'no external calls should be made when secrets are missing');
+});
+
 test('no-JS fallback (Accept without application/json) returns HTML', async () => {
   const { fetchImpl } = mockFetch();
   const request = makeRequest({ body: VALID_FIELDS, json: false });

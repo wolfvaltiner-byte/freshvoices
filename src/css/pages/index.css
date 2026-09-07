@@ -58,12 +58,17 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0,1fr), not a bare 1fr (== minmax(auto,1fr)): a bare 1fr lets a
+     track's min-content width win over the grid, and Safari counts a
+     <video>'s poster intrinsic width (1280px) toward that min-content —
+     pushing the whole grid wider than the viewport on mobile. See the
+     mobile override below for the iOS-Safari overflow this caused. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 80px;
   align-items: center;
   width: 100%;
 }
-.hero__content { }
+.hero__content, .hero__visual { min-width: 0; }
 .hero__eyebrow {
   margin-bottom: 24px;
 }
@@ -257,7 +262,9 @@
 .cta-banner__text p  { color: var(--muted); max-width: 440px; }
 
 @media (max-width: 768px) {
-  .hero__inner { grid-template-columns: 1fr; gap: 32px; }
+  /* minmax(0,1fr): see the desktop rule above — same iOS-Safari min-content
+     overflow, just a single track here instead of two. */
+  .hero__inner { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .hero__eyebrow { margin-bottom: 16px; }
   .hero__title {
     font-size: clamp(2.4rem, 11vw, 3.2rem);
@@ -269,12 +276,20 @@
     line-height: 1.5;
     margin-bottom: 24px;
     max-width: none;
+    overflow-wrap: anywhere;
   }
   .hero__photo-placeholder { aspect-ratio: 16/9; }
-  .hero__photo-wrap { aspect-ratio: 16/9; }
+  .hero__photo-wrap {
+    aspect-ratio: 16/9;
+    max-width: 100%;
+    overflow: hidden;
+  }
   .hero__photo {
     aspect-ratio: 16/9;
     max-height: 45svh;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     object-fit: cover;
   }
   .hero__mute-btn {

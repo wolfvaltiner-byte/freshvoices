@@ -41,3 +41,13 @@ Setze Scope 1–5 um. Lokal mit `npx wrangler dev` (B) bzw. curl gegen den Diens
 Committe mit expliziten Dateinamen, keine Secrets. Aktualisiere CLAUDE.md-Abschnitt
 "Incomplete items → Contact form" und docs/CHANGELOG-2026.md; hake die Akzeptanzkriterien hier ab.
 ```
+
+## Preview-Feedback 2026-09-07 (iOS Safari)
+
+Drei Nachbesserungen aus Wolfs iPhone-Test der Cloudflare-Preview, alle umgesetzt:
+
+- **Turnstile-Widget sichtbar**: `data-appearance="interaction-only"` auf `.cf-turnstile` in `src/contact.njk` — Widget rendert nur bei tatsächlich nötiger Challenge. Der „For testing only"-Banner mit dem aktuellen Test-Sitekey verschwindet erst mit dem echten Sitekey (siehe CUTOVER-Doku).
+- **Kein sichtbares Feedback nach Submit** (iOS-Tastatur blieb offen, Feedback-Box lag außerhalb des sichtbaren Bereichs): `src/js/main.js` blurt jetzt das aktive Feld, scrollt `#formFeedback` zentriert ins Bild und fokussiert es.
+- **Neuer Fehlerfall `not_configured`**: `worker/contact.js` prüft `RESEND_API_KEY`/`TURNSTILE_SECRET_KEY` vor dem Turnstile-Call und liefert `503 {ok:false,error:'not_configured'}` plus `console.warn`, falls einer der beiden Secrets fehlt (deckt genau den aktuellen Vor-Cutover-Zustand ab). Frontend zeigt dafür eine bilinguale Direktkontakt-Meldung. Zwei neue Tests in `worker/contact.test.mjs` — `npm test` jetzt 13/13.
+
+Details/Screenshots: `docs/CHANGELOG-2026.md` → „Preview feedback (2026-09-07, iOS Safari, Cloudflare preview)".

@@ -75,7 +75,11 @@ Do these before the contact form can actually deliver mail:
    `src/_data/site.json` → `turnstileSiteKey`, replacing the placeholder
    `1x00000000000000000000AA` (Turnstile's published "always passes" test key — fine for local
    dev and the automated tests, but must not ship to production as-is). Copy the **secret key**
-   for the next step.
+   for the next step. Note: the test key always renders a visible "For testing only" banner in
+   the widget — that's a property of the test key itself, not of the site's markup (the widget
+   div already carries `data-appearance="interaction-only"`, which keeps it hidden unless a
+   challenge is actually needed). The banner disappears on its own once the real site key from
+   this step is in place.
 3. **Worker secrets** (never committed to the repo): set both of
    - `RESEND_API_KEY` — the Resend API key from step 1
    - `TURNSTILE_SECRET_KEY` — the Turnstile secret key from step 2
